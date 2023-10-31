@@ -1,7 +1,11 @@
 from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
 
+from fastapi.middleware.cors import CORSMiddleware
+
 from routes import user, auth
+
+from decouple import config
 
 app = FastAPI()
 
@@ -18,11 +22,15 @@ app.openapi_tags = [
 app.include_router(user.router)
 app.include_router(auth.router)
 
-
-@app.get(
-    "/",
-    tags=["Home"],
-    summary="Redirecciona a la pagina de la documentación"
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[config("DEVELOPMENT_FRONTEND")],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
+
+
+@app.get("/", tags=["Home"], summary="Redirecciona a la pagina de la documentación")
 def home():
     return RedirectResponse(url="/docs")
