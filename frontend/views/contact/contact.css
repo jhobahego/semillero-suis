@@ -114,3 +114,15 @@ img {
     border-radius: 3px;
     cursor: pointer;
 }
+
+.rrss {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    padding-left: 0;
+}
+
+.rrss>li {
+    list-style: none;
+}
