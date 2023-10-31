@@ -58,7 +58,7 @@
       </p>
     </header>
 
-    <form class="card card-body" onsubmit="register(event)">
+    <form class="card card-body">
       <div class="mb-3">
         <label for="exampleInputNombre" class="form-label">nombre</label>
         <input type="text" class="form-control" id="exampleInputNombre" />
@@ -76,11 +76,12 @@
 
       <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">password</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" />
+        <input type="password" class="form-control" id="exampleInputEmail1" />
       </div>
 
       <div class="buttons">
-        <button type="submit" class="btn btn-danger buttons__register">Registrarse</button>
+        <button type="button" id="registerBtn" class="btn btn-danger buttons__register"
+          >Registrarse</button>
         <span>¿Ya estas registrado?</span>
         <a href="/frontend/views/auth/login.html" class="btn btn-secondary buttons__login">Iniciar sesión</a>
       </div>
@@ -91,7 +92,7 @@
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>
 
-  <script src="register.js"></script>
+  <script type="module" src="register.js"></script>
 </body>
 
 
