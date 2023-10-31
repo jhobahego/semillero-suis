@@ -6,6 +6,8 @@ from config.deps import get_db
 from crud.crud_user import user as crud_user
 from schemas.User import User, UserCreate
 
+from config.deps import get_current_active_admin
+
 
 router = APIRouter()
 
@@ -30,6 +32,11 @@ def get_user(id: int, db: Session = Depends(get_db)):
     return db_user
 
 
-@router.get("/users", tags=["Users"], response_model=list[User])
+@router.get(
+    "/users",
+    tags=["Users"],
+    response_model=list[User],
+    dependencies=[Depends(get_current_active_admin)],
+)
 def get_users(db: Session = Depends(get_db)):
     return crud_user.get_multi(db)
