@@ -37,7 +37,7 @@ class CRUDUser(CRUDBase[User, UserCreate, UserUpdate]):
         db.add(rol)
         db.commit()
 
-        user_rol = UserRol(user_id=created_user.user_id, rol_id=rol.rol_id)
+        user_rol = UserRol(user_id=created_user.id, rol_id=rol.rol_id)
         db.add(user_rol)
         db.commit()
 
