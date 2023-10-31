@@ -14,7 +14,7 @@ class UserCreate(BaseModel):
 
 
 class User(BaseModel):
-    user_id: int
+    id: int
     name: str
     lastname: str
     email: str

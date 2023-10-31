@@ -19,7 +19,7 @@ class RolName(str, Enum):
 class User(Base):
     __tablename__ = "users"
 
-    user_id = Column(Integer, primary_key=True, index=True)
+    id = Column(Integer, primary_key=True, index=True)
     name = Column(String(100))
     lastname = Column(String(100))
     email = Column(String(150), unique=True, index=True)
@@ -40,4 +40,4 @@ class UserRol(Base):
 
     user_rol_id = Column(Integer, primary_key=True, index=True)
     rol_id = Column(Integer, ForeignKey("roles.rol_id"))
-    user_id = Column(Integer, ForeignKey("users.user_id"))
+    user_id = Column(Integer, ForeignKey("users.id"))
