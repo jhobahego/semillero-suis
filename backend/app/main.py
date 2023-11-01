@@ -5,7 +5,11 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from routes import user, auth
 
+from db import Base, engine
+
 from decouple import config
+
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
