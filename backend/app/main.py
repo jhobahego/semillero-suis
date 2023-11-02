@@ -3,9 +3,13 @@ from fastapi.responses import RedirectResponse
 
 from fastapi.middleware.cors import CORSMiddleware
 
-from routes import user, auth
+from routes import user, auth, project
+
+from db import Base, engine
 
 from decouple import config
+
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
@@ -17,10 +21,12 @@ app.version = "0.0.1"
 app.openapi_tags = [
     {"name": "Home", "description": "Documentation"},
     {"name": "Users", "description": "Users routes"},
+    {"name": "Projects", "description": "Projects routes"},
 ]
 
 app.include_router(user.router)
 app.include_router(auth.router)
+app.include_router(project.router)
 
 app.add_middleware(
     CORSMiddleware,

@@ -7,6 +7,8 @@ from sqlalchemy import (
     Enum as SqlAlchemyEnum,
 )
 
+from sqlalchemy.orm import relationship
+
 from enum import Enum
 from db import Base
 
@@ -26,6 +28,8 @@ class User(Base):
     hashed_password = Column(String(250))
     is_active = Column(Boolean, default=True)
     is_superuser = Column(Boolean, default=False)
+
+    projects = relationship("Project", back_populates="member")
 
 
 class Roles(Base):
