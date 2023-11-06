@@ -7,4 +7,10 @@ const axiosInstance = axios.create({
   }
 })
 
+const token = localStorage.getItem("token")
+
+if (token != undefined) {
+  axiosInstance.defaults.headers.common['Authorization'] = 'Bearer ' + token
+}
+
 export default axiosInstance
