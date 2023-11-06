@@ -1,11 +1,13 @@
-import axios from '../../node_modules/axios/dist/esm/axios.min.js'
-
-const axiosConfig = {
-  headers: {
-    'Content-Type': 'application/json'
-  }
-}
+import axiosInstance from './axios.js'
 
 export const registerUser = async (userData) => {
-  return await axios.post("http://localhost:8000/users", userData, axiosConfig)
+  return await axiosInstance.post("/users", userData)
+}
+
+export const login = async (userData) => {
+  return await axiosInstance.post("/token", userData, {
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+  })
 }
