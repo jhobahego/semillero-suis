@@ -12,10 +12,7 @@ ol {
 }
 
 body {
-  margin: 818px;
-  padding: 818px;
-  height: 818px;
-  padding: 960px;
+  width: 100%;
   display: contents;
   justify-content: flex-end;
   align-content: justify;
@@ -46,6 +43,8 @@ main {
 
 .nav-item>a {
   color: white;
+  max-width: 100px;
+  height: auto;
 }
 
 .container {

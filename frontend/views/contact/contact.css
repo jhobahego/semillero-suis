@@ -1,86 +1,83 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'poppins', sans-serif;
 }
 
 body {
-    display: contents;
-    flex-direction: column;
-    justify-content: center;
-    background: #ede7f6;
-    text-align: center;
+  width: 100%;
+  display: contents;
+  flex-direction: column;
+  justify-content: center;
+  background: #ede7f6;
+  text-align: center;
 }
 
 .menu {
-    width: 100%;
-    background-color: #00447b;
-    padding: .4em 4em;
+  width: 100%;
+  background-color: #00447b;
+  padding: .4em 4em;
 }
 
 .menu__links {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    list-style: none;
-    width: 100%;
-    padding-left: 0;
-    margin-bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  width: 100%;
+  padding-left: 0;
+  margin-bottom: 0;
 }
 
 .nav-item>a {
-    color: white;
-}
-
-img {
-    opacity: 1;
-    filter: brightness(1.1);
-    mix-blend-mode: multiply;
+  color: white;
+  max-width: 100px;
+  height: auto;
 }
 
 .container {
-    margin: 2em auto;
+  margin: 2em auto;
 }
 
 .card {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 1em 2em;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 1em 2em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 .card__body {
-    padding: .6em;
-    border: 1px solid rgba(128, 128, 128, 0.301);
+  padding: .6em;
+  border: 1px solid rgba(128, 128, 128, 0.301);
 }
 
 .title {
-    text-align: center;
-    padding: .4em 0;
+  text-align: center;
+  padding: .4em 0;
 }
 
 .contact-list {
-    list-style-type: none;
-    padding: 0;
+  list-style-type: none;
+  padding: 0;
 }
 
 .contact-list li {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .contact-list li a {
-    display: block;
-    padding: 10px;
-    background-color: #f2f2f2;
-    text-decoration: none;
-    color: #333;
-    border-radius: 3px;
+  display: block;
+  padding: 10px;
+  background-color: #f2f2f2;
+  text-decoration: none;
+  color: #333;
+  border-radius: 3px;
 }
 
 .contact-list li a:hover {
-    background-color: #e6e6e6;
+  background-color: #e6e6e6;
 }
 
 
@@ -94,42 +91,42 @@ img {
 
 
 .card form {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .card form input[type="text"],
 .card form textarea {
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
 }
 
 .card form input[type="submit"] {
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
 }
 
 .rrss {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1em;
-    padding-left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+  padding-left: 0;
 }
 
 .rrss>li {
-    list-style: none;
+  list-style: none;
 }
 
 .rrss>li>a>img {
-    width: 45px;
-    height: 45px;
-    object-fit: cover;
-    border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  object-fit: cover;
+  border-radius: 50%;
 }

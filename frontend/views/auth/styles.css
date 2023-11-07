@@ -12,7 +12,7 @@ main {
 .menu {
   width: 100%;
   background-color: #00447b;
-  padding: 1em 4em;
+  padding: .4em 4em;
 }
 
 .menu__links {
@@ -25,15 +25,14 @@ main {
   margin-bottom: 0;
 }
 
-.links__item > a {
+.links__item>a {
   color: white;
+  max-width: 100px;
+  height: auto;
 }
 
 body {
-  margin: 818px;
-  padding: 818px;
-  height: 818px;
-  padding: 960px;
+  width: 100%;
   display: contents;
   justify-content: flex-end;
   align-content: justify;
@@ -85,11 +84,4 @@ footer {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-}
-
-img {
-  opacity: 1;
-  filter: brightness(1.1);
-  mix-blend-mode: multiply;
-
 }
