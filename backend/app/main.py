@@ -29,11 +29,13 @@ app.include_router(auth.router)
 app.include_router(project.router)
 
 
-origin = config("DEVELOPMENT_FRONTEND")
+env_value = config("DEVELOPMENT_FRONTEND")
+
+origins = env_value.split(",")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[origin],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
