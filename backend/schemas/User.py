@@ -1,16 +1,23 @@
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, EmailStr
 from typing import Optional
 
 
 class UserBase(BaseModel):
+    name: str
     email: str
+    is_active: bool
+    is_superuser: bool
 
 
 class UserCreate(BaseModel):
     name: str
     lastname: str
-    email: str
+    email: EmailStr
     password: str
+
+
+class UserInDB(UserBase):
+    id: Optional[int] = None
 
 
 class User(BaseModel):

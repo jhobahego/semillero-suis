@@ -1,10 +1,11 @@
 from fastapi import Depends, APIRouter, HTTPException
+from fastapi.responses import JSONResponse
 
 from sqlalchemy.orm import Session
 from config.deps import get_db
 
 from crud.crud_user import user as crud_user
-from schemas.User import User, UserCreate
+from schemas.User import User, UserCreate, UserInDB
 
 from config.deps import get_current_active_admin
 
@@ -12,7 +13,7 @@ from config.deps import get_current_active_admin
 router = APIRouter()
 
 
-@router.post("/users", tags=["Users"], response_model=User)
+@router.post("/users", tags=["Users"], response_model=UserInDB)
 def create_user(
     user: UserCreate,
     db: Session = Depends(get_db),
@@ -20,10 +21,19 @@ def create_user(
     db_user = crud_user.get_by_email(db, email=user.email)
     if db_user:
         raise HTTPException(status_code=400, detail="Email already registered")
-    return crud_user.create(db=db, user=user)
+
+    db_user = crud_user.create(db=db, user=user)
+    response = {
+        "id": db_user.id,
+        "name": db_user.name,
+        "email": db_user.email,
+        "is_active": db_user.is_active,
+        "is_superuser": db_user.is_superuser,
+    }
+    return JSONResponse(status_code=201, content=response)
 
 
-@router.get("/users/{id}", tags=["Users"], response_model=User)
+@router.get("/users/{id}", tags=["Users"], response_model=UserInDB)
 def get_user(id: int, db: Session = Depends(get_db)):
     db_user = crud_user.get(db, id)
 
