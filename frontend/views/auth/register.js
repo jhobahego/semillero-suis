@@ -1,16 +1,17 @@
-import { registerUser } from "./services.js";
+import { notificationUtilities } from "../../services/notificationService.js";
+import { registerUser } from "../../services/authenticationService.js";
 
 let nombreInput = document.getElementById("exampleInputNombre");
 let apellidoInput = document.getElementById("exampleInputApellido1");
 let emailInput = document.getElementById("exampleInputDireccion1");
 let passwordInput = document.getElementById("exampleInputEmail1");
 
-let registerBtn = document.getElementById("registerBtn")
+registerForm.addEventListener("submit", (event) => register(event))
 
-registerBtn.addEventListener("click", () => register())
+async function register(event) {
+  event.preventDefault()
 
-async function register() {
-  if (!validFields()) return alert("Debes rellenar antes todos los campos");
+  if (!validFields()) return notificationUtilities.error("Debes rellenar todos los campos requeridos");
 
   const user = {
     name: nombreInput.value,
@@ -21,19 +22,19 @@ async function register() {
 
   try {
     const response = await registerUser(user)
-    const { data } = response // usuario registrado en DB
+    const { data } = response
+
+    localStorage.setItem("usuario", JSON.stringify(data))
   } catch (error) {
-    const { detail } = error.response.data
-    return alert("Error: " + detail)
+    return
   }
 
-  setTimeout(alert("registro existoso"), 4000)
-  window.location.href = "http://localhost:5500/frontend/index.html"
+  window.location.href = "http://localhost:5500/frontend/views/auth/login.html"
 }
 
 function validFields() {
   return nombreInput.value.trim() !== ''
-    || apellidoInput.value.trim() !== ''
-    || emailInput.value.trim() !== ''
-    || passwordInput.value.trim() !== ''
+    && apellidoInput.value.trim() !== ''
+    && emailInput.value.trim() !== ''
+    && passwordInput.value.trim() !== ''
 }

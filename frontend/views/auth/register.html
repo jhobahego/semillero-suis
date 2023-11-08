@@ -58,7 +58,7 @@
       </p>
     </header>
 
-    <form class="card card-body">
+    <form class="card card-body" id="registerForm">
       <div class="mb-3">
         <label for="exampleInputNombre" class="form-label">nombre</label>
         <input type="text" class="form-control" id="exampleInputNombre" />
@@ -80,7 +80,7 @@
       </div>
 
       <div class="buttons">
-        <button type="button" id="registerBtn" class="btn btn-danger buttons__register"
+        <button type="submit" id="registerBtn" class="btn btn-danger buttons__register"
           >Registrarse</button>
         <span>¿Ya estas registrado?</span>
         <a href="/frontend/views/auth/login.html" class="btn btn-secondary buttons__login">Iniciar sesión</a>
@@ -93,7 +93,7 @@
     crossorigin="anonymous"></script>
 
   <script type="module" src="register.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
-
 
 </html>

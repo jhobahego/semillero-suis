@@ -1,17 +1,17 @@
-import { login } from "./services.js";
+import { notificationUtilities } from "../../services/notificationService.js";
+import { login } from "../../services/authenticationService.js";
 
 const inputEmail = document.getElementById("inputEmail")
 const inputPassword = document.getElementById("inputPassword")
 
-const loginBtn = document.getElementById("loginBtn")
 const loginForm = document.getElementById("loginForm")
 
 loginForm.addEventListener('submit', (e) => loginUser(e))
 
-const loginUser = async (e) => { // Validar cors y submit del formulario
+export const loginUser = async (e) => {
   e.preventDefault()
 
-  if (!validFields()) return alert("Rellena los campos necesarios")
+  if (!validFields()) return notificationUtilities.error("Rellena los campos necesarios")
 
   try {
     const formData = new FormData()
@@ -27,16 +27,13 @@ const loginUser = async (e) => { // Validar cors y submit del formulario
 
     localStorage.setItem("token", data.access_token)
   } catch (error) {
-    console.log(error)
-    const { detail } = error.response.data
-    return alert("Error: " + detail)
+    return
   }
 
-  setTimeout(alert("Login existoso"), 4000)
   window.location.href = "http://localhost:5500/frontend/index.html"
 }
 
 function validFields() {
   return inputEmail.value.trim() !== ''
-    || inputPassword.value.trim() !== ''
+    && inputPassword.value.trim() !== ''
 }
