@@ -5,35 +5,46 @@ from sqlalchemy.orm import Session
 from decouple import config
 
 from crud.base import CRUDBase
-from models.User import Roles, User, UserRol, RolName
+from models.User import Roles, User, UserRol, RolName, Autority
 from schemas.User import UserCreate, UserUpdate
 from config.security import get_password_hash, verify_password
+
+from utils.email import is_teacher
 
 
 class CRUDUser(CRUDBase[User, UserCreate, UserUpdate]):
     def get_by_email(self, db: Session, *, email: str) -> Optional[User]:
         return db.query(User).filter(User.email == email).first()
-    
+
     def create(self, db: Session, *, user: UserCreate) -> User:
-        admin_email = config("ADMIN_EMAIL")
+        authorities = [Autority.READ, Autority.CHANGE_CREDENTIALS]
+        gestor_email = config("GESTOR_EMAIL")
 
         rol_name = RolName.USER
-        if user.email == admin_email:
-            rol_name = RolName.ADMIN
+        if user.email == gestor_email:
+            rol_name = RolName.GESTOR
+            authorities.append(Autority.CREATE)
+            authorities.append(Autority.MODIFY)
+            authorities.append(Autority.DELETE)
+
+        elif is_teacher(user.email):
+            rol_name = RolName.TEACHER
+        else:
+            rol_name = RolName.STUDENT
 
         created_user = User(
             name=user.name,
             lastname=user.lastname,
             email=user.email,
             hashed_password=get_password_hash(user.password),
-            is_superuser=(rol_name == RolName.ADMIN),
+            is_superuser=(rol_name == RolName.GESTOR),
         )
 
         db.add(created_user)
         db.commit()
         db.refresh(created_user)
 
-        rol = Roles(name=rol_name)
+        rol = Roles(name=rol_name, authorities=authorities)
         db.add(rol)
         db.commit()
 

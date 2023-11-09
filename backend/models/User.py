@@ -5,12 +5,22 @@ from sqlalchemy import (
     Integer,
     String,
     Enum as SqlAlchemyEnum,
+    JSON,
 )
 
 from sqlalchemy.orm import relationship
 
 from enum import Enum
 from db import Base
+
+
+
+class Autority(str, Enum):
+    READ = "READ"
+    CREATE = "CREATE"
+    MODIFY = "MODIFY"
+    DELETE = "DELETE"
+    CHANGE_CREDENTIALS = "CHANGE_CREDENTIALS"
 
 
 class RolName(str, Enum):
@@ -38,6 +48,7 @@ class Roles(Base):
 
     rol_id = Column(Integer, primary_key=True, index=True)
     name = Column(SqlAlchemyEnum(RolName, create_constraint=True), default=RolName.USER)
+    authorities = Column(JSON)
 
 
 class UserRol(Base):
