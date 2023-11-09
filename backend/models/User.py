@@ -14,8 +14,9 @@ from db import Base
 
 
 class RolName(str, Enum):
-    ADMIN = "ADMIN"
-    USER = "USER"
+    GESTOR = "GESTOR"
+    TEACHER = "TEACHER"
+    STUDENT = "STUDENT"
 
 
 class User(Base):
