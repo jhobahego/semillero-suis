@@ -35,10 +35,14 @@ class User(Base):
     __tablename__ = "users"
 
     id = Column(Integer, primary_key=True, index=True)
+    dni = Column(Integer, unique=True, nullable=False)
     name = Column(String(100), nullable=False)
     lastname = Column(String(100), nullable=False)
     email = Column(String(150), unique=True, index=True, nullable=False)
     hashed_password = Column(String(250), nullable=False)
+    semester = Column(Integer, nullable=True)
+    university = Column(String(255), nullable=False)
+    sede = Column(String(150), nullable=True)
     is_active = Column(Boolean, default=True)
     is_superuser = Column(Boolean, default=False)
 
