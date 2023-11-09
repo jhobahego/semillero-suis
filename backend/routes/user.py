@@ -2,12 +2,12 @@ from fastapi import Depends, APIRouter, HTTPException
 from fastapi.responses import JSONResponse
 
 from sqlalchemy.orm import Session
-from config.deps import get_db
+from config.deps import get_current_active_admin, get_db
 
 from crud.crud_user import user as crud_user
 from schemas.User import User, UserCreate, UserInDB
 
-from config.deps import get_current_active_admin
+from utils.email import valid_email
 
 
 router = APIRouter()
@@ -18,9 +18,15 @@ def create_user(
     user: UserCreate,
     db: Session = Depends(get_db),
 ):
+    if not valid_email(user):
+        raise HTTPException(
+            status_code=400,
+            detail="Correo inválido, debes usar tu correo institucional",
+        )
+
     db_user = crud_user.get_by_email(db, email=user.email)
     if db_user:
-        raise HTTPException(status_code=400, detail="Email already registered")
+        raise HTTPException(status_code=400, detail="Este correo ya ha sido registrado")
 
     db_user = crud_user.create(db=db, user=user)
     response = {
