@@ -9,7 +9,7 @@ from sqlalchemy import (
     CheckConstraint,
 )
 
-from sqlalchemy.orm import relationship, validates
+from sqlalchemy.orm import validates
 
 from enum import Enum
 from db import Base
@@ -45,8 +45,6 @@ class User(Base):
     sede = Column(String(150), nullable=True)
     is_active = Column(Boolean, default=True)
     is_superuser = Column(Boolean, default=False)
-
-    projects = relationship("Project", back_populates="member")
 
     __table_args__ = (
         CheckConstraint("LENGTH(name) >= 4", name="check_name_length"),

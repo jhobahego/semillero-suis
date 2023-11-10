@@ -1,5 +1,5 @@
-from sqlalchemy import Column, Integer, String, DateTime, Enum, ForeignKey, JSON
-from sqlalchemy import orm, sql
+from sqlalchemy import Column, Integer, String, DateTime, Enum, JSON
+from sqlalchemy import sql
 from enum import Enum as PyEnum
 
 from db import Base
@@ -33,8 +33,4 @@ class Project(Base):
     portrait_url = Column(String(300))
     status = Column(Enum(ProjectStatus), default=ProjectStatus.PENDING)
 
-    # Definición de la clave foránea para la relación many-to-one
-    member_id = Column(Integer, ForeignKey("users.id"), nullable=False)
-
-    # Definición de la relación many-to-one con la tabla Users
-    member = orm.relationship("User", back_populates="projects")
+    members = Column(JSON, nullable=False)
