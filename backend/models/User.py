@@ -69,7 +69,7 @@ class Roles(Base):
     __tablename__ = "roles"
 
     rol_id = Column(Integer, primary_key=True, index=True)
-    name = Column(SqlAlchemyEnum(RolName, create_constraint=True), default=RolName.USER)
+    name = Column(SqlAlchemyEnum(RolName, create_constraint=True))
     authorities = Column(JSON)
 
 

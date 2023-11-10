@@ -20,7 +20,7 @@ class CRUDUser(CRUDBase[User, UserCreate, UserUpdate]):
         authorities = [Autority.READ, Autority.CHANGE_CREDENTIALS]
         gestor_email = config("GESTOR_EMAIL")
 
-        rol_name = RolName.USER
+        rol_name = ""
         if user.email == gestor_email:
             rol_name = RolName.GESTOR
             authorities.append(Autority.CREATE)
