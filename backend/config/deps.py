@@ -80,7 +80,7 @@ def get_current_active_admin(
     rol_obj = db.query(Roles).where(Roles.rol_id == user_rol.rol_id).first()
 
     # Verificar si el usuario es administrador o tiene los privilegios adecuados
-    if not crud.user.is_superuser(current_user) and rol_obj.name != RolName.ADMIN:
+    if not crud.user.is_superuser(current_user) and rol_obj.name != RolName.GESTOR:
         raise HTTPException(
             status_code=400, detail="El usuario no tiene suficientes privilegios"
         )
