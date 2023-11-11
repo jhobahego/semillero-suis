@@ -3,9 +3,10 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
 from crud.crud_project import project as crud_project
-from crud.crud_user import user as crud_user
 from schemas.Project import ProjectCreate, ProjectUpdate, Project
 from config.deps import get_db, get_current_active_admin
+
+from utils.projects import validate_existing_members, validate_existing_users
 
 router = APIRouter()
 
@@ -20,13 +21,8 @@ router = APIRouter()
 def create_project(project: ProjectCreate, db: Session = Depends(get_db)):
     members_dni = project.members
 
-    # Obtener todos los DNIs de todos los proyectos existentes
-    dnis_with_projects = [
-        dni for proj in crud_project.get_multi(db) for dni in proj.members
-    ]
-
-    # Encontrar los DNIs que ya están vinculados a proyectos
-    existing_members = [dni for dni in members_dni if dni in dnis_with_projects]
+    existing_members = validate_existing_members(db, members_dni)
+    non_existing_members = validate_existing_users(db, members_dni)
 
     if existing_members:
         existing_members_str = ", ".join(map(str, existing_members))
@@ -34,12 +30,6 @@ def create_project(project: ProjectCreate, db: Session = Depends(get_db)):
             status_code=400,
             detail=f"Estudiantes con dni: {existing_members_str} ya registrados en un proyecto",
         )
-
-    # Obtenemos los DNIs de los usuarios de la base de datos
-    user_dnies = [user.dni for user in crud_user.get_multi(db)]
-
-    # Verificamos si los DNIs de los miembros existen en la lista de DNIs de usuarios
-    non_existing_members = [dni for dni in members_dni if dni not in user_dnies]
 
     if non_existing_members:
         non_existing_members_str = ", ".join(map(str, non_existing_members))
