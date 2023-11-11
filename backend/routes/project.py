@@ -18,14 +18,28 @@ router = APIRouter()
     dependencies=[Depends(get_current_active_admin)],
 )
 def create_project(project: ProjectCreate, db: Session = Depends(get_db)):
-    member_ids = project.members
+    members_dni = project.members
+
+    # Obtener todos los DNIs de todos los proyectos existentes
+    dnis_with_projects = [
+        dni for proj in crud_project.get_multi(db) for dni in proj.members
+    ]
+
+    # Encontrar los DNIs que ya están vinculados a proyectos
+    existing_members = [dni for dni in members_dni if dni in dnis_with_projects]
+
+    if existing_members:
+        existing_members_str = ", ".join(map(str, existing_members))
+        raise HTTPException(
+            status_code=400,
+            detail=f"Estudiantes con dni: {existing_members_str} ya registrados en un proyecto",
+        )
 
     # Obtenemos los DNIs de los usuarios de la base de datos
     user_dnies = [user.dni for user in crud_user.get_multi(db)]
 
     # Verificamos si los DNIs de los miembros existen en la lista de DNIs de usuarios
-    non_existing_members = [dni for dni in member_ids if dni not in user_dnies]
-    print(non_existing_members)
+    non_existing_members = [dni for dni in members_dni if dni not in user_dnies]
 
     if non_existing_members:
         non_existing_members_str = ", ".join(map(str, non_existing_members))
