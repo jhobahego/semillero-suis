@@ -1,5 +1,4 @@
 from fastapi import Depends, APIRouter, HTTPException
-from fastapi.responses import JSONResponse
 
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
@@ -14,7 +13,7 @@ from utils.email import valid_email
 router = APIRouter()
 
 
-@router.post("/users", tags=["Users"], response_model=UserInDB)
+@router.post("/users", tags=["Users"], status_code=201, response_model=UserInDB)
 def create_user(
     user: UserCreate,
     db: Session = Depends(get_db),
@@ -31,14 +30,8 @@ def create_user(
 
     try:
         db_user = crud_user.create(db=db, user=user)
-        response = {
-            "id": db_user.id,
-            "name": db_user.name,
-            "email": db_user.email,
-            "is_active": db_user.is_active,
-            "is_superuser": db_user.is_superuser,
-        }
-        return JSONResponse(status_code=201, content=response)
+
+        return db_user
 
     except IntegrityError as e:
         # Verificar si la excepción es debido a una violación de unicidad en la columna dni
