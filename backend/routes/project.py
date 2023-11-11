@@ -6,7 +6,11 @@ from crud.crud_project import project as crud_project
 from schemas.Project import ProjectCreate, ProjectUpdate, Project
 from config.deps import get_db, get_current_active_admin
 
-from utils.projects import validate_existing_members, validate_existing_users
+from utils.projects import (
+    validate_existing_members,
+    validate_existing_users,
+    fetch_existing_project_titles,
+)
 
 router = APIRouter()
 
@@ -20,6 +24,10 @@ router = APIRouter()
 )
 def create_project(project: ProjectCreate, db: Session = Depends(get_db)):
     members_dni = project.members
+
+    project_titles = fetch_existing_project_titles(db)
+    if project.title in project_titles:
+        raise HTTPException(status_code=400, detail="Titulo de proyecto ya presentado")
 
     existing_members = validate_existing_members(db, members_dni)
     non_existing_members = validate_existing_users(db, members_dni)
