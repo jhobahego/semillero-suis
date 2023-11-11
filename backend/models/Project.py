@@ -22,7 +22,7 @@ class Project(Base):
     __tablename__ = "projects"
 
     id = Column(Integer, primary_key=True, index=True)
-    title = Column(String(255), nullable=False)
+    title = Column(String(255), unique=True, nullable=False)
     description = Column(String(300), nullable=False)
     general_objectives = Column(JSON, nullable=False)
     specific_objectives = Column(JSON, nullable=False)
