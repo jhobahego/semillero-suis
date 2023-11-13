@@ -62,3 +62,11 @@ def get_user(id: int, db: Session = Depends(get_db)):
 )
 def get_users(db: Session = Depends(get_db)):
     return crud_user.get_multi(db)
+
+
+@router.delete("/users/{id}", tags=["Users"], status_code=204)
+def delete_user(id: int, db: Session = Depends(get_db)):
+    db_user = crud_user.remove(db=db, id=id)
+
+    if not db_user:
+        raise HTTPException(status_code=404, detail="User not found")
