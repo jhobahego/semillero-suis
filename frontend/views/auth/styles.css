@@ -85,10 +85,3 @@ footer {
   justify-content: space-between;
   flex-wrap: wrap;
 }
-
-.img-fluid {
-  width: 110rem;
-  height: auto;
-  max-width: 6rem;
-  
-}

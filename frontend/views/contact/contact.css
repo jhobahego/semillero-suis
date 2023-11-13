@@ -130,10 +130,3 @@ body {
   object-fit: cover;
   border-radius: 50%;
 }
-
-.img-fluid {
-  width: 110rem;
-  height: auto;
-  max-width: 6rem;
-  
-}

@@ -118,10 +118,3 @@ main {
 .buttons a:hover {
   background-color: #3D85C6;
 }
-
-.img-fluid {
-  width: 110rem;
-  height: auto;
-  max-width: 6rem;
-  
-}

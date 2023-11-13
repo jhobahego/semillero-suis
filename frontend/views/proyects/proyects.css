@@ -143,11 +143,3 @@ main {
   margin: 1%;
   border-radius: 5x;
 }
-
-.img-fluid {
-  width: 110rem;
-  height: auto;
-  max-width: 6rem;
-  
-}
-
