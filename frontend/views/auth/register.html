@@ -59,25 +59,57 @@
     </header>
 
     <form class="card card-body" id="registerForm">
+
       <div class="mb-3">
-        <label for="exampleInputNombre" class="form-label">nombre</label>
+        <!-- <label for="select" class="form-label">¿Quien eres?</label> -->
+        <select class="form-select" aria-label="Default select example" id="select">
+          <option selected>Elije tu profesión</option>
+          <option value="teacher">Profesor</option>
+          <option value="student">Estudiante</option>
+        </select>
+      </div>
+      <div class="mb-3 form-floating">
+        <input type="number" class="form-control" id="dni" />
+        <label for="dni" class="form-label">Numero de identificación</label>
+      </div>
+      <div class="mb-3 form-floating">
         <input type="text" class="form-control" id="exampleInputNombre" />
+        <label for="exampleInputNombre" class="form-label">Nombres</label>
       </div>
 
-      <div class="mb-3">
-        <label for="exampleInputApellido1" class="form-label">apellido</label>
+      <div class="mb-3 form-floating">
         <input type="text" class="form-control" id="exampleInputApellido1" />
+        <label for="exampleInputApellido1" class="form-label">Apellidos</label>
       </div>
 
-      <div class="mb-3">
-        <label for="exampleInputDireccion1" class="form-label">Email</label>
+      <div class="mb-3 form-floating">
         <input type="text" class="form-control" id="exampleInputDireccion1" />
+        <label for="exampleInputDireccion1" class="form-label">Correo</label>
       </div>
 
-      <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">password</label>
+      <div class="mb-3 form-floating">
         <input type="password" class="form-control" id="exampleInputEmail1" />
+        <label for="exampleInputEmail1" class="form-label">Contraseña</label>
       </div>
+
+
+      <div class="mb-3 form-floating">
+        <input type="text" class="form-control" id="university" />
+        <label for="university" class="form-label">Universidad</label>
+      </div>
+      
+      
+      <div class="mb-3 form-floating">
+        <input type="text" class="form-control" id="sede" />
+        <label for="sede" class="form-label">Sede</label>
+      </div>
+      
+      
+      <div class="mb-3 form-floating">
+        <input type="number" class="form-control" id="semester" />
+        <label for="semester" class="form-label" id="semestre-label">Semestre</label>
+      </div>
+
 
       <div class="buttons">
         <button type="submit" id="registerBtn" class="btn btn-danger buttons__register"
