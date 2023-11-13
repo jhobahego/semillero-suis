@@ -9,7 +9,7 @@ from sqlalchemy import (
     CheckConstraint,
 )
 
-from sqlalchemy.orm import validates
+from sqlalchemy.orm import validates, relationship, backref
 
 from enum import Enum
 from db import Base
@@ -31,6 +31,22 @@ class RolName(str, Enum):
     STUDENT = "STUDENT"
 
 
+class Roles(Base):
+    __tablename__ = "roles"
+
+    rol_id = Column(Integer, primary_key=True, index=True)
+    name = Column(SqlAlchemyEnum(RolName, create_constraint=True))
+    authorities = Column(JSON)
+
+
+class UserRol(Base):
+    __tablename__ = "users_roles"
+
+    user_rol_id = Column(Integer, primary_key=True, index=True)
+    rol_id = Column(Integer, ForeignKey("roles.rol_id"))
+    user_id = Column(Integer, ForeignKey("users.id"))
+
+
 class User(Base):
     __tablename__ = "users"
 
@@ -45,6 +61,12 @@ class User(Base):
     sede = Column(String(150), nullable=True)
     is_active = Column(Boolean, default=True)
     is_superuser = Column(Boolean, default=False)
+
+    roles = relationship(
+        "UserRol",
+        cascade="all, delete-orphan",
+        backref=backref("user"),
+    )
 
     __table_args__ = (
         CheckConstraint("LENGTH(name) >= 4", name="check_name_length"),
@@ -61,19 +83,3 @@ class User(Base):
         if not self.email_regex.match(email):
             raise ValueError("Correo invalido debes usar tu correo institucional.")
         return email
-
-
-class Roles(Base):
-    __tablename__ = "roles"
-
-    rol_id = Column(Integer, primary_key=True, index=True)
-    name = Column(SqlAlchemyEnum(RolName, create_constraint=True))
-    authorities = Column(JSON)
-
-
-class UserRol(Base):
-    __tablename__ = "users_roles"
-
-    user_rol_id = Column(Integer, primary_key=True, index=True)
-    rol_id = Column(Integer, ForeignKey("roles.rol_id"))
-    user_id = Column(Integer, ForeignKey("users.id"))
