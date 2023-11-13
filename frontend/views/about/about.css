@@ -113,3 +113,9 @@ article {
 
   border-radius: 10px;
 }
+.img-fluid {
+  width: 110rem;
+  height: auto;
+  max-width: 6rem;
+  
+}
