@@ -33,6 +33,7 @@
    ADMIN_EMAIL="correo@admin.com"
    SECRET_KEY="MQJ7b1IXKH8Ze3z_FlX4tvSCurO6p5xtVsBMIkaKfI"
    DEVELOPMENT_FRONTEND="http://localhost:5500,http://127.0.0.1:5500"
+   RUN_ENV="run"
 
   ### Notas adicionales:
 
@@ -41,6 +42,7 @@
   - **DEVELOPMENT_FRONTEND:** URLs separadas por comas que hacen referencia al frontend donde se consume la API.
   - **ADMIN_EMAIL:** Correo del usuario administrador.
   - **SECRET_KEY:** Cadena codificada con algoritmo HS256.
+  - **RUN_EN:** `test` para usar y `run` para usar la base de datos real
 
 ## Iniciar la aplicación:
 
