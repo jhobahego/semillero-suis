@@ -14,152 +14,158 @@
   <title>Pagina de Inicio</title>
 </head>
 
-<nav class="menu">
-  <ul class="menu__links">
-    <li class="nav-item">
-      <a class="nav-link active" aria-current="page" href="#">
-        <img class="img-fluid" src="/frontend/public/img/logopc2-preview.png" alt="logo del semillero SUIS" />
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/frontend/views/about/about.html">Acerca de</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/frontend/views/auth/register.html">Registro</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/frontend/views/proyects/proyectos.html">Proyectos</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/frontend/views/contact/contacto.html">Contacto</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/frontend/views/admin/administracion.html">Administracion</a>
-    </li>
-    <div class="dropdown">
-      <button class="btn-sesion dropdown-toggle" style="background-color: transparent; border: none; color: white;"
-        type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-        <img src="/frontend/public/img/cerrar sesion/user-id-icon_34334.png"
-          alt="imagen de avatar de usuario generico para manejo de sesiones" width="50" height="50"
-          class="rounded-circle me-7">
-      </button>
-      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <li>
-          <button class="dropdown-item" id="iniciarSesionBtn">Iniciar sesión</button>
+<body>
+  <header id="header">
+    <nav class="menu">
+      <ul class="menu__links">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">
+            <img class="img-fluid" src="/frontend/public/img/logopc2-preview.png" alt="logo del semillero SUIS" />
+          </a>
         </li>
-        <li>
-          <button class="dropdown-item" id="cerrarSesionBtn">Cerrar sesión</button>
+        <li class="nav-item">
+          <a class="nav-link" href="/frontend/views/about/about.html">Acerca de</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/frontend/views/auth/register.html">Registro</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/frontend/views/proyects/proyectos.html">Proyectos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/frontend/views/contact/contacto.html">Contacto</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/frontend/views/admin/administracion.html">Administracion</a>
+        </li>
+        <div class="dropdown">
+          <button class="btn-sesion dropdown-toggle" style="background-color: transparent; border: none; color: white;"
+            type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="/frontend/public/img/cerrar sesion/user-id-icon_34334.png"
+              alt="imagen de avatar de usuario generico para manejo de sesiones" width="50" height="50"
+              class="rounded-circle me-7">
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <li>
+              <button class="dropdown-item" id="iniciarSesionBtn">Iniciar sesión</button>
+            </li>
+            <li>
+              <button class="dropdown-item" id="cerrarSesionBtn">Cerrar sesión</button>
+            </li>
+          </ul>
+        </div>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="banner">
+    <img class="logo-remington" src="/frontend/public/img/logo-remington.png"
+      alt="logo de la corporacion universitaria remington">
+    <div class="slogan">
+      <h2>SUIS</h2>
+      <p>Investigando no para la escuela,
+        sino para la vida</p>
+    </div>
+  </div>
+
+  <main>
+    <section class="section">
+      <article class="section__body">
+        <h2>Semillero de investigacion SUIS</h2>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatibus, fugit
+          delectus dolore eligendi placeat similique minus sed deserunt. Illo, incidunt
+          ipsum dolor sit, amet consectetur adipisicing elit. Voluptatibus, fugit
+          voluptates alias ex consectetur et ipsum voluptas voluptate voluptatem possimus.
+        </p>
+        <p>Lorem
+          delectus dolore eligendi placeat similique minus sed deserunt. Illo, incidunt
+          voluptates alias ex consectetur et ipsum voluptas voluptate voluptatem possimus..
+        </p>
+        <img src="/frontend/public/img/carrousel/img/1.png" alt="imagen de sección eventos">
+      </article>
+
+      <article class="section__body">
+        <img src="/frontend/public/img/carrousel/img/2.png" alt="imagen de sección de noticias">
+        <h2>Ultimas Noticias de Semillero de investigacion SUIS</h2>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatibus, fugit
+          delectus dolore eligendi placeat similique minus sed deserunt. Illo, incidunt
+          voluptates alias ex consectetur et ipsum voluptas voluptate voluptatem possimus
+        </p>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatibus, fugit
+          delectus dolore eligendi placeat similique minus sed deserunt. Illo, incidunt
+          voluptates alias ex consectetur et ipsum voluptas voluptate voluptatem possimus..
+        </p>
+      </article>
+    </section>
+
+    <div id="carouselExampleDark" class="carousel carousel-dark slide carousel-container" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
+          aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      </div>
+      <section class="container carrousel">
+        <article id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+          <div class="carousel-inner carrousel__images">
+            <figure class="carousel-item active">
+              <img src="/frontend/public/img/carrousel/img/1.png" class="d-block w-100" alt="carruselesImagen">
+            </figure>
+            <figure class="carousel-item">
+              <img src="/frontend/public/img/carrousel/img/2.png" class="d-block w-100" alt="...">
+            </figure>
+            <figure class="carousel-item">
+              <img src="/frontend/public/img/carrousel/img/3.jpeg" class="d-block w-100" alt="...">
+            </figure>
+            <figure class="carousel-item">
+              <img src="/frontend/public/img/carrousel/img/4.jpeg" class="d-block w-100" alt="...">
+            </figure>
+            <figure class="carousel-item">
+              <img src="/frontend/public/img/carrousel/img/5.jpeg" class="d-block w-100" alt="...">
+            </figure>
+          </div>
+
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </article>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="contact-info">
+      <h3 class="footer__text">Información de contacto</h3>
+      <p class="footer__text">Teléfono: 312 756 4565</p>
+      <p class="footer__text">Correo electrónico: info@tusitio.com</p>
+    </div>
+    <div class="social-media">
+      <h3 class="footer__text">Redes sociales</h3>
+      <ul>
+        <li class="footer__item"><a href="#" class="rrss">Facebook</a></li>
+        <li class="footer__item"><a href="#" class="rrss">Twitter</a></li>
+        <li class="footer__item"><a href="#" class="rrss">Instagram</a></li>
       </ul>
     </div>
-  </ul>
-</nav>
-<div class="banner">
-  <img class="logo-remington" src="/frontend/public/img/logo-remington.png"
-    alt="logo de la corporacion universitaria remington">
-  <div class="slogan">
-    <h2>SUIS</h2>
-    <p>Investigando no para la escuela,
-      sino para la vida</p>
-  </div>
-</div>
+    <div class="address">
+      <h3 class="footer__text">Dirección</h3>
+      <p class="footer__text">Calle Principal, 123</p>
+      <p class="footer__text">Sincelejo, Colombia</p>
+    </div>
+  </footer>
 
-<section class="section">
-  <article class="section__body">
-    <h2>Semillero de investigacion SUIS</h2>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatibus, fugit
-      delectus dolore eligendi placeat similique minus sed deserunt. Illo, incidunt
-      ipsum dolor sit, amet consectetur adipisicing elit. Voluptatibus, fugit
-      voluptates alias ex consectetur et ipsum voluptas voluptate voluptatem possimus.
-    </p>
-    <p>Lorem
-      delectus dolore eligendi placeat similique minus sed deserunt. Illo, incidunt
-      voluptates alias ex consectetur et ipsum voluptas voluptate voluptatem possimus..
-    </p>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
 
-
-    <img src="/frontend/public/img/carrousel/img/1.png" alt="imagen de sección eventos">
-
-  </article>
-
-  <article class="section__body">
-    <img src="/frontend/public/img/carrousel/img/2.png" alt="imagen de sección de noticias">
-    <h2>Ultimas Noticias de Semillero de investigacion SUIS</h2>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatibus, fugit
-      delectus dolore eligendi placeat similique minus sed deserunt. Illo, incidunt
-      voluptates alias ex consectetur et ipsum voluptas voluptate voluptatem possimus
-    </p>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatibus, fugit
-      delectus dolore eligendi placeat similique minus sed deserunt. Illo, incidunt
-      voluptates alias ex consectetur et ipsum voluptas voluptate voluptatem possimus..
-    </p>
-  </article>
-</section>
-
-<div id="carouselExampleDark" class="carousel carousel-dark slide carousel-container" data-bs-ride="carousel">
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true"
-      aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
-  </div>
-  <section class="container carrousel">
-    <article id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
-      <div class="carousel-inner carrousel__images">
-        <figure class="carousel-item active">
-          <img src="/frontend/public/img/carrousel/img/1.png" class="d-block w-100" alt="carruselesImagen">
-        </figure>
-        <figure class="carousel-item">
-          <img src="/frontend/public/img/carrousel/img/2.png" class="d-block w-100" alt="...">
-        </figure>
-        <figure class="carousel-item">
-          <img src="/frontend/public/img/carrousel/img/3.jpeg" class="d-block w-100" alt="...">
-        </figure>
-        <figure class="carousel-item">
-          <img src="/frontend/public/img/carrousel/img/4.jpeg" class="d-block w-100" alt="...">
-        </figure>
-        <figure class="carousel-item">
-          <img src="/frontend/public/img/carrousel/img/5.jpeg" class="d-block w-100" alt="...">
-        </figure>
-      </div>
-
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
-    </article>
-  </section>
-</div>
-
-<footer class="footer">
-  <div class="contact-info">
-    <h3 class="footer__text">Información de contacto</h3>
-    <p class="footer__text">Teléfono: 312 756 4565</p>
-    <p class="footer__text">Correo electrónico: info@tusitio.com</p>
-  </div>
-  <div class="social-media">
-    <h3 class="footer__text">Redes sociales</h3>
-    <ul>
-      <li class="footer__item"><a href="#" class="rrss">Facebook</a></li>
-      <li class="footer__item"><a href="#" class="rrss">Twitter</a></li>
-      <li class="footer__item"><a href="#" class="rrss">Instagram</a></li>
-    </ul>
-  </div>
-  <div class="address">
-    <h3 class="footer__text">Dirección</h3>
-    <p class="footer__text">Calle Principal, 123</p>
-    <p class="footer__text">Sincelejo, Colombia</p>
-  </div>
-</footer>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-  integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
-<script></script>
+  <script type="module" src="./main.js"></script>
 
 </body>
 

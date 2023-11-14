@@ -10,51 +10,53 @@
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link rel="stylesheet" href="/frontend/views/proyects/proyects.css">
 
-
   <title>Vista de Proyectos</title>
 </head>
 
 <body>
-  <nav class="menu">
-    <ul class="menu__links">
-      <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="/frontend/index.html">
-          <img class="img-fluid" src="/frontend/public/img/logopc2-preview.png" alt="logo del semillero SUIS" />
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/frontend/views/about/about.html">Acerca de</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/frontend/views/auth/register.html">Registro</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="">Proyectos</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/frontend/views/contact/contacto.html">Contacto</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Administracion</a>
-      </li>
-      <div class="dropdown">
-        <button class="btn-sesion dropdown-toggle" style="background-color: transparent; border: none; color: white;"
-          type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-          <img src="/frontend/public/img/cerrar sesion/user-id-icon_34334.png"
-            alt="imagen de avatar de usuario generico para manejo de sesiones" width="50" height="50"
-            class="rounded-circle me-7">
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <li>
-            <button class="dropdown-item" id="iniciarSesionBtn">Iniciar sesión</button>
-          </li>
-          <li>
-            <button class="dropdown-item" id="cerrarSesionBtn">Cerrar sesión</button>
-          </li>
-        </ul>
-      </div>
-    </ul>
-  </nav>
+  <header id="header">
+    <nav class="menu">
+      <ul class="menu__links">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/frontend/index.html">
+            <img class="img-fluid" src="/frontend/public/img/logopc2-preview.png" alt="logo del semillero SUIS" />
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/frontend/views/about/about.html">Acerca de</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/frontend/views/auth/register.html">Registro</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="">Proyectos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/frontend/views/contact/contacto.html">Contacto</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Administracion</a>
+        </li>
+        <div class="dropdown">
+          <button class="btn-sesion dropdown-toggle" style="background-color: transparent; border: none; color: white;"
+            type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="/frontend/public/img/cerrar sesion/user-id-icon_34334.png"
+              alt="imagen de avatar de usuario generico para manejo de sesiones" width="50" height="50"
+              class="rounded-circle me-7">
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <li>
+              <button class="dropdown-item" id="iniciarSesionBtn">Iniciar sesión</button>
+            </li>
+            <li>
+              <button class="dropdown-item" id="cerrarSesionBtn">Cerrar sesión</button>
+            </li>
+          </ul>
+        </div>
+      </ul>
+    </nav>
+  </header>
+
   <div class="banner">
     <img class="logo-remington" src="/frontend/public/img/logo-remington.png"
       alt="logo de la corporacion universitaria remington">
@@ -122,11 +124,12 @@
       </div>
     </div>
   </div>
-  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>
+
+  <script type="module" src="projects.js"></script>
 </body>
 
 </html>

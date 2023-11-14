@@ -1,6 +1,10 @@
 import { notificationUtilities } from "../../services/notificationService.js";
 import { login } from "../../services/authenticationService.js";
 
+import { manageSession } from "../../utils/navbar.js";
+
+manageSession()
+
 const inputEmail = document.getElementById("inputEmail")
 const inputPassword = document.getElementById("inputPassword")
 

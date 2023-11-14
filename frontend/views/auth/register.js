@@ -1,6 +1,9 @@
 import { notificationUtilities } from "../../services/notificationService.js";
 import { registerUser } from "../../services/authenticationService.js";
 
+import { manageSession } from "../../utils/navbar.js";
+
+manageSession()
 
 let dniInput = document.getElementById("dni");
 let universityInput = document.getElementById("university");
