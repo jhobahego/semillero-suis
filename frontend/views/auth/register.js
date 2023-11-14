@@ -1,3 +1,5 @@
+import * as bootstrap from 'bootstrap'
+
 import { notificationUtilities } from "../../services/notificationService.js";
 import { registerUser } from "../../services/authenticationService.js";
 

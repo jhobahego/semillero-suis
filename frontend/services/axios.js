@@ -1,4 +1,4 @@
-import axios from '../node_modules/axios/dist/esm/axios.min.js'
+import axios from 'axios'
 import { notificationUtilities } from './notificationService.js'
 
 const axiosInstance = axios.create({

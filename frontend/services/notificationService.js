@@ -1,3 +1,5 @@
+import Swal from "sweetalert2"
+
 export const notificationUtilities = {
   toast(title, text, icon, timer = 0) {
     const swalertOptions = {

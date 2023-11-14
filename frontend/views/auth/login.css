@@ -47,28 +47,33 @@ main {
   height: auto;
 }
 
-.container {
+.formTitle {
+  text-align: center;
+  margin-top: 2em;
+}
+
+.formContainer {
   width: 100%;
-  max-width: 500px;
-  margin: 4em auto;
+  max-width: 600px;
+  margin: 2em auto;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
 
-.container h2 {
+.formContainer h2 {
   /* text-align: center; */
   margin: .2em auto 1em;
 }
 
-.container form {
+.formContainer form {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.container input[type="text"],
-.container input[type="password"] {
+.formContainer input[type="text"],
+.formContainer input[type="password"] {
   width: 100%;
   padding: 10px;
   margin-bottom: 20px;
@@ -82,7 +87,7 @@ main {
 }
 
 /* Estilo normal de botones y enlaces */
-.container button[type="submit"],
+.formContainer button[type="submit"],
 .buttons a {
   width: 100%;
   padding: 10px;
@@ -99,6 +104,7 @@ main {
   width: 100%;
   padding: .6em;
   border-top: 1px solid rgba(128, 128, 128, 0.384);
+  text-align: center;
 }
 
 .buttons a {
@@ -110,7 +116,7 @@ main {
 }
 
 /* Estilo al hacer hover sobre botones y enlaces */
-.container button[type="submit"]:hover,
+.formContainer button[type="submit"]:hover,
 .buttons a:hover {
   background-color: #FF5252;
 }

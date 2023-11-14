@@ -1,3 +1,5 @@
+import * as bootstrap from 'bootstrap'
+
 import { notificationUtilities } from "../../services/notificationService.js";
 import { login } from "../../services/authenticationService.js";
 
@@ -34,7 +36,7 @@ export const loginUser = async (e) => {
     return
   }
 
-  window.location.href = "http://localhost:5500/frontend/index.html"
+  window.location.href = "/index.html"
 }
 
 function validFields() {
