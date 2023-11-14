@@ -25,7 +25,7 @@ main {
   margin-bottom: 0;
 }
 
-.links__item>a {
+.nav-item>a {
   color: white;
   max-width: 100px;
   height: auto;
