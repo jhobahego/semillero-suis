@@ -46,6 +46,8 @@ class UserRol(Base):
     rol_id = Column(Integer, ForeignKey("roles.rol_id"))
     user_id = Column(Integer, ForeignKey("users.id"))
 
+    role = relationship("Roles", backref="user_roles")
+
 
 class User(Base):
     __tablename__ = "users"
