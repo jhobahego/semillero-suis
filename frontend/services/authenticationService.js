@@ -11,3 +11,7 @@ export const login = async (userData) => {
     },
   })
 }
+
+export const obtenerUsuarioAutenticado = async () => {
+  return await axiosInstance.get("/users/me")
+}

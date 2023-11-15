@@ -1,7 +1,7 @@
 import * as bootstrap from 'bootstrap'
 
 import { notificationUtilities } from "../../services/notificationService.js";
-import { login } from "../../services/authenticationService.js";
+import { login, obtenerUsuarioAutenticado } from "../../services/authenticationService.js";
 
 import { manageSession } from "../../utils/navbar.js";
 
@@ -28,10 +28,13 @@ export const loginUser = async (e) => {
     formData.append("username", username)
     formData.append("password", password)
 
-    const response = await login(formData)
+    let response = await login(formData)
     const { data } = response
 
     localStorage.setItem("token", data.access_token)
+
+    response = await obtenerUsuarioAutenticado()
+    localStorage.setItem("usuario", JSON.stringify(response.data))
   } catch (error) {
     return
   }
