@@ -40,7 +40,7 @@
   - **DATABASE_URL y TEST_DATABASE_URL:** URLs que referencian a la cadena de conexión con la base de datos,
     se debe cambiar user:password por su usuario y contraseña por defecto el usuario es root y sin contraseña.
   - **DEVELOPMENT_FRONTEND:** URLs separadas por comas que hacen referencia al frontend donde se consume la API.
-  - **ADMIN_EMAIL:** Correo del usuario administrador.
+  - **GESTOR_EMAIL:** Correo del usuario administrador.
   - **SECRET_KEY:** Cadena codificada con algoritmo HS256.
   - **RUN_ENV:** `test` para usar y `run` para usar la base de datos real
 
