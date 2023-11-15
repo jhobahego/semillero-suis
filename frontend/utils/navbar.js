@@ -1,35 +1,69 @@
 export const manageSession = () => {
   document.addEventListener("DOMContentLoaded", () => {
-    const registroItem = document.getElementById('register-item')
-    const adminItem = document.getElementById('administracion-item')
-    const iniciarSesionBtn = document.getElementById('iniciarSesionBtn')
-    const cerrarSesionBtn = document.getElementById('cerrarSesionBtn')
+    const registroItem = document.getElementById('register-item');
+    const adminItem = document.getElementById('administracion-item');
+    const iniciarSesionBtn = document.getElementById('iniciarSesionBtn');
+    const cerrarSesionBtn = document.getElementById('cerrarSesionBtn');
 
-    const usuario = localStorage.getItem('usuario')
-    const token = localStorage.getItem('token')
+    const usuario = JSON.parse(localStorage.getItem('usuario'));
+    const token = localStorage.getItem('token');
 
-    if (token && token !== '') {
-      registroItem.style.display = 'none'
-      iniciarSesionBtn.style.display = 'none'
-    } else if (usuario) {
-      registroItem.style.display = 'none'
-      cerrarSesionBtn.style.display = 'block'
+    const isActive = usuario ? usuario.is_active : false;
+    const isSuperuser = usuario ? usuario.is_superuser : false;
+    const isLoggedIn = token && token !== null;
+
+    const hideElement = (element) => {
+      if (element) {
+        element.style.display = 'none';
+      }
+    };
+
+    const showElement = (element) => {
+      if (element) {
+        element.style.display = 'block';
+      }
+    };
+
+    const hideRegisterAndLogin = () => {
+      hideElement(registroItem);
+      hideElement(iniciarSesionBtn);
+    };
+
+    const showLogout = () => {
+      showElement(cerrarSesionBtn);
+    };
+
+    const hideLogout = () => {
+      hideElement(cerrarSesionBtn);
+    };
+
+    const hideAdminItem = () => {
+      hideElement(adminItem);
+    };
+
+    // Logica de renderizado en base al usuario y su rol
+    if (isLoggedIn) {
+      hideRegisterAndLogin();
+      showLogout();
+      if (isActive && isSuperuser) {
+        showElement(adminItem);
+      } else {
+        hideAdminItem();
+      }
     } else {
-      registroItem.style.display = 'block'
-      cerrarSesionBtn.style.display = 'none'
-      adminItem.style.display = 'none'
+      showElement(registroItem);
+      hideLogout();
+      hideAdminItem();
     }
 
     cerrarSesionBtn.addEventListener('click', () => {
-      localStorage.removeItem('usuario')
-      localStorage.removeItem('token')
-      window.location.href = "/views/auth/login.html"
-    })
+      localStorage.removeItem('usuario');
+      localStorage.removeItem('token');
+      window.location.href = "/views/auth/login.html";
+    });
 
     iniciarSesionBtn.addEventListener('click', () => {
-      window.location.href = "/views/auth/login.html"
-    })
-
-    console.log({ usuario, token })
-  })
-}
+      window.location.href = "/views/auth/login.html";
+    });
+  });
+};
