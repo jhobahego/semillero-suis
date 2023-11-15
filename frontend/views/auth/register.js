@@ -55,7 +55,7 @@ async function register(event) {
     const { data } = response;
 
     localStorage.setItem("usuario", JSON.stringify(data));
-    window.location.href = "http://localhost:5500/frontend/views/auth/login.html";
+    window.location.href = "/views/auth/login.html";
   } catch (error) {
     return;
   }
