@@ -42,7 +42,7 @@
   - **DEVELOPMENT_FRONTEND:** URLs separadas por comas que hacen referencia al frontend donde se consume la API.
   - **ADMIN_EMAIL:** Correo del usuario administrador.
   - **SECRET_KEY:** Cadena codificada con algoritmo HS256.
-  - **RUN_EN:** `test` para usar y `run` para usar la base de datos real
+  - **RUN_ENV:** `test` para usar y `run` para usar la base de datos real
 
 ## Iniciar la aplicación:
 
