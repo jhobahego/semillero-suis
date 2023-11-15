@@ -1,5 +1,30 @@
 from pydantic import BaseModel, ConfigDict, EmailStr
-from typing import Optional
+from typing import Optional, List
+from enum import Enum
+
+
+class Autority(str, Enum):
+    READ = "READ"
+    CREATE = "CREATE"
+    MODIFY = "MODIFY"
+    DELETE = "DELETE"
+    CHANGE_CREDENTIALS = "CHANGE_CREDENTIALS"
+
+
+class RolName(str, Enum):
+    GESTOR = "GESTOR"
+    TEACHER = "TEACHER"
+    STUDENT = "STUDENT"
+
+
+class UserResponse(BaseModel):
+    id: int
+    name: str
+    email: str
+    is_active: bool
+    is_superuser: bool
+    authorities: List[Autority]
+    rol: RolName
 
 
 class UserBase(BaseModel):
