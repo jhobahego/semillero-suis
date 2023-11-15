@@ -5,10 +5,11 @@ from typing import Any
 from sqlalchemy.orm import Session
 
 from schemas.Token import Token
+from schemas.User import User, UserResponse
 from crud.crud_user import user as crud_user
 from config.security import create_access_token
 
-from config.deps import get_db
+from config.deps import get_db, get_current_active_user
 
 ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24 * 8
 
@@ -36,3 +37,8 @@ def login_access_token(
         ),
         "token_type": "bearer",
     }
+
+
+@router.get("/users/me", tags=["Security"], response_model=UserResponse)
+def get_logged_user(user_logged: User = Depends(get_current_active_user)):
+    return user_logged
