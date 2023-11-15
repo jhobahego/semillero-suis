@@ -113,6 +113,7 @@ main {
   text-decoration: none;
   margin-bottom: .4em;
   transition: background-color 0.3s;
+  text-align: center;
 }
 
 /* Estilo al hacer hover sobre botones y enlaces */
