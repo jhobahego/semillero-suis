@@ -90,6 +90,50 @@
         </div>
       </div>
     </div>
+    <header>
+      <h2 class="title">Proximos eventos</h2>
+      <p class="description">Calendario con los proximos eventos, click sobre el dia para ver mas información</p>
+    </header>
+    <section class="calendario" id="calendario">
+      <div class="modal" tabindex="-1" role="dialog" id="myModal">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header bg-info">
+              <h5 class="modal-title" id="titulo">Título del Modal</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <form id="formCalendar">
+              <div class="modal-body">
+                <h6>Agregar evento</h6>
+                <div class="form-floating mb-3">
+                  <textarea class="form-control" id="descripcionEvento" rows="3"></textarea>
+                  <label for="descripcionEvento" class="form-label">Descripción del evento</label>
+                </div>
+                <div class="form-floating mb-3">
+                  <input class="form-control" type="date" id="fecha" />
+                  <label class="form-label" for="fecha">Fecha</label>
+                </div>
+                <div class="form-floating mb-3">
+                  <input class="form-control" type="color" id="color" />
+                  <label class="form-label" for="color">Color</label>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                  Cancelar
+                </button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">
+                  Eliminar
+                </button>
+                <button type="submit" class="btn btn-primary">
+                  Agregar evento
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
 
   </main>
 
