@@ -1,6 +1,4 @@
 from fastapi.testclient import TestClient
-from schemas.User import UserCreate
-from utils.email import valid_email
 
 from app.main import app
 
