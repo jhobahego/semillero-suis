@@ -27,6 +27,12 @@ const calendar = new Calendar(calendarEl, {
 
 calendar.render();
 
+
+document.getElementById("cancelBtn").addEventListener("click", () => {
+  modal.hide();
+});
+
+
 function handleDateClick(info) {
   setDefaultDates(info.dateStr);
 
@@ -64,7 +70,6 @@ function handleFormSubmit(event) {
 function addCalendarEvent(title, startDate, endDate, color) {
   calendar.addEvent({ title, start: startDate, end: endDate, backgroundColor: color });
 }
-
 
 function resetFormInputs() {
   document.getElementById("start-date").value = '';
