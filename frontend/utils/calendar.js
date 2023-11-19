@@ -1,6 +1,8 @@
 import { Modal } from 'bootstrap';
 import Swal from 'sweetalert2';
 
+import { calendar } from '../views/admin/admin';
+
 const modal = new Modal(document.getElementById("myModal"));
 const formCalendar = document.getElementById("formCalendar");
 
