@@ -12,6 +12,24 @@ export const manageSession = () => {
     const isSuperuser = usuario ? usuario.is_superuser : false;
     const isLoggedIn = token && token !== null;
 
+    // Elementos para manejar navbar responsive
+    const navbarToggler = document.getElementById('navbar-toggler');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const overlay = document.querySelector('.overlay');
+
+    // Muestra u oculta el menu lateral al hacer clic en el botón de hamburguesa
+    navbarToggler.addEventListener('click', function () {
+      mobileMenu.classList.toggle('show');
+      overlay.classList.toggle('show');
+    });
+
+    overlay.addEventListener('click', function () {
+      if (mobileMenu.classList.contains('show')) {
+        mobileMenu.classList.remove('show');
+        overlay.classList.remove('show');
+      }
+    });
+
     const hideElement = (element) => {
       if (element) {
         element.style.display = 'none';

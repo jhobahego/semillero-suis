@@ -15,9 +15,12 @@
 
   <header id="header">
     <nav class="menu">
+      <button class="navbar-toggler" type="button" id="navbar-toggler">
+        <span class="navbar-toggler-icon">&#10006;</span>
+      </button>
       <ul class="menu__links">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="../../index.html">
+          <a class="nav-link navbar-brand" aria-current="page" href="../../index.html">
             <img class="img-fluid" src="/img/logopc2-preview.png" alt="logo del semillero SUIS" width="70"
               height="auto" />
           </a>
@@ -37,24 +40,45 @@
         <li class="nav-item" id="administracion-item">
           <a class="nav-link" href="/views/admin/administracion.html">Administracion</a>
         </li>
-        <div class="dropdown">
-          <button class="btn-sesion dropdown-toggle" style="background-color: transparent; border: none; color: white;"
-            type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="/img/cerrar sesion/user-id-icon_34334.png"
-              alt="imagen de avatar de usuario generico para manejo de sesiones" width="50" height="50"
-              class="rounded-circle me-7">
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <li>
-              <button class="dropdown-item" id="iniciarSesionBtn">Iniciar sesión</button>
-            </li>
-            <li>
-              <button class="dropdown-item" id="cerrarSesionBtn">Cerrar sesión</button>
-            </li>
-          </ul>
-        </div>
       </ul>
+      <div class="dropdown">
+        <button class="btn-sesion dropdown-toggle" style="background-color: transparent; border: none; color: white;"
+          type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="/img/cerrar sesion/user-id-icon_34334.png"
+            alt="imagen de avatar de usuario generico para manejo de sesiones" width="50" height="50"
+            class="rounded-circle me-7">
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <li>
+            <button class="dropdown-item" id="iniciarSesionBtn">Iniciar sesión</button>
+          </li>
+          <li>
+            <button class="dropdown-item" id="cerrarSesionBtn">Cerrar sesión</button>
+          </li>
+        </ul>
+      </div>
     </nav>
+    <div class="overlay"></div> <!-- Div para oscurecer el fondo -->
+    <ul class="mobile-menu"> <!-- Menú para dispositivos móviles -->
+      <li class="nav-item">
+        <a class="nav-link navbar-brand" aria-current="page" href="../../index.html">Pagina principal</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/views/about/about.html">Acerca de</a>
+      </li>
+      <li class="nav-item" id="register-item">
+        <a class="nav-link" href="/views/auth/register.html">Registro</a>
+      </li>
+      <li class="nav-item" id="proyectos-item">
+        <a class="nav-link" href="/views/projects/proyectos.html">Proyectos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/views/contact/contacto.html">Contacto</a>
+      </li>
+      <li class="nav-item" id="administracion-item">
+        <a class="nav-link" href="/views/admin/administracion.html">Administracion</a>
+      </li>
+    </ul>
   </header>
 
   <section class="container">

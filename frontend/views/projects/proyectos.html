@@ -3,8 +3,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <link rel="stylesheet" href="/main.css">
 
   <title>Vista de Proyectos</title>
@@ -13,9 +13,12 @@
 <body>
   <header id="header">
     <nav class="menu">
+      <button class="navbar-toggler" type="button" id="navbar-toggler">
+        <span class="navbar-toggler-icon">&#10006;</span>
+      </button>
       <ul class="menu__links">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/index.html">
+          <a class="nav-link navbar-brand" aria-current="page" href="../../index.html">
             <img class="img-fluid" src="/img/logopc2-preview.png" alt="logo del semillero SUIS" width="70"
               height="auto" />
           </a>
@@ -27,7 +30,7 @@
           <a class="nav-link" href="/views/auth/register.html">Registro</a>
         </li>
         <li class="nav-item" id="proyectos-item">
-          <a class="nav-link" href="#">Proyectos</a>
+          <a class="nav-link" href="/views/projects/proyectos.html">Proyectos</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/views/contact/contacto.html">Contacto</a>
@@ -35,24 +38,45 @@
         <li class="nav-item" id="administracion-item">
           <a class="nav-link" href="/views/admin/administracion.html">Administracion</a>
         </li>
-        <div class="dropdown">
-          <button class="btn-sesion dropdown-toggle" style="background-color: transparent; border: none; color: white;"
-            type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="/img/cerrar sesion/user-id-icon_34334.png"
-              alt="imagen de avatar de usuario generico para manejo de sesiones" width="50" height="50"
-              class="rounded-circle me-7">
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <li>
-              <button class="dropdown-item" id="iniciarSesionBtn">Iniciar sesión</button>
-            </li>
-            <li>
-              <button class="dropdown-item" id="cerrarSesionBtn">Cerrar sesión</button>
-            </li>
-          </ul>
-        </div>
       </ul>
+      <div class="dropdown">
+        <button class="btn-sesion dropdown-toggle" style="background-color: transparent; border: none; color: white;"
+          type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="/img/cerrar sesion/user-id-icon_34334.png"
+            alt="imagen de avatar de usuario generico para manejo de sesiones" width="50" height="50"
+            class="rounded-circle me-7">
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <li>
+            <button class="dropdown-item" id="iniciarSesionBtn">Iniciar sesión</button>
+          </li>
+          <li>
+            <button class="dropdown-item" id="cerrarSesionBtn">Cerrar sesión</button>
+          </li>
+        </ul>
+      </div>
     </nav>
+    <div class="overlay"></div> <!-- Div para oscurecer el fondo -->
+    <ul class="mobile-menu"> <!-- Menú para dispositivos móviles -->
+      <li class="nav-item">
+        <a class="nav-link navbar-brand" aria-current="page" href="../../index.html">Pagina principal</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/views/about/about.html">Acerca de</a>
+      </li>
+      <li class="nav-item" id="register-item">
+        <a class="nav-link" href="/views/auth/register.html">Registro</a>
+      </li>
+      <li class="nav-item" id="proyectos-item">
+        <a class="nav-link" href="/views/projects/proyectos.html">Proyectos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/views/contact/contacto.html">Contacto</a>
+      </li>
+      <li class="nav-item" id="administracion-item">
+        <a class="nav-link" href="/views/admin/administracion.html">Administracion</a>
+      </li>
+    </ul>
   </header>
 
   <div class="banner">
@@ -76,11 +100,13 @@
           style="max-width: 70px; height: auto;  padding: 0.4em 0;">
         <div class="card-body text-sencondary">
           <h5 class="card-title"></h5>
-          <button id="mostrarFormularioBtn" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalFormulario">
+          <button id="mostrarFormularioBtn" class="btn btn-primary" data-bs-toggle="modal"
+            data-bs-target="#modalFormulario">
             Generar Formulario de Proyecto
           </button>
-        
-          <div class="modal fade" id="modalFormulario" tabindex="-1" aria-labelledby="modalFormularioLabel" aria-hidden="true">
+
+          <div class="modal fade" id="modalFormulario" tabindex="-1" aria-labelledby="modalFormularioLabel"
+            aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
@@ -93,7 +119,7 @@
               </div>
             </div>
           </div>
-        
+
           <p class="card-text">Un proyecto es un conjunto de actividades que desarrolla una persona o una entidad para
             alcanzar un determinado objetivo. Estas actividades se encuentran interrelacionadas y se desarrollan de
             manera coordinada</p>
@@ -101,7 +127,7 @@
       </div>
     </div>
   </div>
-  
+
 
   <div class=" row row-cols-1 row-cols-md-2 g-4" style="padding-top: 15px; width: 100%; height: auto;">
     <div class="card border-primary mb-0" style="max-width: 45%; margin: auto;">
@@ -145,7 +171,7 @@
 
   <script type="module" src="projects.js"></script>
   <script type="module" src="/views/projects/script.js"></script>
-  
+
 </body>
 
 </html>
