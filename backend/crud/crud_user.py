@@ -38,9 +38,13 @@ class CRUDUser(CRUDBase[User, UserCreate, UserUpdate]):
             lastname=user.lastname,
             email=user.email,
             hashed_password=get_password_hash(user.password),
-            semester=user.semester,
+            phone_number=user.phone_number,
             university=user.university,
-            sede=user.sede,
+            university_site=user.university_site,
+            semester=user.semester,
+            program=user.program,
+            faculty=user.faculty,
+            research_team=user.research_team,
             is_superuser=(rol_name == RolName.GESTOR),
         )
 

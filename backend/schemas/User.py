@@ -40,9 +40,13 @@ class UserCreate(BaseModel):
     lastname: str
     email: EmailStr
     password: str
-    semester: int | None = None
+    phone_number: int
     university: str
-    sede: str | None = None
+    university_site: str | None = None
+    semester: int | None = None
+    program: str | None = None
+    faculty: str | None = None
+    research_team: str | None = None
 
 
 class UserInDB(UserBase):
@@ -50,15 +54,17 @@ class UserInDB(UserBase):
 
 
 class User(BaseModel):
-    id: int
     dni: int
     name: str
     lastname: str
     email: str
     hashed_password: str
-    semester: int
+    semester: int | None
     university: str
-    sede: str
+    university_site: str | None
+    program: str | None
+    faculty: str | None
+    research_team: str | None
     is_active: bool
     is_superuser: bool
 
@@ -70,8 +76,11 @@ class UserUpdate(BaseModel):
     lastname: Optional[str]
     email: Optional[str]
     password: Optional[str]
-    semester: Optional[int]
-    university: Optional[str]
-    sede: Optional[str]
     is_active: Optional[bool]
     is_superuser: Optional[bool]
+    university: Optional[str]
+    university_site: Optional[str]
+    semester: Optional[int]
+    program: Optional[str]
+    faculty: Optional[str]
+    research_team: Optional[str]
