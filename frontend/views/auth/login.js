@@ -2,6 +2,7 @@ import * as bootstrap from 'bootstrap'
 
 import { notificationUtilities } from "../../services/notificationService.js";
 import { login, obtenerUsuarioAutenticado } from "../../services/authenticationService.js";
+import Swal from 'sweetalert2'
 
 import { manageSession } from "../../utils/navbar.js";
 
@@ -11,6 +12,18 @@ const inputEmail = document.getElementById("inputEmail")
 const inputPassword = document.getElementById("inputPassword")
 
 const loginForm = document.getElementById("loginForm")
+
+document.addEventListener('DOMContentLoaded', () => {
+  if (localStorage.getItem('token')) return document.location.href = '/index.html'
+
+  const usuario = JSON.parse(localStorage.getItem('usuario'))
+  if (usuario != undefined) {
+    notificationUtilities.success(
+      'Registro existoso',
+      'Te has logueado correctamente, ya puedes iniciar sesión',
+    )
+  }
+})
 
 loginForm.addEventListener('submit', (e) => loginUser(e))
 
