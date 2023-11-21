@@ -78,13 +78,9 @@ async function register(event) {
     sede: sedeInput.value
   };
 
-  // Si el campo semestre tiene un valor entonces se agrega al usuario que se va a guardar
-  if (semesterInput && semesterInput.value.trim() !== '') {
-    user.semester = semesterInput.value;
-  }
-
   // Campos adicionales para usuario estudiante
   if (selectEl.value === 'student') {
+    user.semester = semesterInput.value;
     user.program = programaInput.value;
     user.faculty = facultyInput.value;
     user.research_team = researchTeamInput.value;
