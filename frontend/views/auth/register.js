@@ -1,6 +1,7 @@
 import * as bootstrap from 'bootstrap'
 import { notificationUtilities } from "../../services/notificationService.js";
 import { registerUser } from "../../services/authenticationService.js";
+import { validFields, hideElements, showElements } from '../../utils/register.js';
 import { manageSession } from '../../utils/navbar.js'
 
 manageSession();
@@ -26,6 +27,7 @@ const programaDiv = document.getElementById('programDiv');
 const facultyDiv = document.getElementById('facultyDiv');
 const researchTeamDiv = document.getElementById('researchTeamDiv');
 
+// Muestra u oculta campos segun si es profesor o estudiante
 selectEl.addEventListener("change", () => {
   if (selectEl.value === 'teacher') {
     hideElements([
@@ -49,25 +51,40 @@ registerForm.addEventListener("submit", (event) => register(event));
 async function register(event) {
   event.preventDefault();
 
-  if (!validFields()) return notificationUtilities.error("Debes rellenar todos los campos requeridos");
+  const selectValue = selectEl.value
+  if (!validFields({
+    selectValue,
+    dniInput,
+    nombreInput,
+    apellidoInput,
+    telefonoInput,
+    emailInput,
+    passwordInput,
+    universityInput,
+    semesterInput,
+    programaInput,
+    facultyInput,
+    researchTeamInput
+  })) return notificationUtilities.error("Debes rellenar todos los campos requeridos");
 
   const user = {
     dni: dniInput.value,
     name: nombreInput.value,
     lastname: apellidoInput.value,
+    phone_number: telefonoInput.value,
     email: emailInput.value,
     password: passwordInput.value,
     university: universityInput.value,
     sede: sedeInput.value
   };
 
+  // Si el campo semestre tiene un valor entonces se agrega al usuario que se va a guardar
   if (semesterInput && semesterInput.value.trim() !== '') {
     user.semester = semesterInput.value;
   }
 
-  // Additional fields for student
+  // Campos adicionales para usuario estudiante
   if (selectEl.value === 'student') {
-    user.phone_number = telefonoInput.value;
     user.program = programaInput.value;
     user.faculty = facultyInput.value;
     user.research_team = researchTeamInput.value;
@@ -81,32 +98,4 @@ async function register(event) {
   } catch (error) {
     return;
   }
-}
-
-function validFields() {
-  const selectValue = selectEl.value;
-
-  if (selectValue === 'teacher') {
-    return checkFields([dniInput, nombreInput, apellidoInput, emailInput, passwordInput, universityInput]);
-  } else if (selectValue === 'student') {
-    return checkFields([dniInput, nombreInput, apellidoInput, emailInput, passwordInput, universityInput, semesterInput, programaInput, facultyInput, researchTeamInput]);
-  }
-
-  return false;
-}
-
-function checkFields(fields) {
-  return fields.every(field => field.value.trim() !== '');
-}
-
-function hideElements(elements) {
-  elements.forEach(element => {
-    element.classList.add('d-none');
-  });
-}
-
-function showElements(elements) {
-  elements.forEach(element => {
-    element.classList.remove('d-none');
-  });
 }
