@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const usuario = JSON.parse(localStorage.getItem('usuario'))
   if (usuario != undefined) {
-    notificationUtilities.success(
+    notificationUtilities.popup(
       'Registro existoso',
       'Te has logueado correctamente, ya puedes iniciar sesión',
     )
