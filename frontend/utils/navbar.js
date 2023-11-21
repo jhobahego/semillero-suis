@@ -77,6 +77,7 @@ export const manageSession = () => {
     cerrarSesionBtn.addEventListener('click', () => {
       localStorage.removeItem('usuario');
       localStorage.removeItem('token');
+      localStorage.removeItem('sessionStarted');
       window.location.href = "/views/auth/login.html";
     });
 
