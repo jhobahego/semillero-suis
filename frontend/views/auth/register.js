@@ -1,35 +1,50 @@
 import * as bootstrap from 'bootstrap'
-
 import { notificationUtilities } from "../../services/notificationService.js";
 import { registerUser } from "../../services/authenticationService.js";
+import { manageSession } from '../../utils/navbar.js'
 
-import { manageSession } from "../../utils/navbar.js";
-
-manageSession()
-
-let dniInput = document.getElementById("dni");
-let universityInput = document.getElementById("university");
-let semesterInput = document.getElementById("semester");
-let sedeInput = document.getElementById("sede");
-let nombreInput = document.getElementById("exampleInputNombre");
-let apellidoInput = document.getElementById("exampleInputApellido1");
-let emailInput = document.getElementById("exampleInputDireccion1");
-let passwordInput = document.getElementById("exampleInputEmail1");
+manageSession();
 
 const selectEl = document.getElementById('select');
-const semesterLabel = document.getElementById('semestre-label')
 
-selectEl.addEventListener("click", () => {
+const dniInput = document.getElementById("dni");
+const universityInput = document.getElementById("university");
+const nombreInput = document.getElementById("exampleInputNombre");
+const apellidoInput = document.getElementById("exampleInputApellido1");
+const emailInput = document.getElementById("exampleInputDireccion1");
+const passwordInput = document.getElementById("exampleInputEmail1");
+
+const sedeInput = document.getElementById("sede");
+const semesterInput = document.getElementById('semester');
+const telefonoInput = document.getElementById('phoneNumber');
+const programaInput = document.getElementById('program');
+const facultyInput = document.getElementById('faculty');
+const researchTeamInput = document.getElementById('researchTeam');
+
+const semesterDiv = document.getElementById('semesterDiv');
+const programaDiv = document.getElementById('programDiv');
+const facultyDiv = document.getElementById('facultyDiv');
+const researchTeamDiv = document.getElementById('researchTeamDiv');
+
+selectEl.addEventListener("change", () => {
   if (selectEl.value === 'teacher') {
-    semesterInput.classList.add('d-none')
-    semesterLabel.classList.add('d-none')
+    hideElements([
+      semesterDiv,
+      programaDiv,
+      facultyDiv,
+      researchTeamDiv
+    ]);
   } else if (selectEl.value === 'student') {
-    semesterInput.classList.remove('d-none')
-    semesterLabel.classList.remove('d-none')
+    showElements([
+      semesterDiv,
+      programaDiv,
+      facultyDiv,
+      researchTeamDiv
+    ]);
   }
-})
+});
 
-registerForm.addEventListener("submit", (event) => register(event))
+registerForm.addEventListener("submit", (event) => register(event));
 
 async function register(event) {
   event.preventDefault();
@@ -50,10 +65,17 @@ async function register(event) {
     user.semester = semesterInput.value;
   }
 
+  // Additional fields for student
+  if (selectEl.value === 'student') {
+    user.phone_number = telefonoInput.value;
+    user.program = programaInput.value;
+    user.faculty = facultyInput.value;
+    user.research_team = researchTeamInput.value;
+  }
+
   try {
     const response = await registerUser(user);
     const { data } = response;
-
     localStorage.setItem("usuario", JSON.stringify(data));
     window.location.href = "/views/auth/login.html";
   } catch (error) {
@@ -62,28 +84,29 @@ async function register(event) {
 }
 
 function validFields() {
-  const selectValue = selectEl.value
+  const selectValue = selectEl.value;
 
   if (selectValue === 'teacher') {
-    return (
-      dniInput.value.trim() !== '' &&
-      nombreInput.value.trim() !== '' &&
-      apellidoInput.value.trim() !== '' &&
-      emailInput.value.trim() !== '' &&
-      passwordInput.value.trim() !== '' &&
-      universityInput.value.trim() !== ''
-    );
+    return checkFields([dniInput, nombreInput, apellidoInput, emailInput, passwordInput, universityInput]);
   } else if (selectValue === 'student') {
-    return (
-      dniInput.value.trim() !== '' &&
-      nombreInput.value.trim() !== '' &&
-      apellidoInput.value.trim() !== '' &&
-      emailInput.value.trim() !== '' &&
-      passwordInput.value.trim() !== '' &&
-      universityInput.value.trim() !== '' &&
-      semesterInput.value.trim() !== ''
-    );
+    return checkFields([dniInput, nombreInput, apellidoInput, emailInput, passwordInput, universityInput, semesterInput, programaInput, facultyInput, researchTeamInput]);
   }
 
   return false;
+}
+
+function checkFields(fields) {
+  return fields.every(field => field.value.trim() !== '');
+}
+
+function hideElements(elements) {
+  elements.forEach(element => {
+    element.classList.add('d-none');
+  });
+}
+
+function showElements(elements) {
+  elements.forEach(element => {
+    element.classList.remove('d-none');
+  });
 }

@@ -99,13 +99,12 @@
 
     <form class="card card-body" id="registerForm">
 
-      <div class="mb-3">
-        <!-- <label for="select" class="form-label">¿Quien eres?</label> -->
+      <div class="mb-3 form-floating">
         <select class="form-select" aria-label="Default select example" id="select">
-          <option selected>Elije tu profesión</option>
-          <option value="teacher">Profesor</option>
           <option value="student">Estudiante</option>
+          <option value="teacher">Profesor</option>
         </select>
+        <label for="select" class="form-label">Elige tu profesión</label>
       </div>
       <div class="mb-3 form-floating">
         <input type="number" class="form-control" id="dni" />
@@ -119,6 +118,11 @@
       <div class="mb-3 form-floating">
         <input type="text" class="form-control" id="exampleInputApellido1" />
         <label for="exampleInputApellido1" class="form-label">Apellidos</label>
+      </div>
+
+      <div class="mb-3 form-floating">
+        <input type="text" class="form-control" id="phoneNumber" />
+        <label for="phoneNumber" class="form-label">Telefono</label>
       </div>
 
       <div class="mb-3 form-floating">
@@ -144,9 +148,23 @@
       </div>
 
 
-      <div class="mb-3 form-floating">
+      <div class="mb-3 form-floating" id="semesterDiv">
         <input type="number" class="form-control" id="semester" />
         <label for="semester" class="form-label" id="semestre-label">Semestre</label>
+      </div>
+
+
+      <div class="mb-3 form-floating" id="programDiv">
+        <input type="text" class="form-control" id="program" />
+        <label for="program" class="form-label" id="semestre-label">Programa academico</label>
+      </div>
+      <div class="mb-3 form-floating" id="facultyDiv">
+        <input type="text" class="form-control" id="faculty" />
+        <label for="faculty" class="form-label" id="semestre-label">Facultad</label>
+      </div>
+      <div class="mb-3 form-floating" id="researchTeamDiv">
+        <input type="text" class="form-control" id="researchTeam" />
+        <label for="researchTeam" class="form-label" id="semestre-label">Semillero</label>
       </div>
 
 
