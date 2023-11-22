@@ -232,7 +232,7 @@ textarea {
   border-radius: 4px;
 }
 
-button {
+.btn-close {
   background-color: #4caf50;
   color: #fff;
   padding: 10px;
@@ -242,7 +242,7 @@ button {
   width: 100%;
 }
 
-button:hover {
+.btn-close:hover {
   background-color: #45a049;
 }
 
