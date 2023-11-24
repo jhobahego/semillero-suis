@@ -3,7 +3,7 @@ from fastapi.responses import RedirectResponse
 
 from fastapi.middleware.cors import CORSMiddleware
 
-from routes import user, auth, project
+from routes import user, auth, project, event
 
 from db import Base, engine
 
@@ -22,11 +22,13 @@ app.openapi_tags = [
     {"name": "Home", "description": "Documentation"},
     {"name": "Users", "description": "Users routes"},
     {"name": "Projects", "description": "Projects routes"},
+    {"name": "Events", "description": "Events routes"},
 ]
 
 app.include_router(auth.router)
 app.include_router(user.router)
 app.include_router(project.router)
+app.include_router(event.router)
 
 
 env_value = config("DEVELOPMENT_FRONTEND")
