@@ -7,6 +7,7 @@
 
   <link rel="stylesheet" href="projects.css">
   <link rel="stylesheet" href="../../styles.scss">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
   <title>Vista de Proyectos</title>
 </head>
 
@@ -97,21 +98,232 @@
           style="max-width: 70px; height: auto;  padding: 0.4em 0;">
         <div class="card-body text-sencondary">
           <h5 class="card-title"></h5>
-          <button id="mostrarFormularioBtn" class="btn btn-primary" data-bs-toggle="modal"
-            data-bs-target="#modalFormulario">
-            Generar Formulario de Proyecto
+
+          <!-- Botón para abrir el modal -->
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+            Crear Nuevo Proyecto
           </button>
 
-          <div class="modal fade" id="modalFormulario" tabindex="-1" aria-labelledby="modalFormularioLabel"
-            aria-hidden="true">
+          <!-- Modal -->
+          <div class="modal" id="myModal">
             <div class="modal-dialog">
               <div class="modal-content">
+                <!-- Cabecera del Modal -->
                 <div class="modal-header">
-                  <h5 class="modal-title" id="modalFormularioLabel">Formulario de Proyecto</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  <h4 class="modal-title">Formulario de Creación de Semillero</h4>
+                  <button type="button" class="close" data-dismiss="modal">
+                    &times;
+                  </button>
                 </div>
-                <div class="modal-body" id="formularioContainer">
-                  <!-- Aquí se mostrará el formulario -->
+
+                <!-- Cuerpo del Modal -->
+                <div class="modal-body">
+                  <!-- Aquí va el formulario -->
+                  <form>
+                    <!-- Sección 1 -->
+                    <div class="form-group">
+                      <h6> <b> 1: Informacion Del Semillero</b></h6>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="nombreSemillero">Nombre del Semillero:</label>
+                      <input type="text" class="form-control" id="nombreSemillero" placeholder="Semillas Innovadoras"/>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="codigoSemillero">Código del Semillero:</label>
+                      <input type="number" class="form-control" id="codigoSemillero"
+                      placeholder="104-1507"/>
+                    </div>
+
+                    <!-- informacion del asesor -->
+                    <div class="form-group">
+                      <p><b>2: Información del Asesor</b></p>
+                    </div>
+
+                    <!--(a) asesor principal -->
+                    <p> <b>• Asesor Principal:</b></p>
+                    <div class="form-group">
+                      <input type="text" class="form-control" id="nombreAsesorPrincipal"
+                        placeholder="jhon hernandez gomez" />
+                        <label for="nombreAsesorPrincipal"></label>
+                      
+                      <input type="number" class="form-control" id="cedulaAsesorPrincipal"
+                        placeholder="1102039286" />
+                        <label for="cedulaAsesorPrincipal"></label>
+
+                      <input type="email" class="form-control" id="correoAsesorPrincipal"
+                        placeholder="jhon.hernandez.7144@miremington.edu.co" />
+                        <label for="correoAsesorPrincipal"></label>
+                    </div>
+
+                    <!--(b) asesor tematico -->
+                    <div class="form-group">
+                      <label><b>• Asesor Temático:</b></label>
+                      <input type="text" class="form-control" id="nombreAsesorTematico"
+                       placeholder="Luis Alberto Gomez" />
+                      <label for="nombreAsesorTematico"></label>
+
+                      <input type="email" class="form-control" id="correoAsesorTematico"
+                        placeholder="Luis.alberto.1815@miremington.edu.co"/>
+                        <label for="correoAsesorTematico"></label>
+                    </div>
+
+                    <!-- (c) asesor metodologico -->
+                    <div class="form-group">
+                      <label><b>•Asesor Metodológico:</b></label>
+                      <input type="text" class="form-control" id="nombreAsesorMetodológico"
+                        placeholder="Maria Angerlica gomez navaz"/>
+                        <label for="nombreAsesorMetodológico"></label>
+
+                      <input type="email" class="form-control" id="correoAsesorMetodológico"
+                        placeholder="Maria.angelica.1038@miremington.edu.co" />
+                        <label for="correoAsesorMetodológico"></label>
+                    </div>
+
+                    <!-- Sección 3 Estudiantes Integrantes del Proyecto-->
+                    <div class="form-group">
+                      <p><b>3: Estudiantes Integrantes del Proyecto </b></p>
+                      <label for="numIntegrantes">Número de Integrantes del Semillero:</label>
+                      <input type="number" class="form-control" id="numIntegrantes"
+                       placeholder="max 4"/>
+                    </div>
+
+                    <div class="form-group">
+                      <p for="nombreEstudiante1"><strong>Datos Completos del Estudiante 1:</strong></p>                    
+                      
+                        <input type="text" class="form-control" id="nombreEstudiante1"
+                         placeholder="jhon hernandez" />
+                      
+                        <label for="numeroCedula"></label>
+                        <input type="number" class="form-control" id="numeroCedula"
+                         placeholder="1038098181" />
+                      
+                        <label for="email"></label>
+                        <input type="email" class="form-control" id="Email"
+                        placeholder="maestro.armas.0101@miremington.edu.co" />
+                      </div>   
+
+                      <div class="form-group">
+                        <label for="ponenteEstudiante1">Estudiante Ponente:</label>
+                        <select class="form-control" id="ponenteEstudiante1">
+                          <option value="Select">Select</option>
+                          <option value="si">Sí</option>
+                          <option value="no">No</option>
+                        </select>
+                        <label for="estudiantePonente"></label>
+                      </div>
+
+                      <div class="form-group">
+                        <p for="nombreEstudiante2"><strong>Datos Completos del Estudiante 2:</strong></p>                        
+
+                        <input type="text" class="form-control" id="nombreEstudiante2"
+                         placeholder="jorge ramirez" />
+                        <label for="nombreEstudiante2"></label>
+
+                        <input type="number" class="form-control" id="Cedula"
+                         placeholder="1038098181" />
+                        <label for="cedula"></label>
+
+                        <input type="email" class="form-control" id="Email"
+                         placeholder="jorge.ramirez.8181@miremington.edu.co" />
+                        <label for="correoElectronico"></label>
+                      </div>
+
+                      <div class="form-group">
+                      <label for="ponenteEstudiante2">Estudiante Ponente:</label>
+                        <select class="form-control" id="ponenteEstudiante2">
+                          <option value="Select">Select</option>
+                          <option value="si">Sí</option>
+                          <option value="no">No</option>
+                        </select>
+                        <label for="ponenteEstudiante2"></label>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="nombrestudiante3"> <strong>Datos completos del Estudiante 3:</strong></label>
+                       
+                        <input type="text" class="form-control" id="nombreEstudiante3"
+                         placeholder="florinda castro sabaedra" />
+                         <label for="nombrestudiante3"></label>
+
+                        <input type="text" class="form-control" id="numeroCedula"
+                        placeholder="104015196"/>
+                        <label for="cedula"></label>
+
+                        <input type="email" class="form-control" id="Email"
+                        placeholder="florinda.meza.5685@miremington.edu.co"/>
+                        <label for="email"></label>
+                        </div>
+
+                        <div class="form-group">
+                        <label for="ponenteEstudiante3">Estudiante Ponente:</label>
+                        <select class="form-control" id="ponenteEstudiante3">
+                          <option value="Select">Select</option>
+                          <option value="si">Sí</option>
+                          <option value="no">No</option>
+                        </select>
+                        <label for="ponenteEstudiante3"></label>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="nombreEstudiante4"><strong>Datos Completos del Estudiante 4:</strong></label>
+                       
+                        <input type="text" class="form-control" id="nombreEstudiante4"
+                         placeholder="rodrigo del carmen" />
+                         <label for="nombreEstudiante4"></label>
+
+                        <input type="text" class="form-control" id="Cedula"
+                         placeholder="1097777777" />
+                         <label for="cedula"></label>
+
+                        <input type="email" class="form-control" id="Email"
+                         placeholder="rodri.carmen.7777@miremington.edu.co" />
+                         <label for="email"></label>
+                         </div>
+
+                         <div class="form-group">
+                        <label for="ponenteEstudiante4">Estudiante Ponente:</label>
+                        <select class="form-control" id="ponenteEstudiante1">
+                          <option value="Select">Select</option>
+                          <option value="si">Sí</option>
+                          <option value="no">No</option>
+                        </select>
+                        <label for="ponenteEstudiante4"></label>
+                      </div>                    
+
+                    
+
+                    <!--Seccion 4: Detalles de la facultad y Area de Estudio -->
+                    <div>
+                      <p><b>• 5 Detalles de la facultad y Area de Estudio:</b></p>
+                    </div>
+
+                    <div class="form-group">
+                      <p> Facultad:</p>
+                      <select class="form-control" id="Facultad">
+                        <option value="Facultad Medicina Veterinaria">Medicina Veterinaria</option>
+                        <option value="Facultad Ciencias Empresariales">Ciencias Empresariales</option>
+                        <option value="Facultad Ciencias Juridícas Y Políticas">Ciencias Juridícas Y Políticas</option>
+                        <option value="Facultad Ciencias De La Salud">Ciencias De La Salud</option>
+                        <option value="Facultad Ciencias Contables">Ciencias Contables</option>
+                        <option value="Facultad Ingenierías">Ingenierías</option>
+                        <option value="Facultad Diseño">Diseño</option>
+                      </select>
+                      <label for="Facultad"></label>
+                    </div>             
+
+
+                    <!-- Botón de Envío -->
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                  </form>
+                </div>
+
+                <!-- Pie del Modal -->
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                    Cerrar
+                  </button>
                 </div>
               </div>
             </div>
@@ -167,6 +379,10 @@
   </div>
 
   <script type="module" src="projects.js"></script>
+  <!-- Scripts de Bootstrap y jQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </body>
 
