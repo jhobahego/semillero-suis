@@ -1,4 +1,4 @@
-from typing import Any, Optional
+from typing import Any, Optional, Union, Dict
 
 from sqlalchemy.orm import Session
 
@@ -16,9 +16,9 @@ class CRUDEvent(CRUDBase[Event, EventCreate, EventCreate]):
         return db_obj
 
     def update(
-        self, db: Session, *, db_obj: Event, obj_in: EventCreate
+        self, db: Session, *, db_obj: Event, obj_in: Union[EventCreate, Dict[str, Any]]
     ) -> EventResponse:
-        obj_data = obj_in.dict(exclude_unset=True)
+        obj_data = obj_in.model_dump(exclude_unset=True)
         for field in obj_data:
             setattr(db_obj, field, obj_data[field])
         db.add(db_obj)
