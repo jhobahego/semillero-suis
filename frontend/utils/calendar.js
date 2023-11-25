@@ -2,7 +2,7 @@ import { Modal } from 'bootstrap';
 import Swal from 'sweetalert2';
 
 import { calendar } from '../views/admin/admin';
-import { createEvent } from '../services/eventService';
+import { createEvent, getEvents } from '../services/eventService';
 import axiosInstance from '../services/axios';
 
 const modal = new Modal(document.getElementById("myModal"));
@@ -141,6 +141,17 @@ async function obtenerUsuarios() {
   try {
     const { data } = await axiosInstance.get("/users")
     return data
+  } catch (error) {
+
+  }
+}
+
+export async function cargarEventos() {
+  try {
+    const { data } = await getEvents()
+    if (data) {
+      return data
+    }
   } catch (error) {
 
   }
