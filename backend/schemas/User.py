@@ -54,6 +54,7 @@ class UserInDB(UserBase):
 
 
 class User(BaseModel):
+    id: int
     dni: int
     name: str
     lastname: str
