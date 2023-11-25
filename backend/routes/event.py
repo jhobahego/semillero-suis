@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 
 from crud.crud_event import event
 from crud.crud_user import user as crud_user
-from schemas.Event import EventCreate, EventResponse
+from schemas.Event import EventCreate, EventResponse, EventUpdate
 from schemas.User import UserResponse
 from config.deps import get_current_active_admin, get_current_active_user, get_db
 
@@ -38,3 +38,12 @@ def get_events(
     limit=100,
 ):
     return event.get_multi(db=db, skip=skip, limit=limit)
+
+
+@router.get("/events/{id}", tags=["Events"], response_model=EventResponse)
+def get_event(
+    id: int,
+    db: Session = Depends(get_db),
+    current_user: UserResponse = Depends(get_current_active_user),
+):
+    return event.get(db=db, id=id)
