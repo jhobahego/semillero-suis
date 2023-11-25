@@ -80,12 +80,10 @@ async function handleFormSubmit(event) {
         duration: duration
       };
       const { data } = await createEvent(eventData)
-      // console.log(data);
+
     } catch (error) {
 
     }
-
-    addCalendarEvent(title, startDate, endDate, color);
 
     modal.hide();
     showSuccessAlert();
@@ -143,6 +141,7 @@ function showSuccessAlert() {
         text: 'El evento se ha agendado con éxito',
         icon: 'success',
       })
+      window.location.reload()
     } else if (result.isDenied) {
       Swal.fire({
         title: "Se ha descartado en el guardado del evento",
