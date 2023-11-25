@@ -3,7 +3,7 @@ import Swal from 'sweetalert2';
 
 import { calendar } from '../views/admin/admin';
 import { createEvent, getEvents } from '../services/eventService';
-import axiosInstance from '../services/axios';
+import { getUsers } from '../services/userServices';
 
 const modal = new Modal(document.getElementById("myModal"));
 const formCalendar = document.getElementById("formCalendar");
@@ -17,12 +17,12 @@ export async function handleDateClick(info) {
 
   // Se cargan los usuarios de la base de datos en select del responsable y sus datos en los campos correspondientes
   // para que solo facilitar el llenado del formulario
-  const usuarios = await obtenerUsuarios();
+  const { data } = await getUsers();
   const managerSelect = document.getElementById("manager");
 
   let optionsHTML = '';
 
-  usuarios.forEach(usuario => {
+  data.forEach(usuario => {
     const { id, name } = usuario;
     const option = `<option value="${id}">${name}</option>`;
     optionsHTML += option;
@@ -149,15 +149,6 @@ function showSuccessAlert() {
       });
     }
   });
-}
-
-async function obtenerUsuarios() {
-  try {
-    const { data } = await axiosInstance.get("/users")
-    return data
-  } catch (error) {
-
-  }
 }
 
 export async function cargarEventos() {
