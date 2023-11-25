@@ -131,9 +131,24 @@ function showWarningAlert() {
 
 function showSuccessAlert() {
   Swal.fire({
-    title: 'Evento agendado',
-    text: 'El evento se ha agendado con éxito',
-    icon: 'success',
+    title: "¿Seguro que quiere agregar el evento?",
+    showDenyButton: true,
+    showCancelButton: true,
+    confirmButtonText: "Guardar",
+    denyButtonText: "No guardar"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire({
+        title: 'Evento agendado',
+        text: 'El evento se ha agendado con éxito',
+        icon: 'success',
+      })
+    } else if (result.isDenied) {
+      Swal.fire({
+        title: "Se ha descartado en el guardado del evento",
+        info: "info"
+      });
+    }
   });
 }
 
