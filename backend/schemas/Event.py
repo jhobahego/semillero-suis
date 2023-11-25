@@ -1,6 +1,7 @@
 from pydantic import BaseModel, constr, ConfigDict
 from datetime import datetime
 from enum import Enum
+from typing import Optional
 
 
 class EventActivity(str, Enum):
@@ -29,3 +30,15 @@ class EventResponse(EventBase):
     id: int
 
     model_config = ConfigDict(from_attributes=True)
+
+
+class EventUpdate(BaseModel):
+    activity_type: Optional[EventActivity]
+    title: Optional[str]
+    description: Optional[str]
+    manager_id: Optional[int]
+    color: Optional[str]
+    start: Optional[datetime]
+    finished_at: Optional[datetime]
+    event_location: Optional[str]
+    duration: Optional[int]
