@@ -47,3 +47,26 @@ def get_event(
     current_user: UserResponse = Depends(get_current_active_user),
 ):
     return event.get(db=db, id=id)
+
+
+@router.put(
+    "/users{event_id}",
+    tags=["Events"],
+    status_code=200 | 404,
+    response_model=EventResponse,
+)
+def update_event(
+    *,
+    event_id: int,
+    event_in: EventUpdate,
+    db: Session = Depends(get_db),
+    current_user: UserResponse = Depends(get_current_active_admin),
+):
+    db_event = event.get(db, id=event_id)
+    if not db_event:
+        raise HTTPException(
+            status_code=404,
+            detail=f"Evento con id: ${event_id} no encontrado",
+        )
+
+    return event.update(db=db, db_obj=db_event, obj_in=event_in)
