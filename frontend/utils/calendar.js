@@ -3,6 +3,7 @@ import Swal from 'sweetalert2';
 
 import { createEvent, getEvents } from '../services/eventService';
 import { getUsers } from '../services/userServices';
+import { notificationUtilities } from '../services/notificationService';
 
 const modal = new Modal(document.getElementById("myModal"));
 const formCalendar = document.getElementById("formCalendar");
@@ -79,12 +80,20 @@ async function handleFormSubmit(event) {
   };
 
   const { data } = await createEvent(eventData)
-
   if (data) {
     modal.hide();
-    showSuccessAlert();
     resetFormInputs();
+    notificationUtilities.popup(
+      'Evento agendado',
+      'El evento se ha agendado con éxito',
+      2000
+    )
+
+    setTimeout(() => {
+      window.location.reload()
+    }, 2500)
   }
+
 }
 
 // Se obtienen todos los valores de los campos de los formularios
@@ -140,30 +149,6 @@ function showWarningAlert() {
     title: 'Fallo al agendar',
     text: 'Todos los campos son requeridos',
     icon: 'warning',
-  });
-}
-
-function showSuccessAlert() {
-  Swal.fire({
-    title: "¿Seguro que quiere agregar el evento?",
-    showDenyButton: true,
-    showCancelButton: true,
-    confirmButtonText: "Guardar",
-    denyButtonText: "No guardar"
-  }).then((result) => {
-    if (result.isConfirmed) {
-      Swal.fire({
-        title: 'Evento agendado',
-        text: 'El evento se ha agendado con éxito',
-        icon: 'success',
-      })
-      window.location.reload()
-    } else if (result.isDenied) {
-      Swal.fire({
-        title: "Se ha descartado en el guardado del evento",
-        info: "info"
-      });
-    }
   });
 }
 
