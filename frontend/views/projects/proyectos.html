@@ -329,7 +329,68 @@
       <img src="/img/icon_proy/proyecto reciente.png" class="card-img-top" alt="..."
         style="max-width: 70px; height: auto;  padding: 0.4em 0;">
       <div class="card-body">
-        <h5 class="card-title"><a href="#" class="btn btn-danger">Propuestas</a></h5>
+        <h5 class="card-title"></h5>
+
+        <!-- Botón para abrir el modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+          Crear Propuesta
+        </button>
+
+        <!-- Modal -->
+        <div class="modal" id="myModal">
+          <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+              <!-- Cabecera del Modal -->
+               <!-- Contenido del formulario -->
+      <div class="modal-header">
+        <h5 class="modal-title">Propuesta de Semillero de Investigación</h5>
+        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+        <form>
+            <!-- Campos del formulario -->
+            <div class="mb-3">
+                <label for="titulo" class="form-label">Título</label>
+                <input type="text" class="form-control" id="titulo" required>
+            </div>
+            <div class="mb-3">
+                <label for="introduccion" class="form-label">Introducción</label>
+                <textarea class="form-control" id="introduccion" rows="3" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="justificacion" class="form-label">Justificación</label>
+                <textarea class="form-control" id="justificacion" rows="3" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="objetivos" class="form-label">Objetivos</label>
+                <textarea class="form-control" id="objetivos" rows="3" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="metodologia" class="form-label">Metodología</label>
+                <textarea class="form-control" id="metodologia" rows="3" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="cronograma" class="form-label">Cronograma</label>
+                <textarea class="form-control" id="cronograma" rows="3" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="recursos" class="form-label">Recursos</label>
+                <textarea class="form-control" id="recursos" rows="3" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="participantes" class="form-label">Participantes</label>
+                <textarea class="form-control" id="participantes" rows="3" required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
         <p class="card-text">Son proyectos que ha sido cargados o realizados en un periodo de tiempo muy corto,
           tambien son los proyectos mas nuevos</p>
       </div>
