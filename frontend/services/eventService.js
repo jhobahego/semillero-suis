@@ -7,3 +7,7 @@ export const createEvent = async (eventData) => {
 export const getEvents = async () => {
   return await axiosInstance.get("/events")
 }
+
+export const getEvent = async (eventId) => {
+  return await axiosInstance.get(`/events/${eventId}`)
+}
