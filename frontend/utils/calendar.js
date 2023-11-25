@@ -1,7 +1,6 @@
 import { Modal } from 'bootstrap';
 import Swal from 'sweetalert2';
 
-import { calendar } from '../views/admin/admin';
 import { createEvent, getEvents } from '../services/eventService';
 import { getUsers } from '../services/userServices';
 
@@ -11,6 +10,7 @@ const formCalendar = document.getElementById("formCalendar");
 document.getElementById("cancelBtn").addEventListener("click", () => {
   modal.hide();
 });
+
 
 export async function handleDateClick(info) {
   setDefaultDates(info.dateStr);
@@ -44,6 +44,51 @@ export async function handleDateClick(info) {
 async function handleFormSubmit(event) {
   event.preventDefault();
 
+  const inputValues = getInputValues()
+
+  const {
+    eventType,
+    managerId,
+    title,
+    descripcion,
+    startDate,
+    endDate,
+    color,
+    duration,
+    event_location,
+  } = inputValues
+
+  // Valida los datos del formulario y muestra un error en caso de que falte un valor
+  for (let key of Object.keys(inputValues)) {
+    if (inputValues[key] === '') {
+      showWarningAlert();
+      return;
+    }
+  }
+
+  const eventData = {
+    activity_type: eventType,
+    title: title,
+    description: descripcion,
+    manager_id: parseInt(managerId),
+    color: color,
+    start: startDate,
+    finished_at: endDate !== '' ? endDate : null,
+    event_location: event_location,
+    duration: duration
+  };
+
+  const { data } = await createEvent(eventData)
+
+  if (data) {
+    modal.hide();
+    showSuccessAlert();
+    resetFormInputs();
+  }
+}
+
+// Se obtienen todos los valores de los campos de los formularios
+function getInputValues() {
   const eventType = document.getElementById("selectType").value;
   const managerId = document.getElementById("manager").value;
   const title = document.getElementById("title").value;
@@ -54,46 +99,17 @@ async function handleFormSubmit(event) {
   const event_location = document.getElementById("event-location").value;
   const duration = document.getElementById("duration").value;
 
-  if (
-    managerId === '' ||
-    title === '' ||
-    startDate === '' ||
-    endDate === '' ||
-    color === '' ||
-    descripcion === '' ||
-    event_location === '' ||
-    duration === ''
-  ) {
-    showWarningAlert();
-  } else {
-
-    try {
-      const eventData = {
-        activity_type: eventType,
-        title: title,
-        description: descripcion,
-        manager_id: parseInt(managerId),
-        color: color,
-        start: startDate,
-        finished_at: endDate !== '' ? endDate : null,
-        event_location: event_location,
-        duration: duration
-      };
-      const { data } = await createEvent(eventData)
-
-    } catch (error) {
-
-    }
-
-    modal.hide();
-    showSuccessAlert();
-    resetFormInputs();
-    // formCalendar.removeEventListener("submit", handleFormSubmit);
+  return {
+    eventType,
+    managerId,
+    title,
+    startDate,
+    endDate,
+    color,
+    descripcion,
+    event_location,
+    duration
   }
-}
-
-function addCalendarEvent(title, startDate, endDate, color) {
-  calendar.addEvent({ title, start: startDate, end: endDate, backgroundColor: color });
 }
 
 function resetFormInputs() {
