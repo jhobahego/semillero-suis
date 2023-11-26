@@ -75,20 +75,31 @@ async function handleFormSubmit(event) {
     duration: duration
   };
 
-  const { data } = await createEvent(eventData)
-  if (data) {
-    modal.hide();
-    resetFormInputs();
-    notificationUtilities.popup(
-      'Evento agendado',
-      'El evento se ha agendado con éxito',
-      2000
-    )
+  Swal.fire({
+    title: '¿Estás seguro?',
+    text: '¿Seguro que deseas agendar este evento?',
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Sí, agendar!'
+  }).then(async (result) => {
+    if (result.isConfirmed) {
+      const { data } = await createEvent(eventData)
+      if (data) {
+        modal.hide();
+        notificationUtilities.popup(
+          'Evento agendado',
+          'El evento se ha agendado con éxito',
+          2000
+        );
 
-    setTimeout(() => {
-      window.location.reload()
-    }, 2500)
-  }
+        setTimeout(() => {
+          window.location.reload();
+        }, 2500);
+      }
+    }
+  });
 
 }
 
