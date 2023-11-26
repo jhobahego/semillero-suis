@@ -29,6 +29,7 @@ class UserResponse(BaseModel):
 
 class UserBase(BaseModel):
     name: str
+    lastname: str
     email: str
     is_active: bool
     is_superuser: bool
