@@ -50,9 +50,8 @@ def get_event(
 
 
 @router.put(
-    "/users{event_id}",
+    "/events/{event_id}",
     tags=["Events"],
-    status_code=200 | 404,
     response_model=EventResponse,
 )
 def update_event(
