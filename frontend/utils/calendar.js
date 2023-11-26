@@ -46,7 +46,7 @@ async function handleFormSubmit(event) {
   // Valida los datos del formulario y muestra un error en caso de que falte un valor
   for (let key of Object.keys(eventData)) {
     if (eventData[key] === '') {
-      showWarningAlert();
+      notificationUtilities.warning('Fallo al agendar', 'Todos los campos son requeridos');
       return;
     }
   }
@@ -217,14 +217,6 @@ function showDeleteSuccessAlert() {
     title: 'Evento eliminado',
     text: 'El evento se ha eliminado con éxito',
     icon: 'success',
-  });
-}
-
-function showWarningAlert() {
-  Swal.fire({
-    title: 'Fallo al agendar',
-    text: 'Todos los campos son requeridos',
-    icon: 'warning',
   });
 }
 

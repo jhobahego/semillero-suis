@@ -53,6 +53,10 @@ export const notificationUtilities = {
     this.toast("Operacion existosa", text, "success")
   },
 
+  warning(title, text) {
+    this.toast(title, text, 'warning')
+  },
+
   error(text) {
     this.toast("Se ha producido un error", text, "error")
   }
