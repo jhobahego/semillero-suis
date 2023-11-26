@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="../../../styles.scss">
+  <link rel="stylesheet" href="in_process.css">
+
+  <title>Proyecto en curso</title>
+</head>
+
+<body>
+
+  <header id="header">
+    <nav class="menu">
+      <button class="navbar-toggler" type="button" id="navbar-toggler">
+        <span class="navbar-toggler-icon">&#10006;</span>
+      </button>
+      <ul class="menu__links">
+        <li class="nav-item">
+          <a class="nav-link navbar-brand" aria-current="page" href="../../index.html">
+            <img class="img-fluid" src="/img/logopc2-preview.png" alt="logo del semillero SUIS" width="70"
+              height="auto" />
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/views/about/about.html">Acerca de</a>
+        </li>
+        <li class="nav-item" id="register-item">
+          <a class="nav-link" href="/views/auth/register.html">Registro</a>
+        </li>
+        <li class="nav-item" id="proyectos-item">
+          <a class="nav-link" href="/views/projects/proyectos.html">Proyectos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/views/contact/contacto.html">Contacto</a>
+        </li>
+      </ul>
+      <div class="dropdown">
+        <button class="btn-sesion dropdown-toggle" style="background-color: transparent; border: none; color: white;"
+          type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="/img/cerrar sesion/user-id-icon_34334.png"
+            alt="imagen de avatar de usuario generico para manejo de sesiones" width="50" height="50"
+            class="rounded-circle me-7">
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <li>
+            <button class="dropdown-item text-center" id="iniciarSesionBtn">Iniciar sesión</button>
+          </li>
+          <li>
+            <button class="dropdown-item text-center" id="cerrarSesionBtn">Cerrar sesión</button>
+          </li>
+          <li id="administracion-item">
+            <a class="nav-link text-center" href="/views/admin/administracion.html">Administracion</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="overlay"></div> <!-- Div para oscurecer el fondo -->
+    <ul class="mobile-menu"> <!-- Menú para dispositivos móviles -->
+      <li class="nav-item">
+        <a class="nav-link navbar-brand" aria-current="page" href="../../index.html">Pagina principal</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/views/about/about.html">Acerca de</a>
+      </li>
+      <li class="nav-item" id="register-item">
+        <a class="nav-link" href="/views/auth/register.html">Registro</a>
+      </li>
+      <li class="nav-item" id="proyectos-item">
+        <a class="nav-link" href="/views/projects/proyectos.html">Proyectos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/views/contact/contacto.html">Contacto</a>
+      </li>
+    </ul>
+  </header>
+
+  <div class="tarjeta-container">
+    <div class="tarjeta">
+      <img src="https://ceper.uniandes.edu.co/files/2022/08/1920-openday-posgrados.jpg" alt="Imagen 1">
+      <h2>Artes y Humanidades</h2>
+      <h3>Architectura</h3>
+      <p>área de estudio que agrupa a las profesiones que se dedican a resguardar, comprender y sistematizar el
+        acervo cultural de un país, en sus diferentes épocas y manifestaciones.</p>
+    </div>
+    <div class="tarjeta">
+      <img src="https://unabvirtual.unab.edu.co/images/2022/tratamiento-con-celulas-madre.jpg" alt="Imagen 2">
+      <h2>Ciencias de la Vida y Biomedicina</h2>
+      <h3>Agriculture, Anatomía y Morfología, Anestesiología</h3>
+      <p>disciplina que se encarga de estudiar los aspectos biológicos de la medicina etc..</p>
+    </div>
+    <div class="tarjeta">
+      <img src="https://fisicagustavo.files.wordpress.com/2018/02/cropped-imagen-10-fisicagustavo.jpg" alt="Imagen 3">
+      <h2>Ciencias Físicas</h2>
+      <h3>Astronomía y Astrofísica, Química, Cristalografía</h3>
+      <p>Descripción 3...</p>
+    </div>
+    <!-- Repite el patrón para agregar más tarjetas -->
+  </div>
+
+  <div class="tarjeta-container">
+    <div class="tarjeta">
+      <img src="https://cdn-icons-png.flaticon.com/512/3286/3286037.png" alt="Imagen 1">
+      <h2>Ciencias Sociales</h2>
+      <h3>Subtítulo 1</h3>
+      <p>Descripción 1...</p>
+    </div>
+    <div class="tarjeta">
+      <img src="https://blogs.ucontinental.edu.pe/wp-content/uploads/2017/07/ingenieria-de-sistemas-e-informatica.jpg"
+        alt="Imagen 2">
+      <h2>Tecnología</h2>
+      <h3>Subtítulo 2</h3>
+      <p>Descripción 2...</p>
+    </div>
+  </div>
+
+  <script type="module" src="../projects.js"></script>
+
+</body>
+
+</html>
