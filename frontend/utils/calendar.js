@@ -17,20 +17,11 @@ export async function handleDateClick(info) {
   formCalendar.reset();
   setDefaultDates(info.dateStr);
 
-  // Se cargan los usuarios de la base de datos en select del responsable y sus datos en los campos correspondientes
-  // para que solo facilitar el llenado del formulario
-  const { data } = await getUsers();
   const managerSelect = document.getElementById("manager");
 
-  let optionsHTML = '';
+  const optionResponsables = await obtenerResponsables();
 
-  data.forEach(usuario => {
-    const { id, name } = usuario;
-    const option = `<option value="${id}">${name}</option>`;
-    optionsHTML += option;
-  });
-
-  managerSelect.innerHTML = optionsHTML;
+  managerSelect.innerHTML = optionResponsables;
 
   const titleElement = document.getElementById("titulo")
   const subTitleElement = document.getElementById("subtitle")
@@ -166,4 +157,18 @@ export async function cargarEventos() {
   } catch (error) {
 
   }
+}
+
+async function obtenerResponsables() {
+  const { data } = await getUsers();
+
+  let optionsHTML = '';
+
+  data.forEach(usuario => {
+    const { id, name } = usuario;
+    const option = `<option value="${id}">${name}</option>`;
+    optionsHTML += option;
+  });
+
+  return optionsHTML;
 }
