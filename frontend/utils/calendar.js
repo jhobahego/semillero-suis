@@ -41,39 +41,15 @@ export async function handleDateClick(info) {
 async function handleFormSubmit(event) {
   event.preventDefault();
 
-  const inputValues = getInputValues()
-
-  const {
-    eventType,
-    managerId,
-    title,
-    descripcion,
-    startDate,
-    endDate,
-    color,
-    duration,
-    event_location,
-  } = inputValues
+  const eventData = getInputValues();
 
   // Valida los datos del formulario y muestra un error en caso de que falte un valor
-  for (let key of Object.keys(inputValues)) {
-    if (inputValues[key] === '') {
+  for (let key of Object.keys(eventData)) {
+    if (eventData[key] === '') {
       showWarningAlert();
       return;
     }
   }
-
-  const eventData = {
-    activity_type: eventType,
-    title: title,
-    description: descripcion,
-    manager_id: parseInt(managerId),
-    color: color,
-    start: startDate,
-    finished_at: endDate !== '' ? endDate : null,
-    event_location: event_location,
-    duration: duration
-  };
 
   Swal.fire({
     title: '¿Estás seguro?',
@@ -160,30 +136,8 @@ export async function handleEditEvent(info) {
 
     const submitHandler = async (event) => {
       event.preventDefault();
-      // Resto del código para guardar los cambios del evento editado
-      const {
-        managerId,
-        title,
-        descripcion,
-        color,
-        eventType,
-        startDate,
-        endDate,
-        event_location,
-        duration
-      } = getInputValues();
 
-      const editedEventData = {
-        manager_id: managerId,
-        title,
-        description: descripcion,
-        color,
-        activity_type: eventType,
-        start: startDate,
-        finished_at: endDate,
-        event_location,
-        duration
-      }
+      const editedEventData = getInputValues();
 
       Swal.fire({
         title: '¿Estás seguro?',
@@ -220,24 +174,24 @@ export async function handleEditEvent(info) {
 
 // Se obtienen todos los valores de los campos de los formularios
 function getInputValues() {
-  const eventType = document.getElementById("selectType").value;
-  const managerId = document.getElementById("manager").value;
+  const activity_type = document.getElementById("selectType").value;
+  const manager_id = document.getElementById("manager").value;
   const title = document.getElementById("title").value;
-  const startDate = document.getElementById("start-date").value;
-  const endDate = document.getElementById("end-date").value;
+  const start = document.getElementById("start-date").value;
+  const finished_at = document.getElementById("end-date").value;
   const color = document.getElementById("color").value;
-  const descripcion = document.getElementById("descripcionEvento").value;
+  const description = document.getElementById("descripcionEvento").value;
   const event_location = document.getElementById("event-location").value;
   const duration = document.getElementById("duration").value;
 
   return {
-    eventType,
-    managerId,
+    activity_type,
+    manager_id,
     title,
-    startDate,
-    endDate,
+    start,
+    finished_at,
     color,
-    descripcion,
+    description,
     event_location,
     duration
   }
