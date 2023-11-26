@@ -25,7 +25,6 @@ axiosInstance.interceptors.request.use((request) => {
 axiosInstance.interceptors.response.use(
   (response) => {
     const { status, data } = response
-    console.log({ status, data })
     if (status > 201) {
       notificationUtilities.success(data.detail)
     }
