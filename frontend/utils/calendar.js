@@ -14,6 +14,7 @@ document.getElementById("cancelBtn").addEventListener("click", () => {
 
 
 export async function handleDateClick(info) {
+  formCalendar.reset();
   setDefaultDates(info.dateStr);
 
   // Se cargan los usuarios de la base de datos en select del responsable y sus datos en los campos correspondientes
@@ -31,9 +32,13 @@ export async function handleDateClick(info) {
 
   managerSelect.innerHTML = optionsHTML;
 
+  const titleElement = document.getElementById("titulo")
+  const subTitleElement = document.getElementById("subtitle")
   const addButton = document.querySelector("#formCalendar button[type='submit']");
   const deleteButton = document.querySelector("#formCalendar button.btn-danger");
 
+  titleElement.textContent = 'Creacion de evento';
+  subTitleElement.textContent = 'Agregar evento';
   addButton.textContent = 'Agregar evento';
   addButton.classList.remove('btn-warning');
   deleteButton.style.display = 'none';
