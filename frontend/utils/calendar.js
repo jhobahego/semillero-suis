@@ -197,16 +197,6 @@ function getInputValues() {
   }
 }
 
-function resetFormInputs() {
-  document.getElementById("title").value = '';
-  document.getElementById("start-date").value = '';
-  document.getElementById("end-date").value = '';
-  document.getElementById("color").value = '';
-  document.getElementById("descripcionEvento").value = '';
-  document.getElementById("event-location").value = '';
-  document.getElementById("duration").value = '';
-}
-
 function setDefaultDates(dateStr) {
   document.getElementById("start-date").value = dateStr;
   document.getElementById("end-date").value = dateStr;
