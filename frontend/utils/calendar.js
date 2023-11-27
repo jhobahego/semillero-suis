@@ -16,10 +16,8 @@ document.getElementById("cancelBtn").addEventListener("click", () => {
 // Funcion para agregar eventos
 export async function handleDateClick(info) {
   formCalendar.reset();
-  // document.getElementById("start-date").value = info.dateStr;
-  // document.getElementById("end-date").value = info.dateStr;
-  console.log(info);
   setDefaultDates(info.date);
+
   modal.show();
 
   const managerSelect = document.getElementById("manager");
@@ -245,14 +243,6 @@ function selectManagerInDropdown(managerId) {
       break;
     }
   }
-}
-
-function showDeleteSuccessAlert() {
-  Swal.fire({
-    title: 'Evento eliminado',
-    text: 'El evento se ha eliminado con éxito',
-    icon: 'success',
-  });
 }
 
 export async function cargarEventos() {
