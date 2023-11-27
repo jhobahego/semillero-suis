@@ -343,6 +343,14 @@ button {
   cursor: pointer;
 }
 
+.create-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  gap: 1.4rem;
+}
+
 .form-group {
   position: relative;
 }
@@ -351,13 +359,10 @@ button {
   position: relative;
   top: -20%;
   left: 1px;
-  /* transform: translateY(-60%);   */
-  font-size: 19px;
-  color: rgb(9, 8, 8);
+  font-size: 18px;
   font-weight: 500;
-  pointer-events: none;
-  transition: .3s;
-
+  margin-bottom: 0;
+  margin-top: .8rem;
 }
 
 .form-group input {
@@ -371,13 +376,8 @@ button {
   outline: none;
 }
 
-
 .asesorPrincipal {
-  position: relative;
-  width: 100%;
-  height: 50px;
-  margin: -10px 0;
-
+  margin-top: 15px;
 }
 
 .asesorPrincipal input {
@@ -386,7 +386,6 @@ button {
   height: 50px;
   border-bottom: 2px solid #bb4741;
   margin: 39px 0;
-
 }
 
 .asesorPrincipal label {
@@ -395,5 +394,4 @@ button {
   height: 50px;
   border-bottom: 2px solid #bb4741;
   margin: 39px 0;
-
 }
