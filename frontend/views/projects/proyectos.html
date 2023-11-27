@@ -98,7 +98,7 @@
           style="max-width: 70px; height: auto;  padding: 0.4em 0;">
         <div class="card-body text-sencondary">
           <!-- Botón para abrir el modal -->
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" id="createFormBtn">
             Crear Nuevo Proyecto
           </button>
 
@@ -109,7 +109,7 @@
                 <!-- Cabecera del Modal -->
                 <header class="modal-header">
                   <h3 class="modal-title">Formulario de Creación de Semillero</h3>
-                  <button type="button" class="close" data-dismiss="modal">
+                  <button type="button" class="close" id="closeCreateForm">
                     &times;
                   </button>
                 </header>
@@ -282,9 +282,6 @@
                 <!-- Pie del Modal -->
                 <footer class="modal-footer">
                   <button type="submit" class="btn btn-primary">Enviar</button><!-- Botón de Envío -->
-                  <button type="button" class="btn btn-danger" data-dismiss="modal"><!-- Botón de cerrar -->
-                    Cerrar
-                  </button>
                 </footer>
               </div>
             </div>
@@ -398,9 +395,9 @@
 
   <script type="module" src="projects.js"></script>
   <!-- Scripts de Bootstrap y jQuery -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
 
 </body>
 
