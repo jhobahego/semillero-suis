@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import { createEvent, getEvents, getEvent, updateEvent } from '../services/eventService';
 import { getUsers, getUser } from '../services/userServices';
 import { notificationUtilities } from '../services/notificationService';
+import { calendar } from '../views/admin/admin';
 
 const modal = new Modal(document.getElementById("myModal"));
 const formCalendar = document.getElementById("formCalendar");
@@ -12,10 +13,14 @@ document.getElementById("cancelBtn").addEventListener("click", () => {
   modal.hide();
 });
 
-
+// Funcion para agregar eventos
 export async function handleDateClick(info) {
   formCalendar.reset();
-  setDefaultDates(info.dateStr);
+  // document.getElementById("start-date").value = info.dateStr;
+  // document.getElementById("end-date").value = info.dateStr;
+  console.log(info);
+  setDefaultDates(info.date);
+  modal.show();
 
   const managerSelect = document.getElementById("manager");
 
@@ -23,153 +28,143 @@ export async function handleDateClick(info) {
 
   managerSelect.innerHTML = optionResponsables;
 
-  const titleElement = document.getElementById("titulo")
-  const subTitleElement = document.getElementById("subtitle")
-  const addButton = document.querySelector("#formCalendar button[type='submit']");
-  const deleteButton = document.querySelector("#formCalendar button.btn-danger");
+  // Personaliza el formulario con información referente a agregar un evento
+  setFormInformation('Creación de evento', 'Agregar evento', 'Guardar evento', 'add');
 
-  titleElement.textContent = 'Creacion de evento';
-  subTitleElement.textContent = 'Agregar evento';
-  addButton.textContent = 'Agregar evento';
-  addButton.classList.remove('btn-warning');
-  deleteButton.style.display = 'none';
+  formCalendar.addEventListener("submit", (event) => {
+    event.preventDefault();
 
-  modal.show();
-  formCalendar.addEventListener("submit", handleFormSubmit);
-}
-
-async function handleFormSubmit(event) {
-  event.preventDefault();
-
-  const eventData = getInputValues();
-
-  // Valida los datos del formulario y muestra un error en caso de que falte un valor
-  for (let key of Object.keys(eventData)) {
-    if (eventData[key] === '') {
-      notificationUtilities.warning('Fallo al agendar', 'Todos los campos son requeridos');
-      return;
+    const data = {
+      formAction: 'add',
+      eventId: -1
     }
-  }
 
-  Swal.fire({
-    title: '¿Estás seguro?',
-    text: '¿Seguro que deseas agendar este evento?',
-    icon: 'question',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Sí, agendar!'
-  }).then(async (result) => {
-    if (result.isConfirmed) {
-      const { data } = await createEvent(eventData)
-      if (data) {
-        modal.hide();
-        notificationUtilities.popup(
-          'Evento agendado',
-          'El evento se ha agendado con éxito',
-          2000
-        );
-
-        setTimeout(() => {
-          window.location.reload();
-        }, 2500);
-      }
+    const notificationData = {
+      title: '¿Estás seguro?',
+      text: '¿Seguro que deseas agendar este evento?',
+      confirmButtonText: 'Sí, agendar!',
+      successTitle: 'Evento agendado',
+      successText: 'El evento se ha agendado con éxito',
+      successDuration: 2000
     }
+
+    handleFormSubmit(data, notificationData);
   });
-
 }
 
 // Función para editar un evento
 export async function handleEditEvent(info) {
-  const { publicId } = info.event._def
-  const { manager_id } = info.event.extendedProps
+  const { publicId } = info.event._def;
 
-  const eventId = parseInt(publicId)
-
-  // Se obtiene los datos del responsable desde la base de datos
-  let response = await getUser(manager_id)
-  const { name, lastname, email } = response.data
-  const managerFullname = `${name} ${lastname}`
+  const eventId = parseInt(publicId);
 
   // Petición al servidor para obtener los detalles del evento a editar
-  response = await getEvent(eventId);
-  if (response.data) {
-    const { data } = response
+  const { data } = await getEvent(eventId);
+  if (data) {
+    modal.show();
 
-    const managerSelect = document.getElementById("manager");
+    // Se carga el select de los responsables con los usuarios de la BD
+    document.getElementById("manager").innerHTML = await obtenerResponsables();
 
-    // Se carga el select con los responsables
-    const optionResponsables = await obtenerResponsables();
-    managerSelect.innerHTML = optionResponsables;
-
-    // Se selecciona el responsable de este evento en el select
-    for (let i = 0; i < managerSelect.options.length; i++) {
-      if (managerSelect.options[i].value === data.manager_id.toString()) {
-        managerSelect.options[i].selected = true;
-        break;
-      }
-    }
+    // Se selecciona el responsable del evento en el select
+    selectManagerInDropdown(data.manager_id);
 
     // Actualiza los campos del formulario con los detalles del evento a editar
-    document.getElementById("selectType").value = data.activity_type;
-    document.getElementById("managerName").value = managerFullname;
-    document.getElementById("managerEmail").value = email;
-    document.getElementById("title").value = data.title;
-    document.getElementById("start-date").value = data.start;
-    document.getElementById("end-date").value = data.finished_at;
-    document.getElementById("color").value = data.color;
-    document.getElementById("descripcionEvento").value = data.description;
-    document.getElementById("event-location").value = data.event_location;
-    document.getElementById("duration").value = data.duration;
+    setEditFormValues(data);
 
-    // Actualiza los textos de los elementos en el formulario o modal
-    document.getElementById("titulo").textContent = "Edición de evento";
-    document.getElementById("subtitle").textContent = "Editar evento";
+    // Personaliza el formulario con información referente a editar un evento
+    setFormInformation('Edición de evento', 'Editar evento', 'Guardar cambios', 'edit');
 
-    const addButton = document.querySelector("#formCalendar button[type='submit']");
-    const deleteButton = document.querySelector("#formCalendar button.btn-danger");
-
-    // Se cambian los textos de los botones
-    addButton.textContent = 'Guardar cambios';
-    addButton.classList.add('btn-warning');
-    deleteButton.style.display = 'none';
-
-    const submitHandler = async (event) => {
+    formCalendar.addEventListener("submit", (event) => {
       event.preventDefault();
 
-      const editedEventData = getInputValues();
+      const data = {
+        formAction: 'edit',
+        eventId
+      }
 
-      Swal.fire({
+      const notificationData = {
         title: '¿Estás seguro?',
-        text: '¿Deseas guardar los cambios del evento?',
-        icon: 'question',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Sí, guardar cambios'
-      }).then(async (result) => {
-        if (result.isConfirmed) {
-          // Si el usuario confirma, procede a actualizar el evento
-          const { data } = await updateEvent(eventId, editedEventData);
-          if (data) {
-            modal.hide();
-            notificationUtilities.popup(
-              'Cambios guardados',
-              'Los cambios se han guardado con éxito',
-              2000
-            );
+        text: '¿Seguro que deseas guardar los cambios del evento?',
+        confirmButtonText: 'Sí, guardar cambios!',
+        successTitle: 'Cambios guardados',
+        successText: 'Se ha editado el evento correctamente',
+        successDuration: 2000
+      }
 
-            setTimeout(() => {
-              window.location.reload();
-            }, 2500);
-          }
-        }
-      });
-    };
-
-    formCalendar.addEventListener("submit", submitHandler);
-    modal.show();
+      handleFormSubmit(data, notificationData);
+    });
   }
+}
+
+async function handleFormSubmit(data, notificationData) {
+  const { formAction, eventId } = data;
+  const eventData = getInputValues();
+
+  const submitFunction = () => {
+    if (formAction === 'add') {
+      // Valida los datos del formulario y muestra un error en caso de que falte un valor
+      for (let key of Object.keys(eventData)) {
+        if (eventData[key] === '') {
+          notificationUtilities.warning('Fallo al agendar', 'Todos los campos son requeridos');
+          return;
+        }
+      }
+
+      return createEvent(eventData);
+    }
+
+    if (formAction === 'edit') {
+      return updateEvent(eventId, eventData);
+    }
+  }
+
+  confirmSubmitNotification(notificationData, formAction, submitFunction);
+}
+
+function confirmSubmitNotification(notificationData, formAction, submitFunction) {
+  const {
+    title,
+    text,
+    confirmButtonText,
+    successTitle,
+    successText,
+    successDuration
+  } = notificationData
+
+  Swal.fire({
+    title,
+    text,
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText
+  }).then(async (result) => {
+    if (result.isConfirmed) {
+      const { data, status } = await submitFunction(formAction);
+
+      if (data || status === 204) {
+        modal.hide();
+
+        notificationUtilities.popup(
+          successTitle,
+          successText,
+          successDuration
+        );
+
+        if (formAction === 'add') {
+          console.log("agregando evento");
+          calendar.addEvent(data)
+        }
+      }
+    }
+  })
+}
+
+function setDefaultDates(dateStr) {
+  document.getElementById("start-date").value = dateStr;
+  document.getElementById("end-date").value = dateStr;
 }
 
 // Se obtienen todos los valores de los campos de los formularios
@@ -197,9 +192,59 @@ function getInputValues() {
   }
 }
 
-function setDefaultDates(dateStr) {
-  document.getElementById("start-date").value = dateStr;
-  document.getElementById("end-date").value = dateStr;
+function setFormInformation(titleText, subtitleText, submitButtonText, option) {
+  const titleElement = document.getElementById("titulo")
+  const subTitleElement = document.getElementById("subtitle")
+  const addButton = document.querySelector("#formCalendar button[type='submit']");
+  const deleteButton = document.querySelector("#formCalendar button.btn-danger");
+
+  titleElement.textContent = titleText;
+  subTitleElement.textContent = subtitleText;
+  addButton.textContent = submitButtonText;
+
+  if (option === 'add') {
+    addButton.classList.remove('btn-warning');
+    deleteButton.style.display = 'none';
+
+  } else if (option === 'edit') {
+    addButton.classList.add('btn-warning');
+    deleteButton.style.display = 'none';
+
+  } else if (option === 'delete') {
+    addButton.style.display = 'none';
+    deleteButton.style.display = 'block';
+  }
+}
+
+async function setEditFormValues(data) {
+  const { manager_id } = data
+
+  let response = await getUser(manager_id)
+  const { name, lastname, email } = response.data
+  const managerFullname = `${name} ${lastname}`
+
+  document.getElementById("managerName").value = managerFullname;
+  document.getElementById("managerEmail").value = email;
+
+  document.getElementById("selectType").value = data.activity_type;
+  document.getElementById("title").value = data.title;
+  document.getElementById("start-date").value = data.start;
+  document.getElementById("end-date").value = data.finished_at;
+  document.getElementById("color").value = data.color;
+  document.getElementById("descripcionEvento").value = data.description;
+  document.getElementById("event-location").value = data.event_location;
+  document.getElementById("duration").value = data.duration;
+}
+
+function selectManagerInDropdown(managerId) {
+  const managerSelect = document.getElementById("manager");
+
+  for (let i = 0; i < managerSelect.options.length; i++) {
+    if (managerSelect.options[i].value === managerId) {
+      managerSelect.options[i].selected = true;
+      break;
+    }
+  }
 }
 
 function showDeleteSuccessAlert() {
