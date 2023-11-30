@@ -226,6 +226,66 @@ main {
   margin: 4em auto;
 }
 
+/* Estilos de la tarjeta de preview de eventos */
+.card.event-preview {
+  position: fixed;
+  background-color: white;
+  padding: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  border-radius: 10px;
+  width: 300px;
+  max-width: 80%;
+  /* left: 50%;
+  top: 50%; */
+  font-family: Arial, sans-serif;
+  text-align: left;
+  line-height: 1.5;
+}
+
+.card.event-preview .card-body {
+  padding: 0;
+  /* Eliminar el relleno interior predeterminado */
+}
+
+.card.event-preview .card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.card.event-preview .card-text {
+  margin-bottom: 5px;
+  color: #555;
+}
+
+/* Cambiar el gradiente de fondo */
+.card.event-preview {
+  top: 10px;
+  background: linear-gradient(to bottom, rgb(245, 245, 245), rgb(26, 108, 141));
+}
+
+.preview-right {
+  right: 10px;
+}
+
+.preview-left {
+  left: 10px;
+}
+
+.close {
+  width: 40px;
+  border: none;
+  background: transparent;
+  color: white;
+  font-size: 28px;
+  font-weight: bold;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
 @media (max-width: 768px) {
   .menu {
     padding: .4em 1em;
