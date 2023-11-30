@@ -3,7 +3,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 import interactionPlugin from '@fullcalendar/interaction';
-import { handleDateClick, cargarEventos, handleEditEvent } from "../../utils/calendar.js";
+import { handleDateClick, cargarEventos, handleEditEvent, handleMouseEnter } from "../../utils/calendar.js";
 import { manageSession } from "../../utils/navbar.js";
 
 manageSession();
@@ -24,6 +24,7 @@ export const calendar = new Calendar(calendarEl, {
   events: eventos,
   dateClick: handleDateClick,
   eventClick: handleEditEvent,
+  eventMouseEnter: (info) => handleMouseEnter(info, eventos),
 });
 
 calendar.render();

@@ -175,7 +175,8 @@
                 <label class="form-label" for="color">Color</label>
               </div>
               <div class="form-floating mb-3">
-                <input class="form-control" type="text" id="event-location" placeholder="Universidad Remington sede sincelejo">
+                <input class="form-control" type="text" id="event-location"
+                  placeholder="Universidad Remington sede sincelejo">
                 <label class="form-label" for="event-location">Ubicación del evento</label>
               </div>
               <div class="form-floating mb-3">
@@ -200,7 +201,19 @@
       </div>
     </article>
 
-    <section class="calendario" id="calendario"></section>
+    <section class="calendario" id="calendario">
+
+    </section>
+    <article class="card event-preview z-3 d-none" id="tooltip">
+      <div class="card-body">
+        <h5 class="card-title" id="card-title"></h5>
+        <p class="card-text" id="card-description"></p>
+        <p class="card-text" id="card-fecha"></p>
+        <p class="card-text" id="card-location"></p>
+        <p class="card-text" id="card-duration"></p>
+        <p class="card-text" id="card-manager"></p>
+      </div>
+    </article>
 
   </main>
 

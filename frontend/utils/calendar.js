@@ -120,6 +120,56 @@ async function handleFormSubmit(data, notificationData) {
   confirmSubmitNotification(notificationData, formAction, submitFunction);
 }
 
+export async function handleMouseEnter(info, eventos) {
+  const { id } = info.event;
+  const evento = eventos.find(evento => evento.id === parseInt(id))
+
+  const { title, start, description, duration, event_location, color, manager_id } = evento;
+  const { data } = await getUser(manager_id);
+
+  const tooltip = document.getElementById('tooltip');
+
+  document.getElementById("card-title").textContent = `${title}`;
+  document.getElementById("card-description").textContent = `${description}`;
+  document.getElementById("card-fecha").textContent = `Fecha de inicio: ${start}`;
+  document.getElementById("card-location").textContent = `Duración: ${duration > 60 ? Math.floor(duration / 60) + ' Horas' : duration + ' Minutos'}`;
+  document.getElementById("card-duration").textContent = `Lugar del evento: ${event_location}`;
+  document.getElementById("card-manager").textContent = `Responsable: ${data.name} ${data.lastname}`;
+
+  const eventElement = info.el;
+
+  if (window.innerWidth > 1023) {
+    tooltip.classList.remove('d-none');
+    tooltip.style.border = `2px solid ${color}`;
+
+    // Detecta la posición del tooltip y del mouse
+    const tooltipRect = tooltip.getBoundingClientRect();
+    const mouseX = info.jsEvent.clientX;
+    const mouseY = info.jsEvent.clientY;
+
+    // Calcula la distancia entre el borde derecho del tooltip y el borde derecho de la ventana
+    const rightDistance = window.innerWidth - (tooltipRect.left + tooltipRect.width);
+
+    // Mueve el tooltip al lado opuesto si el mouse está justo encima de él
+    if (mouseX >= tooltipRect.left && mouseX <= tooltipRect.right && mouseY >= tooltipRect.top && mouseY <= tooltipRect.bottom) {
+      if (rightDistance < tooltipRect.width) {
+        // Si el mouse está en el tooltip y no hay suficiente espacio a la derecha, mueve el tooltip a la izquierda
+        tooltip.classList.remove('preview-right');
+        tooltip.classList.add('preview-left');
+      } else {
+        // Si hay suficiente espacio a la derecha, mueve el tooltip a la derecha
+        tooltip.classList.remove('preview-left');
+        tooltip.classList.add('preview-right');
+      }
+    }
+  }
+
+  // Elimina el tooltip cuando el mouse sale del evento
+  eventElement.addEventListener('mouseleave', () => {
+    tooltip.classList.add('d-none');
+  });
+}
+
 function confirmSubmitNotification(notificationData, formAction, submitFunction) {
   const {
     title,
@@ -152,7 +202,6 @@ function confirmSubmitNotification(notificationData, formAction, submitFunction)
         );
 
         if (formAction === 'add') {
-          console.log("agregando evento");
           calendar.addEvent(data)
         }
       }
