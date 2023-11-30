@@ -86,344 +86,344 @@
     </div>
   </div>
 
-  <h1 class="title">
-    <img src="/img/icon_proy/proyectos.png" alt="proyectos">
-    Proyectos
-  </h1>
+  <main>
+    <h1 class="title">
+      <img src="/img/icon_proy/proyectos.png" alt="proyectos">
+      Proyectos
+    </h1>
 
-  <section class=" row row-cols-1 row-cols-md-2 g-4" style="padding-top: 15px; width: 100%; height: auto;">
-    <div class="card border-primary mb-0" style="max-width: 45%; margin: auto;">
-      <div class="card-group">
-        <img src="/img/icon_proy/nuevo proyecto.png" class="card-img-top" alt="..."
-          style="max-width: 70px; height: auto;  padding: 0.4em 0;">
-        <div class="card-body text-sencondary">
+    <section class="row row-cols-sm-2">
+      <div class="card border-primary mb-0">
+        <div class="card-group">
+          <img src="/img/icon_proy/nuevo proyecto.png" class="card-img-top" alt="icono para agregar nuevo proyecto">
+          <div class="card-body text-sencondary">
+            <!-- Botón para abrir el modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" id="createFormBtn">
+              Crear Nuevo Proyecto
+            </button>
+
+            <!-- Modal -->
+            <section class="modal" id="modalFormulario">
+              <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                  <!-- Cabecera del Modal -->
+                  <header class="modal-header">
+                    <h3 class="modal-title">Formulario de Creación de Semillero</h3>
+                    <button type="button" class="btn-close" id="closeCreateForm">
+
+                    </button>
+                  </header>
+
+                  <!-- Cuerpo del Modal -->
+                  <section class="modal-body">
+                    <!-- Aquí va el formulario -->
+                    <form class="formulario create-form">
+                      <!-- Sección 1 -->
+                      <div class="form-group">
+                        <h4><b>1: Informacion Del Semillero</b></h4>
+
+                        <label for="nombreSemillero">Nombre del Semillero:</label>
+                        <input type="text" class="form-control" id="nombreSemillero"
+                          placeholder="Semillas Innovadoras" />
+
+                        <label for="codigoSemillero">Código del Semillero:</label>
+                        <input type="number" class="form-control" id="codigoSemillero" placeholder="104-1507" />
+                      </div>
+
+                      <!-- informacion del asesor -->
+                      <div class="form-group">
+                        <h4><b>2: Información del Asesor</b></h4>
+
+                        <!--(a) asesor principal -->
+                        <h5 class="asesorPrincipal"> <b>• Asesor Principal:</b></h5>
+
+                        <label for="nombreAsesorPrincipal">Nombre:</label>
+                        <input type="text" class="form-control" id="nombreAsesorPrincipal"
+                          placeholder="jhon hernandez gomez" />
+
+                        <label for="cedulaAsesorPrincipal">Numero de cedula:</label>
+                        <input type="number" class="form-control" id="cedulaAsesorPrincipal" placeholder="1102039286" />
+
+                        <label for="correoAsesorPrincipal">Correo:</label>
+                        <input type="email" class="form-control" id="correoAsesorPrincipal"
+                          placeholder="jhon.hernandez.7144@miremington.edu.co" />
+                      </div>
+
+                      <!--(b) asesor tematico -->
+                      <div class="form-group">
+                        <h5><b>• Asesor Temático:</b></h5>
+                        <label for="nombreAsesorTematico">Nombre:</label>
+                        <input type="text" class="form-control" id="nombreAsesorTematico"
+                          placeholder="Luis Alberto Gomez" />
+
+                        <label for="correoAsesorTematico">Correo:</label>
+                        <input type="email" class="form-control" id="correoAsesorTematico"
+                          placeholder="Luis.alberto.1815@miremington.edu.co" />
+                      </div>
+
+                      <!-- (c) asesor metodologico -->
+                      <div class="form-group">
+                        <h5><b>•Asesor Metodológico:</b></h5>
+                        <label for="nombreAsesorMetodológico">Nombre:</label>
+                        <input type="text" class="form-control" id="nombreAsesorMetodológico"
+                          placeholder="Maria Angerlica gomez navaz" />
+
+                        <label for="correoAsesorMetodológico">Correo:</label>
+                        <input type="email" class="form-control" id="correoAsesorMetodológico"
+                          placeholder="Maria.angelica.1038@miremington.edu.co" />
+                      </div>
+
+                      <!-- Sección 3 Estudiantes Integrantes del Proyecto-->
+                      <div class="form-group">
+                        <h4><b>3: Estudiantes Integrantes del Proyecto </b></h4>
+                        <label for="numIntegrantes">Número de Integrantes del Semillero:</label>
+                        <input type="number" class="form-control" id="numIntegrantes" placeholder="5" />
+                      </div>
+
+                      <div class="form-group">
+                        <h5><strong>Datos Completos del Estudiante 1:</strong></h5>
+
+                        <label for="nombreEstudiante1">Nombre:</label>
+                        <input type="text" class="form-control" id="nombreEstudiante1" placeholder="jorge ramirez" />
+
+                        <label for="CedulaEstudiante1">Numero de cedula:</label>
+                        <input type="cedula" class="form-control" id="CedulaEstudiante1" placeholder="1038098181" />
+
+                        <label for="EmailEstudiante1">Correo:</label>
+                        <input type="email" class="form-control" id="EmailEstudiante1"
+                          placeholder="jorge.ramirez.8181@miremington.edu.co" />
+
+                        <label for="ponenteEstudiante1">¿Estudiante ponente?</label>
+                        <select class="form-control" id="ponenteEstudiante1">
+                          <option value="si">Sí</option>
+                          <option value="no">No</option>
+                        </select>
+                      </div>
+
+                      <div class="form-group">
+                        <h5><strong>Datos Completos del Estudiante 2:</strong></h5>
+
+                        <label for="nombreEstudiante2">Nombre:</label>
+                        <input type="text" class="form-control" id="nombreEstudiante2" placeholder="jorge ramirez" />
+
+                        <label for="CedulaEstudiante2">Numero de cedula:</label>
+                        <input type="number" class="form-control" id="CedulaEstudiante2" placeholder="1038098181" />
+
+                        <label for="EmailEstudiante2">Correo:</label>
+                        <input type="email" class="form-control" id="EmailEstudiante2"
+                          placeholder="jorge.ramirez.8181@miremington.edu.co" />
+
+                        <label for="ponenteEstudiante2">¿Estudiante ponente?</label>
+                        <select class="form-control" id="ponenteEstudiante2">
+                          <option value="si">Sí</option>
+                          <option value="no">No</option>
+                        </select>
+                      </div>
+
+                      <div class="form-group">
+                        <h5><strong>Datos completos del Estudiante 3:</strong></h5>
+
+                        <label for="nombreEstudiante3">Nombre:</label>
+                        <input type="text" class="form-control" id="nombreEstudiante3"
+                          placeholder="florinda castro sabaedra" />
+
+                        <label for="CedulaEstudiante3">Numero de cedula:</label>
+                        <input type="text" class="form-control" id="CedulaEstudiante3" placeholder="104015196" />
+
+                        <label for="EmailEstudiante3">Correo:</label>
+                        <input type="email" class="form-control" id="EmailEstudiante3"
+                          placeholder="florinda.meza.5685@miremington.edu.co" />
+
+                        <label for="ponenteEstudiante3">¿Estudiante ponente?</label>
+                        <select class="form-control" id="ponenteEstudiante3">
+                          <option value="si">Sí</option>
+                          <option value="no">No</option>
+                        </select>
+                      </div>
+
+                      <div class="form-group">
+                        <h5><strong>Datos Completos del Estudiante 4:</strong></h5>
+
+                        <label for="nombreEstudiante4">Nombre:</label>
+                        <input type="text" class="form-control" id="nombreEstudiante4"
+                          placeholder="rodrigo del carmen" />
+
+                        <label for="CedulaEstudiante4">Numero de cedula:</label>
+                        <input type="text" class="form-control" id="CedulaEstudiante4" placeholder="1097777777" />
+
+                        <label for="EmailEstudiante4">Correo:</label>
+                        <input type="email" class="form-control" id="EmailEstudiante4"
+                          placeholder="rodri.carmen.7777@miremington.edu.co" />
+
+                        <label for="ponenteEstudiante4">¿Estudiante ponente?</label>
+                        <select class="form-control" id="ponenteEstudiante4">
+                          <option value="si">Sí</option>
+                          <option value="no">No</option>
+                        </select>
+                      </div>
+
+                      <!--Seccion 4: Detalles de la facultad y Area de Estudio -->
+                      <div class="form-group">
+                        <h4><b>• 5 Detalles de la facultad y Area de Estudio:</b></h4>
+
+                        <label for="Facultad">Facultad:</label>
+                        <select class="form-control" id="Facultad">
+                          <option value="Facultad Medicina Veterinaria">Medicina Veterinaria</option>
+                          <option value="Facultad Ciencias Empresariales">Ciencias Empresariales</option>
+                          <option value="Facultad Ciencias Juridícas Y Políticas">Ciencias Juridícas Y Políticas
+                          </option>
+                          <option value="Facultad Ciencias De La Salud">Ciencias De La Salud</option>
+                          <option value="Facultad Ciencias Contables">Ciencias Contables</option>
+                          <option value="Facultad Ingenierías">Ingenierías</option>
+                          <option value="Facultad Diseño">Diseño</option>
+                        </select>
+                      </div>
+
+                    </form>
+                  </section>
+
+                  <!-- Pie del Modal -->
+                  <footer class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Enviar</button><!-- Botón de Envío -->
+                  </footer>
+                </div>
+              </div>
+            </section>
+
+            <p class="card-text">Un proyecto es un conjunto de actividades que desarrolla una persona o una entidad para
+              alcanzar un determinado objetivo. Estas actividades se encuentran interrelacionadas y se desarrollan de
+              manera coordinada</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="row row-cols-sm-2">
+      <div class="card border-primary mb-0">
+        <img src="/img/icon_proy/proyecto reciente.png" class="card-img-top"
+          alt="icono de carpeta de creacion de propuesta">
+        <div class="card-body">
           <!-- Botón para abrir el modal -->
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" id="createFormBtn">
-            Crear Nuevo Proyecto
+          <button type="button" class="btn btn-primary" id="createPropuesta">
+            Crear Propuesta
           </button>
 
-          <!-- Modal -->
-          <section class="modal" id="modalFormulario">
+          <!-- Modal propuesta -->
+          <section class="modal" id="modalPropuesta">
             <div class="modal-dialog modal-dialog-scrollable">
               <div class="modal-content">
                 <!-- Cabecera del Modal -->
                 <header class="modal-header">
-                  <h3 class="modal-title">Formulario de Creación de Semillero</h3>
-                  <button type="button" class="btn-close" id="closeCreateForm">
-
-                  </button>
+                  <h3 class="modal-title">Propuesta de Semillero de Investigación</h3>
+                  <button type="button" class="btn-close" aria-label="Close" id="closePropuesta"></button>
                 </header>
-
-                <!-- Cuerpo del Modal -->
+                <!-- Contenido del formulario -->
                 <section class="modal-body">
-                  <!-- Aquí va el formulario -->
-                  <form class="formulario create-form">
-                    <!-- Sección 1 -->
-                    <div class="form-group">
-                      <h4><b>1: Informacion Del Semillero</b></h4>
-
-                      <label for="nombreSemillero">Nombre del Semillero:</label>
-                      <input type="text" class="form-control" id="nombreSemillero" placeholder="Semillas Innovadoras" />
-
-                      <label for="codigoSemillero">Código del Semillero:</label>
-                      <input type="number" class="form-control" id="codigoSemillero" placeholder="104-1507" />
+                  <form>
+                    <!-- Campos del formulario -->
+                    <div class="mb-3">
+                      <label for="titulo" class="form-label">Título</label>
+                      <input type="text" class="form-control" id="titulo" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="introduccion" class="form-label">Introducción</label>
+                      <textarea class="form-control" id="introduccion" rows="3" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                      <label for="justificacion" class="form-label">Justificación</label>
+                      <textarea class="form-control" id="justificacion" rows="3" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                      <label for="objetivos" class="form-label">Objetivos</label>
+                      <textarea class="form-control" id="objetivos" rows="3" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                      <label for="metodologia" class="form-label">Metodología</label>
+                      <textarea class="form-control" id="metodologia" rows="3" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                      <label for="cronograma" class="form-label">Cronograma</label>
+                      <textarea class="form-control" id="cronograma" rows="3" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                      <label for="recursos" class="form-label">Recursos</label>
+                      <textarea class="form-control" id="recursos" rows="3" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                      <label for="participantes" class="form-label">Participantes</label>
+                      <textarea class="form-control" id="participantes" rows="3" required></textarea>
                     </div>
 
-                    <!-- informacion del asesor -->
-                    <div class="form-group">
-                      <h4><b>2: Información del Asesor</b></h4>
+                    <div class="wrapper">
+                      <div class="box">
+                        <div class="input-bx">
+                          <h2 class="upload-area-title">Cargue Documentos</h2>
+                          <form action="">
+                            <input type="file" id="upload" accept=".pdf, .doc, .docx" hidden />
+                            <label for="upload" class="uploadlabel">
+                              <span><i class="fa fa-cloud-upload"></i></span>
+                              <p>Click to Upload</p>
+                            </label>
+                          </form>
+                        </div>
 
-                      <!--(a) asesor principal -->
-                      <h5 class="asesorPrincipal"> <b>• Asesor Principal:</b></h5>
-
-                      <label for="nombreAsesorPrincipal">Nombre:</label>
-                      <input type="text" class="form-control" id="nombreAsesorPrincipal"
-                        placeholder="jhon hernandez gomez" />
-
-                      <label for="cedulaAsesorPrincipal">Numero de cedula:</label>
-                      <input type="number" class="form-control" id="cedulaAsesorPrincipal" placeholder="1102039286" />
-
-                      <label for="correoAsesorPrincipal">Correo:</label>
-                      <input type="email" class="form-control" id="correoAsesorPrincipal"
-                        placeholder="jhon.hernandez.7144@miremington.edu.co" />
+                        <div id="filewrapper">
+                          <h3 class="uploaded">Uploaded Documents</h3>
+                          <!--<div class="showfilebox">
+                          <div class="left">
+                            <span class="filetype">pdf</span>
+                            <h3>Ravi web.pdf</h3>
+                          </div>
+                          <div class="right">
+                            <span>&#215;</span>
+                          </div>
+                        </div> -->
+                        </div>
+                      </div>
                     </div>
 
-                    <!--(b) asesor tematico -->
-                    <div class="form-group">
-                      <h5><b>• Asesor Temático:</b></h5>
-                      <label for="nombreAsesorTematico">Nombre:</label>
-                      <input type="text" class="form-control" id="nombreAsesorTematico"
-                        placeholder="Luis Alberto Gomez" />
-
-                      <label for="correoAsesorTematico">Correo:</label>
-                      <input type="email" class="form-control" id="correoAsesorTematico"
-                        placeholder="Luis.alberto.1815@miremington.edu.co" />
-                    </div>
-
-                    <!-- (c) asesor metodologico -->
-                    <div class="form-group">
-                      <h5><b>•Asesor Metodológico:</b></h5>
-                      <label for="nombreAsesorMetodológico">Nombre:</label>
-                      <input type="text" class="form-control" id="nombreAsesorMetodológico"
-                        placeholder="Maria Angerlica gomez navaz" />
-
-                      <label for="correoAsesorMetodológico">Correo:</label>
-                      <input type="email" class="form-control" id="correoAsesorMetodológico"
-                        placeholder="Maria.angelica.1038@miremington.edu.co" />
-                    </div>
-
-                    <!-- Sección 3 Estudiantes Integrantes del Proyecto-->
-                    <div class="form-group">
-                      <h4><b>3: Estudiantes Integrantes del Proyecto </b></h4>
-                      <label for="numIntegrantes">Número de Integrantes del Semillero:</label>
-                      <input type="number" class="form-control" id="numIntegrantes" placeholder="5" />
-                    </div>
-
-                    <div class="form-group">
-                      <h5><strong>Datos Completos del Estudiante 1:</strong></h5>
-
-                      <label for="nombreEstudiante1">Nombre:</label>
-                      <input type="text" class="form-control" id="nombreEstudiante1" placeholder="jorge ramirez" />
-
-                      <label for="CedulaEstudiante1">Numero de cedula:</label>
-                      <input type="cedula" class="form-control" id="CedulaEstudiante1" placeholder="1038098181" />
-
-                      <label for="EmailEstudiante1">Correo:</label>
-                      <input type="email" class="form-control" id="EmailEstudiante1"
-                        placeholder="jorge.ramirez.8181@miremington.edu.co" />
-
-                      <label for="ponenteEstudiante1">¿Estudiante ponente?</label>
-                      <select class="form-control" id="ponenteEstudiante1">
-                        <option value="si">Sí</option>
-                        <option value="no">No</option>
-                      </select>
-                    </div>
-
-                    <div class="form-group">
-                      <h5><strong>Datos Completos del Estudiante 2:</strong></h5>
-
-                      <label for="nombreEstudiante2">Nombre:</label>
-                      <input type="text" class="form-control" id="nombreEstudiante2" placeholder="jorge ramirez" />
-
-                      <label for="CedulaEstudiante2">Numero de cedula:</label>
-                      <input type="number" class="form-control" id="CedulaEstudiante2" placeholder="1038098181" />
-
-                      <label for="EmailEstudiante2">Correo:</label>
-                      <input type="email" class="form-control" id="EmailEstudiante2"
-                        placeholder="jorge.ramirez.8181@miremington.edu.co" />
-
-                      <label for="ponenteEstudiante2">¿Estudiante ponente?</label>
-                      <select class="form-control" id="ponenteEstudiante2">
-                        <option value="si">Sí</option>
-                        <option value="no">No</option>
-                      </select>
-                    </div>
-
-                    <div class="form-group">
-                      <h5><strong>Datos completos del Estudiante 3:</strong></h5>
-
-                      <label for="nombreEstudiante3">Nombre:</label>
-                      <input type="text" class="form-control" id="nombreEstudiante3"
-                        placeholder="florinda castro sabaedra" />
-
-                      <label for="CedulaEstudiante3">Numero de cedula:</label>
-                      <input type="text" class="form-control" id="CedulaEstudiante3" placeholder="104015196" />
-
-                      <label for="EmailEstudiante3">Correo:</label>
-                      <input type="email" class="form-control" id="EmailEstudiante3"
-                        placeholder="florinda.meza.5685@miremington.edu.co" />
-
-                      <label for="ponenteEstudiante3">¿Estudiante ponente?</label>
-                      <select class="form-control" id="ponenteEstudiante3">
-                        <option value="si">Sí</option>
-                        <option value="no">No</option>
-                      </select>
-                    </div>
-
-                    <div class="form-group">
-                      <h5><strong>Datos Completos del Estudiante 4:</strong></h5>
-
-                      <label for="nombreEstudiante4">Nombre:</label>
-                      <input type="text" class="form-control" id="nombreEstudiante4" placeholder="rodrigo del carmen" />
-
-                      <label for="CedulaEstudiante4">Numero de cedula:</label>
-                      <input type="text" class="form-control" id="CedulaEstudiante4" placeholder="1097777777" />
-
-                      <label for="EmailEstudiante4">Correo:</label>
-                      <input type="email" class="form-control" id="EmailEstudiante4"
-                        placeholder="rodri.carmen.7777@miremington.edu.co" />
-
-                      <label for="ponenteEstudiante4">¿Estudiante ponente?</label>
-                      <select class="form-control" id="ponenteEstudiante4">
-                        <option value="si">Sí</option>
-                        <option value="no">No</option>
-                      </select>
-                    </div>
-
-                    <!--Seccion 4: Detalles de la facultad y Area de Estudio -->
-                    <div class="form-group">
-                      <h4><b>• 5 Detalles de la facultad y Area de Estudio:</b></h4>
-
-                      <label for="Facultad">Facultad:</label>
-                      <select class="form-control" id="Facultad">
-                        <option value="Facultad Medicina Veterinaria">Medicina Veterinaria</option>
-                        <option value="Facultad Ciencias Empresariales">Ciencias Empresariales</option>
-                        <option value="Facultad Ciencias Juridícas Y Políticas">Ciencias Juridícas Y Políticas</option>
-                        <option value="Facultad Ciencias De La Salud">Ciencias De La Salud</option>
-                        <option value="Facultad Ciencias Contables">Ciencias Contables</option>
-                        <option value="Facultad Ingenierías">Ingenierías</option>
-                        <option value="Facultad Diseño">Diseño</option>
-                      </select>
-                    </div>
-
+                    <button type="submit" class="btn btn-primary" id="enviar">Enviar</button>
                   </form>
                 </section>
-
-                <!-- Pie del Modal -->
-                <footer class="modal-footer">
-                  <button type="submit" class="btn btn-primary">Enviar</button><!-- Botón de Envío -->
-                </footer>
               </div>
             </div>
           </section>
 
-          <p class="card-text">Un proyecto es un conjunto de actividades que desarrolla una persona o una entidad para
-            alcanzar un determinado objetivo. Estas actividades se encuentran interrelacionadas y se desarrollan de
-            manera coordinada</p>
+          <p class="card-text">Son proyectos que ha sido cargados o realizados en un periodo de tiempo muy corto,
+            tambien son los proyectos mas nuevos</p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class=" row row-cols-1 row-cols-md-2 g-4" style="padding-top: 15px; width: 100%; height: auto;">
-    <div class="card border-primary mb-0" style="max-width: 45%; margin: auto;">
-      <img src="/img/icon_proy/proyecto reciente.png" class="card-img-top" alt="..."
-        style="max-width: 70px; height: auto;  padding: 0.4em 0;">
-      <div class="card-body">
-        <!-- Botón para abrir el modal -->
-        <button type="button" class="btn btn-primary" id="createPropuesta">
-          Crear Propuesta
-        </button>
+    <section class="row row-cols-sm-2">
+      <div class="card border-primary mb-0">
+        <img src="/img/icon_proy/tipos_proyects.png" class="card-img-top" alt="icono de proyectos en curso">
+        <div class="card-body">
+          <h3 class="card-title">Proyectos en Curso</h3>
+          <ol>
+            <li type="none"><a href="/views/projects/en_curso/in_process.html" class="">Investigacion</a></li>
+            <li type="none"><a href="#" class="">Extension</a></li>
+            <li type="none"><a href="#" class="">Emprendimiento</a></li>
+            <li type="none"><a href="#" class="">Innovacion</a></li>
+          </ol>
 
-        <!-- Modal propuesta -->
-        <section class="modal" id="modalPropuesta">
-          <div class="modal-dialog modal-dialog-scrollable">
-            <div class="modal-content">
-              <!-- Cabecera del Modal -->
-              <header class="modal-header">
-                <h3 class="modal-title">Propuesta de Semillero de Investigación</h3>
-                <button type="button" class="btn-close" aria-label="Close" id="closePropuesta"></button>
-              </header>
-              <!-- Contenido del formulario -->
-              <section class="modal-body">
-                <form>
-                  <!-- Campos del formulario -->
-                  <div class="mb-3">
-                    <label for="titulo" class="form-label">Título</label>
-                    <input type="text" class="form-control" id="titulo" required>
-                  </div>
-                  <div class="mb-3">
-                    <label for="introduccion" class="form-label">Introducción</label>
-                    <textarea class="form-control" id="introduccion" rows="3" required></textarea>
-                  </div>
-                  <div class="mb-3">
-                    <label for="justificacion" class="form-label">Justificación</label>
-                    <textarea class="form-control" id="justificacion" rows="3" required></textarea>
-                  </div>
-                  <div class="mb-3">
-                    <label for="objetivos" class="form-label">Objetivos</label>
-                    <textarea class="form-control" id="objetivos" rows="3" required></textarea>
-                  </div>
-                  <div class="mb-3">
-                    <label for="metodologia" class="form-label">Metodología</label>
-                    <textarea class="form-control" id="metodologia" rows="3" required></textarea>
-                  </div>
-                  <div class="mb-3">
-                    <label for="cronograma" class="form-label">Cronograma</label>
-                    <textarea class="form-control" id="cronograma" rows="3" required></textarea>
-                  </div>
-                  <div class="mb-3">
-                    <label for="recursos" class="form-label">Recursos</label>
-                    <textarea class="form-control" id="recursos" rows="3" required></textarea>
-                  </div>
-                  <div class="mb-3">
-                    <label for="participantes" class="form-label">Participantes</label>
-                    <textarea class="form-control" id="participantes" rows="3" required></textarea>
-                  </div>
-
-                  <div class="wrapper">
-                    <div class="box">
-                      <div class="input-bx">
-                        <h2 class="upload-area-title">Cargue Documentos</h2>
-                        <form action="">
-                          <input type="file" id="upload" accept=".pdf, .doc, .docx" hidden />
-                          <label for="upload" class="uploadlabel">
-                            <span><i class="fa fa-cloud-upload"></i></span>
-                            <p>Click to Upload</p>
-                          </label>
-                        </form>
-                      </div>
-
-                      <div id="filewrapper">
-                        <h3 class="uploaded">Uploaded Documents</h3>
-                        <!--<div class="showfilebox">
-                        <div class="left">
-                          <span class="filetype">pdf</span>
-                          <h3>Ravi web.pdf</h3>
-                        </div>
-                        <div class="right">
-                          <span>&#215;</span>
-                        </div>
-                      </div> -->
-                      </div>
-                    </div>
-                  </div>
-
-                  <button type="submit" class="btn btn-primary" id="enviar">Enviar</button>
-                </form>
-              </section>
-            </div>
-          </div>
-        </section>
-
-
-
-
-        <p class="card-text">Son proyectos que ha sido cargados o realizados en un periodo de tiempo muy corto,
-          tambien son los proyectos mas nuevos</p>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class=" row row-cols-1 row-cols-md-2 g-4" style="padding-top: 15px; width: 100%; height: auto;">
-    <div class="card border-primary mb-0" style="max-width: 45%; margin: auto;">
-      <img src="/img/icon_proy/tipos_proyects.png" class="card-img-top" alt="..."
-        style="max-width: 70px; height: auto;  padding: 0.4em 0;">
-      <div class="card-body">
-        <h3 class="card-title">Proyectos en Curso</h3>
-        <ol>
-          <li type="none"><a href="/views/projects/en_curso/in_process.html" class="">Investigacion</a></li>
-          <li type="none"><a href="#" class="">Extension</a></li>
-          <li type="none"><a href="#" class="">Emprendimiento</a></li>
-          <li type="none"><a href="#" class="">Innovacion</a></li>
-        </ol>
-
+    <section class="row row-cols-sm-2">
+      <div class="card border-primary mb-0">
+        <img src="/img/icon_proy/proyectoTerminado.png" class="card-img-top"
+          alt="icono de seccion proyectos terminados">
+        <div class="card-body">
+          <h3 class="card-title"><a href="#" class="btn btn-success">Proyectos Terminados</a></h3>
+          <p class="card-text">son cuyos proyectos donde se han trabajado y han culminado su proceso de creacion, donde
+            cuya documentacion y terminacion yacen en este espacio.</p>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class=" row row-cols-1 row-cols-md-2 g-4" style="padding-top: 15px; width: 100%; height: auto;">
-    <div class="card border-primary mb-0" style="max-width: 45%; margin: auto;">
-      <img src="/img/icon_proy/proyectoTerminado.png" class="card-img-top" alt="..."
-        style="max-width: 70px; height: auto;  padding: 0.4em 0;">
-      <div class="card-body">
-        <h3 class="card-title"><a href="#" class="btn btn-success">Proyectos Terminados</a></h3>
-        <p class="card-text">son cuyos proyectos donde se han trabajado y han culminado su proceso de creacion, donde
-          cuya documentacion y terminacion yacen en este espacio.</p>
-      </div>
-    </div>
-  </section>
-
+  </main>
   <script type="module" src="projects.js"></script>
 
 </body>
