@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="projects.css">
   <link rel="stylesheet" href="../../styles.scss">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
   <title>Vista de Proyectos</title>
 </head>
 
@@ -351,13 +352,44 @@
                     <textarea class="form-control" id="participantes" rows="3" required></textarea>
                   </div>
 
-                  <button type="submit" class="btn btn-primary">Enviar</button>
+                  <div class="wrapper">
+                    <div class="box">
+                      <div class="input-bx">
+                        <h2 class="upload-area-title">Cargue Documentos</h2>
+                        <form action="">
+                          <input type="file" id="upload" accept=".pdf, .doc, .docx" hidden />
+                          <label for="upload" class="uploadlabel">
+                            <span><i class="fa fa-cloud-upload"></i></span>
+                            <p>Click to Upload</p>
+                          </label>
+                        </form>
+                      </div>
+              
+                      <div id="filewrapper">
+                        <h3 class="uploaded">Uploaded Documents</h3>
+                        <!--<div class="showfilebox">
+                        <div class="left">
+                          <span class="filetype">pdf</span>
+                          <h3>Ravi web.pdf</h3>
+                        </div>
+                        <div class="right">
+                          <span>&#215;</span>
+                        </div>
+                      </div> -->
+                      </div>
+                    </div>
+                  </div>
+
+                  <button type="submit" class="btn btn-primary" id="enviar">Enviar</button>
                 </form>
               </section>
             </div>
           </div>
         </section>
 
+
+
+        
         <p class="card-text">Son proyectos que ha sido cargados o realizados en un periodo de tiempo muy corto,
           tambien son los proyectos mas nuevos</p>
       </div>
@@ -394,8 +426,8 @@
   </section>
 
   <script type="module" src="projects.js"></script>
-  <!-- Scripts de Bootstrap y jQuery -->
-  <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+   Scripts de Bootstrap y jQuery 
+   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
 
