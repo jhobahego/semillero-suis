@@ -18,3 +18,61 @@ showCreateFormBtn.addEventListener("click", () => {
 closeCreateFormBtn.addEventListener("click", () => {
   modal.hide()
 })
+
+
+
+
+// funcion para  cargue de documentos
+
+document.addEventListener('DOMContentLoaded', function () {
+  const uploadInput = document.getElementById('upload');
+  const fileWrapper = document.getElementById('filewrapper');
+
+  uploadInput.addEventListener('change', handleFileSelect);
+
+  function handleFileSelect(event) {
+    const files = event.target.files;
+
+    for (const file of files) {
+      const fileType = getFileType(file.name);
+      const fileDiv = createFileDiv(fileType, file.name);
+      fileWrapper.appendChild(fileDiv);
+    }
+  }
+
+  function getFileType(fileName) {
+    const extension = fileName.split('.').pop().toLowerCase();
+    return extension;
+  }
+
+  function createFileDiv(fileType, fileName) {
+    const fileDiv = document.createElement('div');
+    fileDiv.classList.add('showfilebox');
+
+    const leftDiv = document.createElement('div');
+    leftDiv.classList.add('left');
+
+    const fileTypeSpan = document.createElement('span');
+    fileTypeSpan.classList.add('filetype');
+    fileTypeSpan.textContent = fileType;
+
+    const fileNameH3 = document.createElement('h3');
+    fileNameH3.textContent = fileName;
+
+    leftDiv.appendChild(fileTypeSpan);
+    leftDiv.appendChild(fileNameH3);
+
+    const rightDiv = document.createElement('div');
+    rightDiv.classList.add('right');
+    rightDiv.innerHTML = '<span class="delete-file">&#215;</span>';
+
+    rightDiv.addEventListener('click', function () {
+      fileDiv.remove();
+    });
+
+    fileDiv.appendChild(leftDiv);
+    fileDiv.appendChild(rightDiv);
+
+    return fileDiv;
+  }
+});
