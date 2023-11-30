@@ -4,26 +4,38 @@ import { manageSession } from "../../utils/navbar.js";
 
 manageSession()
 
-const modal = new Modal(document.getElementById("myModal"))
+const modalFormulario = new Modal(document.getElementById("modalFormulario"))
+const modalPropuesta = new Modal(document.getElementById("modalPropuesta"))
 
 const closeCreateFormBtn = document.getElementById("closeCreateForm")
 const showCreateFormBtn = document.getElementById("createFormBtn")
 
+
+const closePropuestaBtn = document.getElementById("closePropuesta")
+const showPropuestaBtn = document.getElementById("createPropuesta")
+
 // Muestra el modal al dar click en boton de crear proyecto
 showCreateFormBtn.addEventListener("click", () => {
-  modal.show()
+  modalFormulario.show()
 })
 
 // Oculta el modal al dar click en el boton de cierre
 closeCreateFormBtn.addEventListener("click", () => {
-  modal.hide()
+  modalFormulario.hide()
+})
+
+// Muestra el modal el modal de crear propuesta
+showPropuestaBtn.addEventListener("click", () => {
+  modalPropuesta.show()
+})
+
+// Oculta el modal al dar click en el boton de cierre
+closePropuestaBtn.addEventListener("click", () => {
+  modalPropuesta.hide()
 })
 
 
-
-
 // funcion para  cargue de documentos
-
 document.addEventListener('DOMContentLoaded', function () {
   const uploadInput = document.getElementById('upload');
   const fileWrapper = document.getElementById('filewrapper');

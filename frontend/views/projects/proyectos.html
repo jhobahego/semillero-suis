@@ -7,7 +7,6 @@
 
   <link rel="stylesheet" href="projects.css">
   <link rel="stylesheet" href="../../styles.scss">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
   <title>Vista de Proyectos</title>
 </head>
@@ -104,14 +103,14 @@
           </button>
 
           <!-- Modal -->
-          <section class="modal" id="myModal">
+          <section class="modal" id="modalFormulario">
             <div class="modal-dialog modal-dialog-scrollable">
               <div class="modal-content">
                 <!-- Cabecera del Modal -->
                 <header class="modal-header">
                   <h3 class="modal-title">Formulario de Creación de Semillero</h3>
-                  <button type="button" class="close" id="closeCreateForm">
-                    &times;
+                  <button type="button" class="btn-close" id="closeCreateForm">
+
                   </button>
                 </header>
 
@@ -302,20 +301,20 @@
         style="max-width: 70px; height: auto;  padding: 0.4em 0;">
       <div class="card-body">
         <!-- Botón para abrir el modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalPropuesta">
+        <button type="button" class="btn btn-primary" id="createPropuesta">
           Crear Propuesta
         </button>
 
-        <!-- Modal -->
+        <!-- Modal propuesta -->
         <section class="modal" id="modalPropuesta">
           <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
               <!-- Cabecera del Modal -->
-              <!-- Contenido del formulario -->
               <header class="modal-header">
                 <h3 class="modal-title">Propuesta de Semillero de Investigación</h3>
-                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" aria-label="Close" id="closePropuesta"></button>
               </header>
+              <!-- Contenido del formulario -->
               <section class="modal-body">
                 <form>
                   <!-- Campos del formulario -->
@@ -364,7 +363,7 @@
                           </label>
                         </form>
                       </div>
-              
+
                       <div id="filewrapper">
                         <h3 class="uploaded">Uploaded Documents</h3>
                         <!--<div class="showfilebox">
@@ -389,7 +388,7 @@
 
 
 
-        
+
         <p class="card-text">Son proyectos que ha sido cargados o realizados en un periodo de tiempo muy corto,
           tambien son los proyectos mas nuevos</p>
       </div>
@@ -426,10 +425,6 @@
   </section>
 
   <script type="module" src="projects.js"></script>
-   Scripts de Bootstrap y jQuery 
-   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
 
 </body>
 
