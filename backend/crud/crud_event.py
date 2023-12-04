@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 
 from crud.base import CRUDBase
 from models.Event import Event
-from schemas.Event import EventCreate, EventResponse
+from schemas.Event import EventCreate, EventResponse, EventUpdate
 
 
 class CRUDEvent(CRUDBase[Event, EventCreate, EventCreate]):
@@ -16,7 +16,7 @@ class CRUDEvent(CRUDBase[Event, EventCreate, EventCreate]):
         return db_obj
 
     def update(
-        self, db: Session, *, db_obj: Event, obj_in: Union[EventCreate, Dict[str, Any]]
+        self, db: Session, *, db_obj: Event, obj_in: Union[EventUpdate, Dict[str, Any]]
     ) -> EventResponse:
         obj_data = obj_in.model_dump(exclude_unset=True)
         for field in obj_data:
