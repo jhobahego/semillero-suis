@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, TIMESTAMP, Enum, ForeignKey, func
+from sqlalchemy import Column, Integer, String, TIMESTAMP, Enum, ForeignKey, Boolean, func
 from sqlalchemy.orm import relationship
 from db import Base
 
@@ -9,7 +9,7 @@ class Event(Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     manager_id = Column(Integer, ForeignKey("users.id"))
     activity_type = Column(
-        Enum("CUALIFICACION", "SEGUIMIENTO", "EVENTOS", name="activity_type"),
+        Enum("CUALIFICACION", "SEGUIMIENTO", "EVENTO", name="activity_type"),
         nullable=False,
     )
     title = Column(String(255), nullable=False)
@@ -19,5 +19,6 @@ class Event(Base):
     finished_at = Column(TIMESTAMP)
     event_location = Column(String(150), nullable=False)
     duration = Column(Integer, nullable=False)
+    active = Column(Boolean, default=True)
 
     manager = relationship("User", backref="events")

@@ -7,7 +7,7 @@ from typing import Optional
 class EventActivity(str, Enum):
     CUALIFICACION = "CUALIFICACION"
     SEGUIMIENTO = "SEGUIMIENTO"
-    EVENTOS = "EVENTOS"
+    EVENTO = "EVENTO"
 
 
 class EventBase(BaseModel):
@@ -23,11 +23,12 @@ class EventBase(BaseModel):
 
 
 class EventCreate(EventBase):
-    pass
+    active: Optional[bool] = True
 
 
 class EventResponse(EventBase):
     id: int
+    active: bool
 
     model_config = ConfigDict(from_attributes=True)
 
@@ -42,3 +43,4 @@ class EventUpdate(BaseModel):
     finished_at: Optional[datetime]
     event_location: Optional[str]
     duration: Optional[int]
+    active: Optional[bool] = True
