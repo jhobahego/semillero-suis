@@ -15,3 +15,7 @@ export const getEvent = async (eventId) => {
 export const updateEvent = async (eventId, eventToUpdate) => {
   return await axiosInstance.put(`/events/${eventId}`, eventToUpdate)
 }
+
+export const markEventAsInactive = async (eventId) => {
+  return await axiosInstance.patch(`/events/${eventId}`)
+}

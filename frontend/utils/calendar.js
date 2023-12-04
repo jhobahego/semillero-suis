@@ -1,7 +1,7 @@
 import { Modal } from 'bootstrap';
 import Swal from 'sweetalert2';
 
-import { createEvent, getEvents, getEvent, updateEvent } from '../services/eventService';
+import { createEvent, getEvents, getEvent, updateEvent, markEventAsInactive } from '../services/eventService';
 import { getUsers, getUser } from '../services/userServices';
 import { notificationUtilities } from '../services/notificationService';
 import { calendar } from '../views/admin/admin';
@@ -169,6 +169,77 @@ export async function handleMouseEnter(info, eventos) {
     tooltip.classList.add('d-none');
   });
 }
+
+export async function handleReminder(eventos) {
+  const activeEvents = eventos.filter(evento => evento.active === true);
+
+  for (const event of activeEvents) {
+    let index = 0;
+
+    const { id, start, title, active } = event;
+
+    const hasBeenNotified = localStorage.getItem(`notified_${id}`);
+
+    const now = new Date();
+    const eventStartDate = new Date(start);
+
+    // Se obtiene el tiempo que falta para que el evento empiece
+    const timeDifference = eventStartDate - now;
+    const minutesUntilEvent = Math.floor(timeDifference / 60000); // Convertir a minutos
+    const hoursUntilEvent = Math.floor(minutesUntilEvent / 60); // Convertir a horas
+
+    // Si es un evento que ya pasó, se pone como inactivo en BD
+    if (hoursUntilEvent < 0) {
+      const updateEventData = { ...event, active: false }
+      const { data } = await updateEvent(id, updateEventData)
+
+      if (data) continue;
+      else return;
+    }
+
+    // Si aún no ha sido notificado y empieza en menos de 24 horas, notifica
+    if (!hasBeenNotified && active) {
+      index += 1;
+
+      const svgIcon = document.getElementById('notificationIcon');
+      svgIcon.classList.add('position-relative');
+
+      const reminder = document.getElementById('notificationItems');
+      reminder.style.color = 'white';
+      reminder.innerText = index;
+
+      let timeMessage = '';
+      if (hoursUntilEvent < 1) {
+        localStorage.removeItem(`notified_${id}`);
+        timeMessage = `Quedan ${minutesUntilEvent} minutos para el evento`;
+      } else if (hoursUntilEvent < 24) {
+        timeMessage = `Quedan ${hoursUntilEvent} horas para el evento`;
+      }
+
+      svgIcon.addEventListener('click', () => {
+        return Swal.fire({
+          title: `${title}`,
+          text: timeMessage,
+          color: 'white',
+          position: 'top-start',
+          icon: 'info',
+          background: '#00447b',
+          width: 400,
+          showCancelButton: true,
+          confirmButtonColor: '#00447b',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Ocultar notificación'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            localStorage.setItem(`notified_${id}`, 'true');
+            location.reload();
+          }
+        })
+      })
+    }
+  }
+}
+
 
 function confirmSubmitNotification(notificationData, formAction, submitFunction) {
   const {

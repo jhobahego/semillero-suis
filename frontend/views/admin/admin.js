@@ -3,12 +3,15 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 import interactionPlugin from '@fullcalendar/interaction';
-import { handleDateClick, cargarEventos, handleEditEvent, handleMouseEnter } from "../../utils/calendar.js";
+import { handleDateClick, cargarEventos, handleEditEvent, handleMouseEnter, handleReminder } from "../../utils/calendar.js";
 import { manageSession } from "../../utils/navbar.js";
 
 manageSession();
 
 const eventos = await cargarEventos()
+
+// Verifica si hay evento cercano y notifica al usuario
+handleReminder(eventos)
 
 const calendarEl = document.getElementById("calendario");
 
