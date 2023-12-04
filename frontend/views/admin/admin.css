@@ -286,6 +286,27 @@ main {
   right: 10px;
 }
 
+.notification {
+  position: fixed;
+  top: 110px;
+  right: 10px;
+  font-weight: 600;
+  background-color: #00447b;
+  border-radius: 20%;
+  padding: 4px;
+  z-index: 100;
+}
+
+.notification-icon {
+  color: white;
+  cursor: pointer;
+  transition: color 300ms;
+}
+
+.notification-icon:hover {
+  scale: 1.1;
+}
+
 @media (max-width: 768px) {
   .menu {
     padding: .4em 1em;
