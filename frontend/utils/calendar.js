@@ -189,12 +189,10 @@ export async function handleReminder(eventos) {
     const hoursUntilEvent = Math.floor(minutesUntilEvent / 60); // Convertir a horas
 
     // Si es un evento que ya pasó, se pone como inactivo en BD
-    if (hoursUntilEvent < 0) {
-      const updateEventData = { ...event, active: false }
-      const { data } = await updateEvent(id, updateEventData)
-
-      if (data) continue;
-      else return;
+    if (active && minutesUntilEvent < 0) {
+      await updateEventActiveStatus(event, false);
+    } else if (minutesUntilEvent > 1 && !active) { // Si se actualiza la fecha se debe volver a poner como activo
+      await updateEventActiveStatus(event, true);
     }
 
     // Si aún no ha sido notificado y empieza en menos de 24 horas, notifica
@@ -278,6 +276,12 @@ function confirmSubmitNotification(notificationData, formAction, submitFunction)
       }
     }
   })
+}
+
+async function updateEventActiveStatus(evento, active) {
+  const updateEventData = { ...evento, active };
+  const { data } = await updateEvent(evento.id, updateEventData);
+  return data;
 }
 
 function setDefaultDates(dateStr) {
