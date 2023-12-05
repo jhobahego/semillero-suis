@@ -171,9 +171,9 @@ export async function handleMouseEnter(info, eventos) {
 }
 
 export async function handleReminder(eventos) {
-  const activeEvents = eventos.filter(evento => evento.active === true);
+  console.log(eventos);
 
-  for (const event of activeEvents) {
+  for (const event of eventos) {
     let index = 0;
 
     const { id, start, title, active } = event;
@@ -198,7 +198,7 @@ export async function handleReminder(eventos) {
     }
 
     // Si aún no ha sido notificado y empieza en menos de 24 horas, notifica
-    if (!hasBeenNotified && active) {
+    if (!hasBeenNotified && active && hoursUntilEvent < 24) {
       index += 1;
 
       const svgIcon = document.getElementById('notificationIcon');
@@ -212,11 +212,11 @@ export async function handleReminder(eventos) {
       if (hoursUntilEvent < 1) {
         localStorage.removeItem(`notified_${id}`);
         timeMessage = `Quedan ${minutesUntilEvent} minutos para el evento`;
-      } else if (hoursUntilEvent < 24) {
+      } else {
         timeMessage = `Quedan ${hoursUntilEvent} horas para el evento`;
       }
 
-      svgIcon.addEventListener('click', () => {
+      svgIcon.addEventListener('click', async () => {
         return Swal.fire({
           title: `${title}`,
           text: timeMessage,
@@ -366,14 +366,9 @@ function selectManagerInDropdown(managerId) {
 }
 
 export async function cargarEventos() {
-  try {
-    const { data } = await getEvents()
-    if (data) {
-      return data
-    }
-  } catch (error) {
+  const { data } = await getEvents()
 
-  }
+  return data;
 }
 
 async function obtenerResponsables() {
