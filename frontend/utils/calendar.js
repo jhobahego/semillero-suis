@@ -1,7 +1,7 @@
 import { Modal } from 'bootstrap';
 import Swal from 'sweetalert2';
 
-import { createEvent, getEvents, getEvent, updateEvent, markEventAsInactive } from '../services/eventService';
+import { createEvent, getEvents, getEvent, updateEvent } from '../services/eventService';
 import { getUsers, getUser } from '../services/userServices';
 import { notificationUtilities } from '../services/notificationService';
 import { calendar } from '../views/admin/admin';
@@ -357,11 +357,11 @@ function setFormInformation(titleText, subtitleText, submitButtonText, option) {
 }
 
 async function setEditFormValues(data) {
-  const { manager_id } = data
+  const { manager_id } = data;
 
-  let response = await getUser(manager_id)
-  const { name, lastname, email } = response.data
-  const managerFullname = `${name} ${lastname}`
+  let response = await getUser(manager_id);
+  const { name, lastname, email } = response.data;
+  const managerFullname = `${name} ${lastname}`;
 
   document.getElementById("managerName").value = managerFullname;
   document.getElementById("managerEmail").value = email;
@@ -380,11 +380,25 @@ function selectManagerInDropdown(managerId) {
   const managerSelect = document.getElementById("manager");
 
   for (let i = 0; i < managerSelect.options.length; i++) {
-    if (managerSelect.options[i].value === managerId) {
+    const actualManager = managerSelect.options[i].value;
+
+    if (parseInt(actualManager) === managerId) {
       managerSelect.options[i].selected = true;
       break;
     }
   }
+
+  managerSelect.addEventListener('change', async () => {
+    const manager = managerSelect.value;
+
+    const { data } = await getUser(manager);
+
+    const { name, lastname, email } = data;
+    const managerFullname = `${name} ${lastname}`;
+
+    document.getElementById("managerName").value = managerFullname;
+    document.getElementById("managerEmail").value = email;
+  })
 }
 
 export async function cargarEventos() {
