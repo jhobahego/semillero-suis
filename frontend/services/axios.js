@@ -34,8 +34,11 @@ axiosInstance.interceptors.response.use(
   (error) => {
     const { data, status } = error.response
 
-    let errorText = ""
+    if (status === 401) {
+      return window.location.href = "/views/auth/login.html";
+    }
 
+    let errorText = ""
     if (status === 422) {
       const validationErrors = data.detail.map((element) => {
         const field = element.loc[1];
