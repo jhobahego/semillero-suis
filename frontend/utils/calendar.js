@@ -171,6 +171,9 @@ export async function handleMouseEnter(info, eventos) {
 }
 
 export async function handleReminder(eventos) {
+  const notifications = document.getElementById('notifications');
+  // let hideNotification = false;
+
   for (const event of eventos) {
     let index = 0;
 
@@ -201,7 +204,13 @@ export async function handleReminder(eventos) {
     const canNotified = canHourNotified || canMinuteNotified;
 
     // Si no puedes notificar, es un evento inactivo o faltan mas de 24 horas no se notifica ese evento
-    if (!canNotified || !active || hoursUntilEvent > 24) continue;
+    if (!canNotified || !active || hoursUntilEvent > 24) {
+      continue;
+    }
+
+    console.log('mostrar icono');
+    notifications.classList.remove('d-none');
+    notifications.classList.add('d-flex');
 
     index += 1;
 
@@ -213,8 +222,10 @@ export async function handleReminder(eventos) {
 
     let timeMessage = '';
     if (canMinuteNotified) {
+      localStorage.removeItem('hideIcon');
       timeMessage = `Quedan ${minutesUntilEvent} minutos para el evento`;
     } else if (canHourNotified) {
+      localStorage.removeItem('hideIcon');
       const hoursText = hoursUntilEvent > 1 ? 'horas' : 'hora';
       timeMessage = `Quedan al menos ${hoursUntilEvent} ${hoursText} ${minutesUntilEvent} minutos para el evento`;
     }
@@ -243,7 +254,6 @@ export async function handleReminder(eventos) {
         }
       })
     })
-
   }
 }
 
