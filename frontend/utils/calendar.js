@@ -171,20 +171,17 @@ export async function handleMouseEnter(info, eventos) {
 }
 
 export async function handleReminder(eventos) {
-  console.log(eventos);
-
   for (const event of eventos) {
     let index = 0;
 
     const { id, start, title, active } = event;
-
-    const hasBeenNotified = localStorage.getItem(`notified_${id}`);
 
     const now = new Date();
     const eventStartDate = new Date(start);
 
     // Se obtiene el tiempo que falta para que el evento empiece
     const timeDifference = eventStartDate - now;
+
     const minutesUntilEvent = Math.floor(timeDifference / 60000); // Convertir a minutos
     const hoursUntilEvent = Math.floor(minutesUntilEvent / 60); // Convertir a horas
 
@@ -195,46 +192,58 @@ export async function handleReminder(eventos) {
       await updateEventActiveStatus(event, true);
     }
 
-    // Si aún no ha sido notificado y empieza en menos de 24 horas, notifica
-    if (!hasBeenNotified && active && hoursUntilEvent < 24) {
-      index += 1;
+    const hoursNotified = JSON.parse(localStorage.getItem(`hoursNotified_${id}`));
+    const minutesNotified = JSON.parse(localStorage.getItem(`minutesNotified_${id}`));
 
-      const svgIcon = document.getElementById('notificationIcon');
-      svgIcon.classList.add('position-relative');
+    let canHourNotified = hoursNotified == null && minutesUntilEvent > 60;
+    let canMinuteNotified = minutesNotified == null && minutesUntilEvent < 61;
 
-      const reminder = document.getElementById('notificationItems');
-      reminder.style.color = 'white';
-      reminder.innerText = index;
+    const canNotified = canHourNotified || canMinuteNotified;
 
-      let timeMessage = '';
-      if (hoursUntilEvent < 1) {
-        localStorage.removeItem(`notified_${id}`);
-        timeMessage = `Quedan ${minutesUntilEvent} minutos para el evento`;
-      } else {
-        timeMessage = `Quedan ${hoursUntilEvent} horas para el evento`;
-      }
+    // Si no puedes notificar, es un evento inactivo o faltan mas de 24 horas no se notifica ese evento
+    if (!canNotified || !active || hoursUntilEvent > 24) continue;
 
-      svgIcon.addEventListener('click', async () => {
-        return Swal.fire({
-          title: `${title}`,
-          text: timeMessage,
-          color: 'white',
-          position: 'top-start',
-          icon: 'info',
-          background: '#00447b',
-          width: 400,
-          showCancelButton: true,
-          confirmButtonColor: '#00447b',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Ocultar notificación'
-        }).then((result) => {
-          if (result.isConfirmed) {
-            localStorage.setItem(`notified_${id}`, 'true');
-            location.reload();
-          }
-        })
-      })
+    index += 1;
+
+    const svgIcon = document.getElementById('notificationIcon');
+
+    const reminder = document.getElementById('notificationItems');
+    reminder.style.color = 'white';
+    reminder.innerText = index;
+
+    let timeMessage = '';
+    if (canMinuteNotified) {
+      timeMessage = `Quedan ${minutesUntilEvent} minutos para el evento`;
+    } else if (canHourNotified) {
+      const hoursText = hoursUntilEvent > 1 ? 'horas' : 'hora';
+      timeMessage = `Quedan al menos ${hoursUntilEvent} ${hoursText} ${minutesUntilEvent} minutos para el evento`;
     }
+
+    svgIcon.addEventListener('click', async () => {
+      return Swal.fire({
+        title: `${title}`,
+        text: timeMessage,
+        color: 'white',
+        position: 'top-start',
+        icon: 'info',
+        background: '#00447b',
+        width: 400,
+        showCancelButton: true,
+        confirmButtonColor: '#00447b',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ocultar notificación'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          if (canHourNotified) {
+            localStorage.setItem(`hoursNotified_${id}`, 'true');
+          } else if (canMinuteNotified) {
+            localStorage.setItem(`minutesNotified_${id}`, 'true');
+          }
+          location.reload();
+        }
+      })
+    })
+
   }
 }
 
