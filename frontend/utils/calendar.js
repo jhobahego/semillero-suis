@@ -208,7 +208,6 @@ export async function handleReminder(eventos) {
       continue;
     }
 
-    console.log('mostrar icono');
     notifications.classList.remove('d-none');
     notifications.classList.add('d-flex');
 
