@@ -16,7 +16,14 @@ document.getElementById("cancelBtn").addEventListener("click", () => {
 // Funcion para agregar eventos
 export async function handleDateClick(info) {
   formCalendar.reset();
-  setDefaultDates(info.date);
+
+  const dateSelected = new Date(info.dateStr);
+
+  // Formato para input de tipo datetime-locale
+  const localeDate = dateSelected.toISOString().slice(0, 16);
+
+  // Se inserta en los campos de fecha la seleccionada desde el calendario
+  setDefaultDates(localeDate);
 
   modal.show();
 
@@ -172,7 +179,6 @@ export async function handleMouseEnter(info, eventos) {
 
 export async function handleReminder(eventos) {
   const notifications = document.getElementById('notifications');
-  // let hideNotification = false;
 
   for (const event of eventos) {
     let index = 0;
@@ -255,7 +261,6 @@ export async function handleReminder(eventos) {
     })
   }
 }
-
 
 function confirmSubmitNotification(notificationData, formAction, submitFunction) {
   const {
