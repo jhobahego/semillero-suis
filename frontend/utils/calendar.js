@@ -134,11 +134,25 @@ export async function handleMouseEnter(info, eventos) {
   const { title, start, description, duration, event_location, color, manager_id } = evento;
   const { data } = await getUser(manager_id);
 
+  const eventDate = new Date(start);
+
+  const options = {
+    weekday: 'short',
+    month: 'short',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: '2-digit',
+    hour12: true,
+  };
+
+  const formatter = new Intl.DateTimeFormat([], options);
+  const formattedDate = formatter.format(eventDate);
+
   const tooltip = document.getElementById('tooltip');
 
   document.getElementById("card-title").textContent = `${title}`;
   document.getElementById("card-description").textContent = `${description}`;
-  document.getElementById("card-fecha").textContent = `Fecha de inicio: ${start}`;
+  document.getElementById("card-fecha").textContent = `Fecha y hora: ${formattedDate}`;
   document.getElementById("card-location").textContent = `Duración: ${duration > 60 ? Math.floor(duration / 60) + ' Horas' : duration + ' Minutos'}`;
   document.getElementById("card-duration").textContent = `Lugar del evento: ${event_location}`;
   document.getElementById("card-manager").textContent = `Responsable: ${data.name} ${data.lastname}`;
