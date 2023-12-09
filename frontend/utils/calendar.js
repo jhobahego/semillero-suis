@@ -127,11 +127,13 @@ async function handleFormSubmit(data, notificationData) {
   confirmSubmitNotification(notificationData, formAction, submitFunction);
 }
 
-export async function handleMouseEnter(info, eventos) {
+export async function handleMouseEnter(info) {
   const { id } = info.event;
-  const evento = eventos.find(evento => evento.id === parseInt(id))
 
-  const { title, start, description, duration, event_location, color, manager_id } = evento;
+  const eventId = parseInt(id);
+  const response = await getEvent(eventId);
+
+  const { title, start, description, duration, event_location, color, manager_id } = response.data;
   const { data } = await getUser(manager_id);
 
   const eventDate = new Date(start);
@@ -308,7 +310,7 @@ function confirmSubmitNotification(notificationData, formAction, submitFunction)
         );
 
         if (formAction === 'add') {
-          calendar.addEvent(data)
+          calendar.addEvent(data);
         }
       }
     }

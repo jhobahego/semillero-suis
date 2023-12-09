@@ -27,7 +27,7 @@ export const calendar = new Calendar(calendarEl, {
   events: eventos,
   dateClick: handleDateClick,
   eventClick: handleEditEvent,
-  eventMouseEnter: (info) => handleMouseEnter(info, eventos),
+  eventMouseEnter: (info) => handleMouseEnter(info),
 });
 
 calendar.render();
