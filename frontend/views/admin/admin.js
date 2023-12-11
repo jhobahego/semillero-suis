@@ -5,6 +5,8 @@ import listPlugin from '@fullcalendar/list';
 import interactionPlugin from '@fullcalendar/interaction';
 import { handleDateClick, cargarEventos, handleEditEvent, handleMouseEnter, handleReminder } from "../../utils/calendar.js";
 import { manageSession } from "../../utils/navbar.js";
+import { manageUser } from '../../utils/admin.js';
+
 
 manageSession();
 
@@ -31,3 +33,6 @@ export const calendar = new Calendar(calendarEl, {
 });
 
 calendar.render();
+
+// Manejo de usuario
+document.getElementById("manageUserBtn").addEventListener("click", manageUser());
