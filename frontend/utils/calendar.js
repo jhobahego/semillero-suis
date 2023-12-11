@@ -220,8 +220,8 @@ export async function handleReminder(eventos) {
     const hoursNotified = JSON.parse(localStorage.getItem(`hoursNotified_${id}`));
     const minutesNotified = JSON.parse(localStorage.getItem(`minutesNotified_${id}`));
 
-    let canHourNotified = hoursNotified == null && minutesUntilEvent > 60;
-    let canMinuteNotified = minutesNotified == null && minutesUntilEvent < 61;
+    const canHourNotified = hoursNotified == null && minutesUntilEvent > 60;
+    const canMinuteNotified = minutesNotified == null && minutesUntilEvent < 61;
 
     const canNotified = canHourNotified || canMinuteNotified;
 
@@ -247,8 +247,9 @@ export async function handleReminder(eventos) {
       timeMessage = `Quedan ${minutesUntilEvent} minutos para el evento`;
     } else if (canHourNotified) {
       localStorage.removeItem('hideIcon');
+      const remainingMinutes = minutesUntilEvent - (hoursUntilEvent * 60); // Restar los minutos equivalentes a las horas
       const hoursText = hoursUntilEvent > 1 ? 'horas' : 'hora';
-      timeMessage = `Quedan al menos ${hoursUntilEvent} ${hoursText} ${minutesUntilEvent} minutos para el evento`;
+      timeMessage = `Quedan al menos ${hoursUntilEvent} ${hoursText} ${remainingMinutes} minutos para el evento`;
     }
 
     svgIcon.addEventListener('click', async () => {
