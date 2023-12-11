@@ -108,7 +108,7 @@
       <div class="card">
         <img src="/img/admin/gestionarUser.png" alt="#">
         <h2>Gestionar usuarios</h2>
-        <button class="boton">click in here</button>
+        <button class="boton" id="manageUserBtn">Click aquí</button>
       </div>
       <div class="card">
         <img src="/img/admin/productos.png" alt="#">
@@ -207,6 +207,85 @@
             </div>
           </form>
 
+        </div>
+      </div>
+    </article>
+
+    <!-- Modal para manejo de usuarios -->
+    <article class="modal" tabindex="-1" role="dialog" id="userModal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="userModalTitle">Editar usuario</h4>
+            <button type="button" class="btn-close" aria-label="Cerrar" id="closeUserModalBtn"></button>
+          </div>
+
+          <form id="userForm">
+            <div class="modal-body">
+              <h5 class="text-center py-3" id="userModalSubtitle">Editar permisos y roles</h5>
+
+
+              <header class="row mb-3 gap-2">
+                <div class="col-sm-4 w-100">
+                  <div class="form-floating">
+                    <select class="form-select" id="userSearchCriteria">
+                      <option value="name">Nombre</option>
+                      <option value="email">Correo electrónico</option>
+                    </select>
+                    <label for="userSearchCriteria" class="form-label">Buscar por:</label>
+                  </div>
+                </div>
+                <div class="col-sm-4 w-100 mb-3">
+                  <input type="text" class="form-control" id="userSearchInput"
+                    placeholder="Ingrese término de búsqueda">
+                  <button type="button" class="btn btn-primary my-2" id="userSearchButton">Buscar usuario</button>
+                </div>
+              </header>
+
+
+              <section class="d-none" id="userInformation">
+
+                <div class="form-floating mb-3">
+                  <input type="text" class="form-control" id="userId" disabled>
+                  <label for="userId" class="form-label">ID de usuario</label>
+                </div>
+                <div class="form-floating mb-3">
+                  <input type="text" class="form-control" id="userName">
+                  <label for="userName" class="form-label">Nombre</label>
+                </div>
+                <div class="form-floating mb-3">
+                  <input type="text" class="form-control" id="userLastName">
+                  <label for="userLastName" class="form-label">Apellido</label>
+                </div>
+                <div class="form-floating mb-3">
+                  <input type="email" class="form-control" id="userEmail">
+                  <label for="userEmail" class="form-label">Correo electrónico</label>
+                </div>
+                <!-- ... otros campos correspondientes al usuario: permisos, roles, etc. ... -->
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="adminCheck">
+                  <label class="form-check-label" for="adminCheck">
+                    Hacer administrador
+                  </label>
+                </div>
+                
+                <div class="col my-4" id="authorities">
+                  <h5>Permisos</h5>
+                </div>
+              </section>
+
+
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" id="deleteUserBtn">
+                Eliminar usuario
+              </button>
+              <button type="submit" class="btn btn-primary">
+                Guardar cambios
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </article>
