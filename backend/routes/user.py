@@ -5,7 +5,7 @@ from sqlalchemy.orm import Session
 from config.deps import get_current_active_admin, get_db
 
 from crud.crud_user import user as crud_user
-from schemas.User import User, UserCreate, UserInDB
+from schemas.User import User as UserSchema, UserCreate, UserInDB
 
 from utils.email import valid_email
 
@@ -57,7 +57,7 @@ def get_user(id: int, db: Session = Depends(get_db)):
 @router.get(
     "/users",
     tags=["Users"],
-    response_model=list[User],
+    response_model=list[UserSchema],
     dependencies=[Depends(get_current_active_admin)],
 )
 def get_users(db: Session = Depends(get_db)):
