@@ -1,11 +1,12 @@
 from fastapi import Depends, APIRouter, HTTPException
 
 from sqlalchemy.exc import IntegrityError
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, joinedload
 from config.deps import get_current_active_admin, get_db
 
 from crud.crud_user import user as crud_user
-from schemas.User import User as UserSchema, UserCreate, UserInDB
+from schemas.User import User as UserSchema, UserCreate, UserResponse
+from models.User import User
 
 from utils.email import valid_email
 
@@ -13,7 +14,7 @@ from utils.email import valid_email
 router = APIRouter()
 
 
-@router.post("/users", tags=["Users"], status_code=201, response_model=UserInDB)
+@router.post("/users", tags=["Users"], status_code=201, response_model=UserResponse)
 def create_user(
     user: UserCreate,
     db: Session = Depends(get_db),
@@ -45,13 +46,21 @@ def create_user(
             raise
 
 
-@router.get("/users/{id}", tags=["Users"], response_model=UserInDB)
+@router.get(
+    "/users/{id}",
+    tags=["Users"],
+    response_model=UserSchema,
+    dependencies=[Depends(get_current_active_admin)],
+)
 def get_user(id: int, db: Session = Depends(get_db)):
-    db_user = crud_user.get(db, id)
+    user_with_rol = (
+        db.query(User).filter(User.id == id).options(joinedload(User.roles)).first()
+    )
 
-    if not db_user:
-        raise HTTPException(status_code=404, detail="User not found")
-    return db_user
+    if not user_with_rol:
+        raise HTTPException(status_code=404, detail="Usuario no encontrado")
+
+    return user_with_rol
 
 
 @router.get(
