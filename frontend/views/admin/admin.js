@@ -35,4 +35,5 @@ export const calendar = new Calendar(calendarEl, {
 calendar.render();
 
 // Manejo de usuario
-document.getElementById("manageUserBtn").addEventListener("click", manageUser());
+const manageUserBtn = document.getElementById("manageUserBtn");
+manageUserBtn.addEventListener("click", () => manageUser());

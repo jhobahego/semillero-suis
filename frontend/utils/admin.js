@@ -1,6 +1,6 @@
 import { Modal } from "bootstrap";
-import { getUsers } from '../../services/userServices.js';
-import { notificationUtilities } from '../../services/notificationService.js';
+import { getUsers } from '../services/userServices';
+import { notificationUtilities } from '../services/notificationService.js';
 
 const userModal = document.getElementById("userModal");
 const modal = new Modal(userModal);
