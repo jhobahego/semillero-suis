@@ -29,14 +29,14 @@ const researchTeamDiv = document.getElementById('researchTeamDiv');
 
 // Muestra u oculta campos segun si es profesor o estudiante
 selectEl.addEventListener("change", () => {
-  if (selectEl.value === 'teacher') {
+  if (selectEl.value === 'TEACHER') {
     hideElements([
       semesterDiv,
       programaDiv,
       facultyDiv,
       researchTeamDiv
     ]);
-  } else if (selectEl.value === 'student') {
+  } else if (selectEl.value === 'STUDENT') {
     showElements([
       semesterDiv,
       programaDiv,
@@ -75,11 +75,12 @@ async function register(event) {
     email: emailInput.value,
     password: passwordInput.value,
     university: universityInput.value,
-    sede: sedeInput.value
+    sede: sedeInput.value,
+    rol: selectEl.value
   };
 
   // Campos adicionales para usuario estudiante
-  if (selectEl.value === 'student') {
+  if (selectEl.value === 'STUDENT') {
     user.semester = semesterInput.value;
     user.program = programaInput.value;
     user.faculty = facultyInput.value;

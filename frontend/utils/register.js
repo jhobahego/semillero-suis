@@ -12,7 +12,7 @@ export function validFields({
   facultyInput,
   researchTeamInput
 }) {
-  if (selectValue === 'teacher') {
+  if (selectValue === 'TEACHER') {
     return checkFields([
       dniInput,
       nombreInput,
@@ -22,7 +22,7 @@ export function validFields({
       passwordInput,
       universityInput
     ]);
-  } else if (selectValue === 'student') {
+  } else if (selectValue === 'STUDENT') {
     return checkFields([
       dniInput,
       nombreInput,
