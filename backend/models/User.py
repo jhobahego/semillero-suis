@@ -9,7 +9,7 @@ from sqlalchemy import (
     CheckConstraint,
 )
 
-from sqlalchemy.orm import validates, relationship, backref
+from sqlalchemy.orm import validates, relationship
 
 from enum import Enum
 from db import Base
@@ -37,6 +37,7 @@ class Roles(Base):
     rol_id = Column(Integer, primary_key=True, index=True)
     name = Column(SqlAlchemyEnum(RolName, create_constraint=True))
     authorities = Column(JSON)
+    users = relationship("User", secondary="users_roles", back_populates="roles")
 
 
 class UserRol(Base):
@@ -45,8 +46,6 @@ class UserRol(Base):
     user_rol_id = Column(Integer, primary_key=True, index=True)
     rol_id = Column(Integer, ForeignKey("roles.rol_id"))
     user_id = Column(Integer, ForeignKey("users.id"))
-
-    role = relationship("Roles", backref="user_roles")
 
 
 class User(Base):
@@ -68,11 +67,7 @@ class User(Base):
     is_active = Column(Boolean, default=True)
     is_superuser = Column(Boolean, default=False)
 
-    roles = relationship(
-        "UserRol",
-        cascade="all, delete-orphan",
-        backref=backref("user"),
-    )
+    roles = relationship("Roles", secondary="users_roles", back_populates="users")
 
     __table_args__ = (
         CheckConstraint("LENGTH(name) >= 4", name="check_name_length"),
