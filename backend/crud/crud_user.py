@@ -1,15 +1,13 @@
 from typing import Any, Dict, Optional, Union
 
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, joinedload
 
 from decouple import config
 
 from crud.base import CRUDBase
-from models.User import Roles, User, UserRol, RolName, Autority
+from models.User import Roles, User, RolName, Autority
 from schemas.User import UserCreate, UserUpdate
 from config.security import get_password_hash, verify_password
-
-from utils.email import is_teacher
 
 
 class CRUDUser(CRUDBase[User, UserCreate, UserUpdate]):
@@ -26,11 +24,8 @@ class CRUDUser(CRUDBase[User, UserCreate, UserUpdate]):
             authorities.append(Autority.CREATE)
             authorities.append(Autority.MODIFY)
             authorities.append(Autority.DELETE)
-
-        elif is_teacher(user.email):
-            rol_name = RolName.TEACHER
         else:
-            rol_name = RolName.STUDENT
+            rol_name = user.rol
 
         created_user = User(
             dni=user.dni,
@@ -48,17 +43,20 @@ class CRUDUser(CRUDBase[User, UserCreate, UserUpdate]):
             is_superuser=(rol_name == RolName.GESTOR),
         )
 
-        db.add(created_user)
-        db.commit()
+        if rol_name:
+            rol = Roles(name=rol_name, authorities=authorities)
+            created_user.roles = [rol]
+
+            db.add_all([created_user, rol])
+            db.commit()
+
         db.refresh(created_user)
-
-        rol = Roles(name=rol_name, authorities=authorities)
-        db.add(rol)
-        db.commit()
-
-        user_rol = UserRol(user_id=created_user.id, rol_id=rol.rol_id)
-        db.add(user_rol)
-        db.commit()
+        created_user = (
+            db.query(User)
+            .options(joinedload(User.roles))
+            .filter_by(id=created_user.id)
+            .first()
+        )
 
         return created_user
 
