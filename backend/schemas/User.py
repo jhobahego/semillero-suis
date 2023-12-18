@@ -17,14 +17,10 @@ class RolName(str, Enum):
     STUDENT = "STUDENT"
 
 
-class UserResponse(BaseModel):
-    id: int
-    name: str
-    email: str
-    is_active: bool
-    is_superuser: bool
-    authorities: List[Autority]
-    rol: RolName
+class Rol(BaseModel):
+    rol_id: int
+    name: RolName
+    authorities: List[str]
 
 
 class UserBase(BaseModel):
@@ -33,6 +29,11 @@ class UserBase(BaseModel):
     email: str
     is_active: bool
     is_superuser: bool
+
+
+class UserResponse(UserBase):
+    id: int
+    rol: Rol = None
 
 
 class UserCreate(BaseModel):
@@ -48,10 +49,7 @@ class UserCreate(BaseModel):
     program: str | None = None
     faculty: str | None = None
     research_team: str | None = None
-
-
-class UserInDB(UserBase):
-    id: Optional[int] = None
+    rol: RolName
 
 
 class User(BaseModel):
@@ -69,6 +67,7 @@ class User(BaseModel):
     research_team: str | None
     is_active: bool
     is_superuser: bool
+    roles: List[Rol]
 
     model_config = ConfigDict(from_attributes=True)
 
