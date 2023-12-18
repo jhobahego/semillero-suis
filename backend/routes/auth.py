@@ -5,7 +5,7 @@ from typing import Any
 from sqlalchemy.orm import Session
 
 from schemas.Token import Token
-from schemas.User import User, UserResponse
+from schemas.User import UserResponse
 from crud.crud_user import user as crud_user
 from config.security import create_access_token
 
@@ -40,5 +40,5 @@ def login_access_token(
 
 
 @router.get("/users/me", tags=["Security"], response_model=UserResponse)
-def get_logged_user(user_logged: User = Depends(get_current_active_user)):
+def get_logged_user(user_logged: UserResponse = Depends(get_current_active_user)):
     return user_logged
