@@ -1,5 +1,6 @@
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
+from fastapi.encoders import jsonable_encoder
 from typing import Generator
 from pydantic import ValidationError
 from sqlalchemy.orm import Session, joinedload
@@ -8,7 +9,7 @@ from jose import jwt
 from decouple import config
 
 from crud import crud_user as crud
-from models.User import User, UserRol, Roles, RolName
+from models.User import User, RolName
 from schemas.Token import TokenPayload
 from schemas.User import UserResponse
 from . import security
@@ -68,37 +69,33 @@ def get_current_active_user(
         raise HTTPException(status_code=400, detail="Usuario inactivo")
 
     # Consultar el rol y las autoridades del usuario
-    user_rol = (
-        db.query(UserRol)
-        .filter_by(user_id=current_user.id)
-        .options(joinedload(UserRol.role))
+    user_with_rol = (
+        db.query(User)
+        .filter_by(id=current_user.id)
+        .options(joinedload(User.roles))
         .first()
     )
-    if not user_rol:
-        raise HTTPException(status_code=404, detail="Rol del usuario no encontrado")
+    if not user_with_rol:
+        raise HTTPException(status_code=404, detail="Usuario no encontrado")
 
-    authorities = []
-
-    role = user_rol.role
-    authorities.extend(role.authorities)
-    rol = role.name
-
+    rol = jsonable_encoder(user_with_rol.roles[0])
     user_response = UserResponse(
-        id=current_user.id,
-        name=current_user.name,
-        email=current_user.email,
-        is_active=current_user.is_active,
-        is_superuser=current_user.is_superuser,
+        id=user_with_rol.id,
+        name=user_with_rol.name,
+        lastname=user_with_rol.lastname,
+        email=user_with_rol.email,
+        is_active=user_with_rol.is_active,
+        is_superuser=user_with_rol.is_superuser,
         rol=rol,
-        authorities=authorities,
     )
 
     return user_response
 
 
 def get_current_active_admin(
-    current_user: User = Depends(get_current_user), db: Session = Depends(get_db)
-) -> User:
+    current_user: UserResponse = Depends(get_current_active_user),
+    db: Session = Depends(get_db),
+) -> UserResponse:
     """
     Obtén el usuario actualmente autenticado como administrador.
 
@@ -119,11 +116,10 @@ def get_current_active_admin(
         ```
     """
     # Obtener el rol del usuario actual
-    user_rol = db.query(UserRol).where(UserRol.user_id == current_user.id).first()
-    rol_obj = db.query(Roles).where(Roles.rol_id == user_rol.rol_id).first()
+    user_rol = current_user.rol
 
     # Verificar si el usuario es administrador o tiene los privilegios adecuados
-    if not crud.user.is_superuser(current_user) and rol_obj.name != RolName.GESTOR:
+    if not crud.user.is_superuser(current_user) and user_rol.name != RolName.GESTOR:
         raise HTTPException(
             status_code=400, detail="El usuario no tiene suficientes privilegios"
         )
