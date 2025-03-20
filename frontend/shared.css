@@ -1,0 +1,60 @@
+/* Estilos para la barra de navegación */
+.menu {
+  width: 100%;
+  background-color: #00447b;
+  padding: .4em 4em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu__links {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  list-style: none;
+  width: 100%;
+  padding-left: 0;
+  margin-bottom: 0;
+  gap: 3em;
+}
+
+/* Menú oculto inicialmente */
+.mobile-menu {
+  display: none;
+  background-color: #00447b;
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 35%;
+  height: 100vh;
+  padding: 1em 0;
+  list-style: none;
+  padding: 4em 1.3em;
+  z-index: 1000;
+  transition: left 0.3s ease;
+}
+
+.mobile-menu .nav-link {
+  padding: .4em 0;
+  text-align: center;
+}
+
+.mobile-menu .nav-item {
+  width: 100%;
+}
+
+/* Muestra el menú móvil cuando la clase .show está presente */
+.mobile-menu.show {
+  left: 0;
+}
+
+@media (max-width: 768px) {
+  .menu {
+    padding: .4em 1em;
+  }
+
+  .menu__links {
+    display: none;
+  }
+}
