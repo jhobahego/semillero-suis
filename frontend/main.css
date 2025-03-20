@@ -241,3 +241,136 @@ main {
     font-size: 25px;
   }
 }
+
+@media screen and (max-width: 768px) {
+  main {
+    padding: 1em;
+  }
+
+  .section {
+    flex-direction: column;
+    padding: 1em;
+  }
+
+  .section__body {
+    width: 100%;
+    margin-bottom: 2em;
+  }
+
+  .section__body img {
+    width: 100%;
+    height: auto;
+    margin: 1em 0;
+  }
+
+  .banner {
+    grid-template-areas: 
+      "logo"
+      "slogan";
+    height: auto;
+    padding: 2em 1em;
+    text-align: center;
+  }
+
+  .logo-remington {
+    margin: 0 auto;
+    max-width: 200px;
+  }
+
+  .slogan {
+    margin: 1em 0;
+  }
+
+  .carrousel {
+    max-width: 100%;
+  }
+
+  .carousel-container {
+    margin: 1em 0;
+  }
+
+  .carrousel__images {
+    max-height: 250px;
+  }
+
+  .footer {
+    padding: 2em 1em;
+    text-align: center;
+  }
+
+  .contact-info,
+  .social-media,
+  .address {
+    width: 100%;
+    margin-bottom: 2em;
+  }
+}
+
+/* Mobile styles */
+@media screen and (max-width: 768px) {
+  .banner {
+      flex-direction: column;
+      text-align: center;
+      padding: 1rem;
+  }
+
+  .section__body {
+      flex-direction: column;
+      padding: 1rem;
+  }
+
+  .section__body img {
+      width: 100%;
+      max-width: 100%;
+      margin: 1rem 0;
+  }
+
+  .footer {
+      flex-direction: column;
+      text-align: center;
+      padding: 2rem 1rem;
+  }
+
+  .contact-info,
+  .social-media,
+  .address {
+      margin-bottom: 2rem;
+  }
+
+  .carousel-container {
+      padding: 0 1rem;
+  }
+
+  .carrousel__images img {
+      height: 300px;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  main {
+    padding: 2em;
+  }
+
+  .section {
+    padding: 1em 2em;
+  }
+
+  .section__body {
+    width: 48%;
+  }
+
+  .carrousel {
+    max-width: 80%;
+  }
+}
+
+/* Tablet styles */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .section__body {
+      padding: 2rem;
+  }
+
+  .banner {
+      padding: 2rem;
+  }
+}
