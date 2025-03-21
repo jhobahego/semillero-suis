@@ -1,8 +1,9 @@
 from fastapi import Depends, APIRouter, HTTPException
-from sqlalchemy.exc import IntegrityError
+from sqlalchemy.exc import IntegrityError, DataError, OperationalError
 from sqlalchemy.orm import Session, joinedload
 
 from decouple import config
+# from pymysql import OperationalError, DataError
 
 from config.deps import get_current_active_admin, get_db
 
@@ -45,8 +46,16 @@ def create_user(
                 detail="Ya existe un usuario con este número de identificación (DNI)",
             )
         else:
-            # Si no es una violación de unicidad en la columna dni, re-raise la excepción
-            raise
+            raise HTTPException(status_code=400, detail="Error en digitación, verifica tus datos.")
+
+    except DataError as e:
+        print(e)
+        if "Out of range value for column 'dni' at row 1" in str(e):
+            raise HTTPException(status_code=400, detail="Dni inválido, debes usar un número válido.")
+
+    except OperationalError as e:
+        print(e)
+        raise HTTPException(status_code=400, detail="Datos invalidos, verifica tus datos")
 
 
 @router.get(
