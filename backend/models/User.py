@@ -3,6 +3,7 @@ from sqlalchemy import (
     Column,
     ForeignKey,
     Integer,
+    BigInteger,
     String,
     Enum as SqlAlchemyEnum,
     JSON,
@@ -12,6 +13,8 @@ from sqlalchemy import (
 from sqlalchemy.orm import validates, relationship
 
 from enum import Enum
+from decouple import config
+
 from db import Base
 
 import re
@@ -52,7 +55,7 @@ class User(Base):
     __tablename__ = "users"
 
     id = Column(Integer, primary_key=True, index=True)
-    dni = Column(Integer, unique=True, nullable=False)
+    dni = Column(BigInteger, unique=True, nullable=False)
     name = Column(String(100), nullable=False)
     lastname = Column(String(100), nullable=False)
     email = Column(String(150), unique=True, index=True, nullable=False)
@@ -80,7 +83,7 @@ class User(Base):
 
     @validates("email")
     def validate_email(self, key, email):
-        # Validar el formato del correo electrónico utilizando regex
-        if not self.email_regex.match(email):
+        admin_email = config("ADMIN_EMAIL")
+        if not self.email_regex.match(email) and not email == admin_email:
             raise ValueError("Correo invalido debes usar tu correo institucional.")
         return email

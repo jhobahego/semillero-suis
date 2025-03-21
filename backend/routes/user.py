@@ -1,7 +1,9 @@
 from fastapi import Depends, APIRouter, HTTPException
-
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session, joinedload
+
+from decouple import config
+
 from config.deps import get_current_active_admin, get_db
 
 from crud.crud_user import user as crud_user
@@ -19,7 +21,8 @@ def create_user(
     user: UserCreate,
     db: Session = Depends(get_db),
 ):
-    if not valid_email(user):
+    admin_email = config("ADMIN_EMAIL")
+    if not valid_email(user) and not user.email == admin_email:
         raise HTTPException(
             status_code=400,
             detail="Correo inválido, debes usar tu correo institucional",
